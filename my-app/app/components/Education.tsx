@@ -7,17 +7,17 @@ export default function Education() {
   const timeline = [
     {
       year: "Current",
-      title: "BSc (Hons) Computer Science Systems Engineering",
+      title: "Computer Science Systems Engineering",
       institution: "Middlesex University Mauritius",
-      description: "Pursuing a degree in Computer Systems Engineering with a focus on software development and AI.",
+      description: "BSc (Hons) degree focusing on software development and AI",
       type: "degree",
       icon: GraduationCap,
     },
     {
       year: "2025",
-      title: "Anaconda Python for Data Science Professional Certificate",
+      title: "Python for Data Science",
       institution: "Anaconda, Inc.",
-      description: "Skills: Data Analysis · Statistics · Python (Programming Language)",
+      description: "Professional certification in data analysis and statistics",
       type: "certification",
       icon: Award,
     },
@@ -25,73 +25,71 @@ export default function Education() {
       year: "2025",
       title: "Artificial Intelligence",
       institution: "CrewAI",
-      description: "Skills: Multi-Agent AI",
+      description: "Certification in Multi-Agent AI systems",
       type: "certification",
       icon: Award,
     },
     {
       year: "2025",
-      title: "Career Essentials in Generative AI",
+      title: "Generative AI Essentials",
       institution: "Microsoft & LinkedIn",
-      description: "Skills: Computer Ethics",
+      description: "Career essentials in generative AI applications",
       type: "certification",
       icon: Award,
     },
     {
       year: "2025",
-      title: "ExamPro GenAI Essentials Certificate of Completion",
+      title: "GenAI Essentials",
       institution: "ExamPro",
-      description: "Skills: Generative AI Essentials",
+      description: "Certificate of completion in generative AI fundamentals",
       type: "certification",
       icon: Award,
     },
     {
       year: "2025",
-      title: "Machine Learning with Python",
+      title: "Machine Learning",
       institution: "freeCodeCamp",
-      description: "Skills: Machine Learning with Python",
+      description: "Certification in machine learning with Python",
       type: "certification",
       icon: Award,
     },
     {
       year: "2025",
-      title: "Data Analysis with Python",
+      title: "Data Analysis",
       institution: "freeCodeCamp",
-      description: "Skills: Data Cleaning · Statistical Data Analysis",
+      description: "Certification in data cleaning and statistical analysis",
       type: "certification",
       icon: Award,
     },
     {
       year: "2023",
-      title: "Artificial Intelligence Foundations: Machine Learning",
+      title: "Machine Learning Foundations",
       institution: "LinkedIn",
-      description: "Skills: Machine Learning",
+      description: "Certification in AI and machine learning fundamentals",
       type: "certification",
       icon: Award,
     },
-   
     {
       year: "2023",
-      title: "C#",
+      title: "C# Programming",
       institution: "Codecademy",
-      description: "Skills: C# Programming",
+      description: "Certification in C# programming language",
       type: "certification",
       icon: Award,
     },
-    
     {
       year: "2022",
       title: "Responsive Web Design",
       institution: "freeCodeCamp",
-      description: "Skills: Responsive Web Design",
+      description: "Certification in modern responsive web design techniques",
       type: "certification",
       icon: Award,
     },
     {
       year: "2019",
-      title: "Associate's degree, Information Technology",
+      title: "Information Technology",
       institution: "KCA University",
-      description: "Completed foundational studies in Information Technology.",
+      description: "Associate's degree in Information Technology",
       type: "degree",
       icon: GraduationCap,
     },
@@ -111,93 +109,108 @@ export default function Education() {
   }
 
   return (
-    <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">My Learning Journey</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-3 sm:mb-4">My Learning Journey</h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Continuous growth through education, projects, and real-world application
           </p>
         </motion.div>
 
-        {/* Timeline with left/right alternation */}
+        {/* Timeline - Responsive design */}
         <div className="relative">
-          {/* Vertical center line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 -translate-x-1/2 z-0" />
+          {/* Vertical center line - hidden on smallest screens */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gray-200 md:-translate-x-1/2 z-0" />
 
           {timeline.map((item, index) => {
-            const isLeft = index % 2 === 0
+            const isLeft = index % 2 === 0;
             return (
               <motion.div
                 key={index}
-                className={`relative flex items-start mb-12 last:mb-0 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
-                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                className={`relative flex mb-8 sm:mb-12 last:mb-0 ${
+                  // On mobile, always stack with timeline on left
+                  // On medium screens+, alternate between left and right
+                  isLeft 
+                    ? "md:flex-row items-start" 
+                    : "md:flex-row-reverse items-start" 
+                }`}
+                initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 {/* Content Card */}
                 <motion.div
-                  className={`w-full max-w-xl bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group z-10 ${isLeft ? "ml-0 mr-auto" : "mr-0 ml-auto"}`}
+                  className={`
+                    w-full ml-10 md:ml-0 md:w-[calc(50%-1.5rem)]
+                    bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 
+                    shadow-sm hover:shadow-md transition-all duration-300 
+                    group z-10
+                    ${isLeft ? "md:mr-6 md:ml-0" : "md:ml-6 md:mr-0"}
+                  `}
                   whileHover={{ y: -2 }}
-                  style={{ width: "calc(50% - 2rem)" }}
+                  style={{ 
+                    width: "calc(100% - 2.5rem)",
+                    maxWidth: "100%"
+                  }}
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-gray-100 rounded-xl group-hover:bg-orange-100 transition-colors">
-                        <item.icon className="w-5 h-5 text-gray-600 group-hover:text-orange-500 transition-colors" />
+                  <div className="flex items-start justify-between mb-2 sm:mb-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="hidden sm:block p-1.5 sm:p-2 bg-gray-100 rounded-lg sm:rounded-xl group-hover:bg-orange-100 transition-colors">
+                        <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-orange-500 transition-colors" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-black group-hover:text-orange-500 transition-colors">
+                        <h3 className="text-base sm:text-lg font-bold text-black group-hover:text-orange-500 transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600">{item.institution}</p>
+                        <p className="text-xs sm:text-sm text-gray-600">{item.institution}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <Calendar className="w-4 h-4" />
+                    <div className="flex flex-col items-end gap-1 sm:gap-2">
+                      <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                         {item.year}
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(item.type)}`}>
+                      <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-medium ${getTypeColor(item.type)}`}>
                         {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
                       </span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">{item.description}</p>
+                  <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{item.description}</p>
                 </motion.div>
 
                 {/* Timeline Node */}
-                <div className="absolute left-1/2 -translate-x-1/2 top-8 z-20">
+                <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-4 sm:top-6 z-20">
                   <motion.div
-                    className="w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-lg"
+                    className="w-4 h-4 sm:w-5 sm:h-5 bg-orange-500 rounded-full border-3 sm:border-4 border-white shadow-lg"
                     whileInView={{ scale: [0, 1.2, 1] }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   />
                 </div>
               </motion.div>
-            )
+            );
           })}
         </div>
 
         {/* Skills Summary */}
         <motion.div
-          className="mt-16 bg-gray-50 rounded-2xl p-8"
+          className="mt-10 sm:mt-16 bg-gray-50 rounded-xl sm:rounded-2xl p-5 sm:p-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-black mb-6 text-center">Core Competencies</h3>
+          <h3 className="text-xl sm:text-2xl font-bold text-black mb-4 sm:mb-6 text-center">Core Competencies</h3>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {[
               {
                 category: "Frontend",
@@ -220,10 +233,10 @@ export default function Education() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h4 className="font-semibold text-black mb-3">{category.category}</h4>
-                <div className="flex flex-wrap justify-center gap-2">
+                <h4 className="font-semibold text-black mb-2 sm:mb-3 text-sm sm:text-base">{category.category}</h4>
+                <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
                   {category.skills.map((skill) => (
-                    <span key={skill} className="px-3 py-1 bg-white text-gray-700 rounded-full text-sm">
+                    <span key={skill} className="px-2 py-1 sm:px-3 sm:py-1 bg-white text-gray-700 rounded-full text-xs sm:text-sm">
                       {skill}
                     </span>
                   ))}
