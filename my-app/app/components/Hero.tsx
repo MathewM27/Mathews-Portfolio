@@ -162,6 +162,133 @@ function ProjectCarousel() {
   )
 }
 
+function ProjectCarouselCard() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const featuredProjects = [
+    {
+      name: "Lifestyle Aviation",
+      description: "Luxury private jet booking platform",
+      image: "/fly.jpg",
+      link: "https://lifestyleaviationjet.com/",
+    },
+    {
+      name: "LakazHub",
+      description: "Property rental marketplace",
+      image: "/hero.webp",
+      link: "https://lakazhub.com/",
+    },
+    {
+      name: "BusTrack",
+      description: "AI-powered transport tracking",
+      image: "/bg2.jpg",
+      link: "https://example.com/bustrack",
+    },
+    {
+      name: "NeuraLearn",
+      description: "AI personalized learning tutor",
+      image: "/Learn.jpg",
+      link: "https://example.com/neuralean",
+    },
+    {
+      name: "AgriBot",
+      description: "WhatsApp AI farming assistant",
+      image: "/farm.jpg",
+      link: "https://example.com/agribot",
+    },
+    {
+      name: "OnboardAI",
+      description: "AI employee onboarding tool",
+      image: "/Typing.jpg",
+      link: "https://example.com/langai",
+    },
+  ]
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
+    timeoutRef.current = setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % featuredProjects.length)
+    }, 3000)
+    
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [currentIndex, mounted, featuredProjects.length])
+
+  if (!mounted) return null
+
+  const currentProject = featuredProjects[currentIndex]
+
+  return (
+    <motion.div
+      className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden relative h-full cursor-pointer group"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Project Image - 50% height */}
+      <div className="relative h-1/2 overflow-hidden">
+        <Image
+          src={currentProject.image}
+          alt={currentProject.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 25vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ objectFit: "cover" }}
+        />
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+      </div>
+
+      {/* Project Info - 50% height */}
+      <div className="h-1/2 p-3 sm:p-4 flex flex-col justify-between">
+        <div>
+          <h4 className="text-sm sm:text-base font-bold text-black mb-1 truncate">
+            {currentProject.name}
+          </h4>
+          <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+            {currentProject.description}
+          </p>
+        </div>
+        
+        {/* View Project Button */}
+        <motion.a
+          href={currentProject.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-orange-500 hover:text-orange-600 font-semibold text-xs sm:text-sm mt-2 transition-colors"
+          whileHover={{ x: 2 }}
+        >
+          View Project
+          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+        </motion.a>
+      </div>
+
+      {/* Slide indicator dots */}
+      <div className="absolute bottom-2 right-2 flex gap-1">
+        {featuredProjects.map((_, index) => (
+          <div
+            key={index}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-orange-500" : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
 export default function Hero() {
   const scrollToProjects = () => {
     const element = document.querySelector("#projects")
@@ -178,13 +305,51 @@ export default function Hero() {
   }
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-20 sm:pt-24 md:pt-20 pb-4 sm:pb-8 relative"
-      style={{
-        minHeight: 'calc(100vh - 2rem)', // Subtract some space for better mobile experience
-      }}
-    >
+    <>
+      <style jsx>{`
+        @keyframes wave-light {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-2px);
+          }
+        }
+        
+        @keyframes light-sweep {
+          0% {
+            opacity: 0;
+            transform: translateX(-100%);
+          }
+          50% {
+            opacity: 0.6;
+            transform: translateX(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+        }
+        
+        @keyframes wave-hand {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          10%, 30%, 50%, 70%, 90% {
+            transform: rotate(14deg);
+          }
+          20%, 40%, 60%, 80% {
+            transform: rotate(-8deg);
+          }
+        }
+      `}</style>
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-20 sm:pt-24 md:pt-20 pb-4 sm:pb-8 relative"
+        style={{
+          minHeight: 'calc(100vh - 2rem)', // Subtract some space for better mobile experience
+        }}
+      >
       <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-5">
         {/* Main Content - 2 columns */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-5 auto-rows-fr">
@@ -196,41 +361,64 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            {/* Animated Blobs */}
-            <span className="absolute top-4 left-4 w-24 sm:w-28 h-24 sm:h-28 bg-orange-500 opacity-30 rounded-full blur-2xl animate-pulse z-0"></span>
-            <span className="absolute bottom-10 right-10 w-16 sm:w-20 h-16 sm:h-20 bg-black opacity-20 rounded-full blur-xl animate-ping z-0"></span>
-            <span className="absolute top-1/2 left-1/2 w-12 sm:w-16 h-12 sm:h-16 bg-orange-400 opacity-20 rounded-full blur-lg animate-bounce z-0"></span>
+            {/* Subtle animated background */}
+            <div className="absolute bottom-6 right-6 w-20 h-20 bg-gradient-to-r from-orange-200 to-orange-300 opacity-40 rounded-full blur-xl animate-pulse" style={{ animationDuration: '3s' }}></div>
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
-              <Image
-                src="/X.svg"
-                alt="FutureX Designs Logo"
-                width={44}
-                height={44}
-                className="mb-2 sm:mb-3 lg:mb-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
-                priority
-              />
-              
               <h1 className="mb-2 sm:mb-3 lg:mb-4 leading-tight">
-                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Hi there!<span className="block">im</span></span>
-                <span className="block text-orange-500 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold">Mathews</span>
+                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+                  Hi there
+                  <span 
+                    className="inline-block ml-2"
+                    style={{
+                      animation: 'wave-hand 20s ease-in-out infinite',
+                      transformOrigin: '70% 70%'
+                    }}
+                  >
+                    ✋
+                  </span>
+                  <span className="block">im</span>
+                </span>
+                <span className="block text-orange-500 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black">Mathews</span>
               </h1>
-              <p className="text-black mb-3 sm:mb-4 lg:mb-5 font-semibold text-xs sm:text-sm lg:text-base max-w-xl">
-                Founder of FutureX Designs ~ Entrepreneur and ~ Developer.
+              <p className="text-black mb-2 sm:mb-3 lg:mb-4 font-semibold text-xs sm:text-sm lg:text-base max-w-xl">
+                Designer - Developer - AI engineer
               </p>
+              {/* Animated FREELANCER text */}
+              <div className="mb-3 sm:mb-4 lg:mb-5 w-full max-w-xl flex justify-center">
+                <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px]">
+                  {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
+                    <span
+                      key={index}
+                      className="text-black lg:text-lg font-semibold relative overflow-hidden inline-block"
+                      style={{
+                        animation: `wave-light 3s infinite ${index * 0.1}s`,
+                      }}
+                    >
+                      {letter}
+                      <span 
+                        className="absolute inset-0   opacity-0"
+                        style={{
+                          animation: `light-sweep 3s infinite ${index * 0.1}s`,
+                        }}
+                      />
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
             <motion.button
               onClick={scrollToProjects}
-              className="bg-orange-500 text-white px-5 sm:px-7 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-orange-600 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
+              className="bg-black text-white px-5 sm:px-7 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-gray-800 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98, transition: { duration: 0.25 } }}
               transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.6 }}
             >
-              Explore my projects
+              Book a service
             </motion.button>
           </motion.div>
 
-          {/* Skills Section */}
+          {/* Services Section */}
           <motion.div
             className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
@@ -238,55 +426,94 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <p className="text-xs sm:text-sm lg:text-base font-medium text-black mb-2 sm:mb-3 text-center">
-              With a builder's mindset and a founder's spirit, I craft web apps and AI solutions that work — fast, functional, and future-ready.
-            </p>
-            {/* Carousel */}
-            <ProjectCarousel />
-          </motion.div>
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-black mb-3 sm:mb-4 text-center">
+              Services I Deliver
+            </h3>
+            
+            {/* Services Grid */}
+            <div className="flex gap-2 sm:gap-3 md:gap-4 justify-center">
+              {/* Design Service */}
+              <motion.div
+                className="flex flex-col items-center flex-1 max-w-[120px] cursor-pointer group"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const element = document.querySelector("#contact")
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+              >
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                  <Image
+                    src="/designer2.jpg"
+                    alt="Design Service"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-black text-center group-hover:text-orange-600 transition-colors">
+                  Designing
+                </span>
+              </motion.div>
 
-          {/* Experience Section */}
-          <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg flex flex-col justify-center"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-black mb-2 sm:mb-3 lg:mb-4">Experience</h3>
-            <div className="space-y-1 sm:space-y-1.5 lg:space-y-2.5 text-xs sm:text-xs lg:text-sm">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">Full-stack</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">5+ years</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">UI/UX design</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">3+ years</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">Software Dev</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">3+ years</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">AI Engineering</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">1.5+ years</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">Data analysis</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">1+ years</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-black">Machine Learning</span>
-                <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
-                <span className="text-orange-500 font-bold whitespace-nowrap">1+ years</span>
-              </div>
+              {/* Full-stack Development Service */}
+              <motion.div
+                className="flex flex-col items-center flex-1 max-w-[120px] cursor-pointer group"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const element = document.querySelector("#contact")
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+              >
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                  <Image
+                    src="/Developer.jpg"
+                    alt="Full-stack Development Service"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-black text-center group-hover:text-blue-600 transition-colors">
+                  Development
+                </span>
+              </motion.div>
+
+              {/* AI Engineering Service */}
+              <motion.div
+                className="flex flex-col items-center flex-1 max-w-[120px] cursor-pointer group"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const element = document.querySelector("#contact")
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+              >
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                  <Image
+                    src="/AI.png"
+                    alt="AI Engineering Service"
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-black text-center group-hover:text-purple-600 transition-colors">
+                  AI Engineering
+                </span>
+              </motion.div>
             </div>
           </motion.div>
+
+          {/* Project Carousel Section */}
+          <ProjectCarouselCard />
 
           {/* Profile Image */}
           <motion.div
@@ -445,5 +672,6 @@ export default function Hero() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
