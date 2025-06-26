@@ -58,9 +58,12 @@ function ProjectCarousel() {
   const [index, setIndex] = useState(0)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [visibleCount, setVisibleCount] = useState(4)
+  const [mounted, setMounted] = useState(false)
 
   // Set visible count based on screen size
   useEffect(() => {
+    setMounted(true)
+    
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setVisibleCount(2)
@@ -82,13 +85,15 @@ function ProjectCarousel() {
   }, [])
 
   useEffect(() => {
+    if (!mounted) return
+    
     timeoutRef.current = setTimeout(() => {
       setIndex((prev) => (prev + 1) % projects.length)
     }, 3000)
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [index])
+  }, [index, mounted])
 
   // Calculate visible projects (wrap around)
   const getVisibleProjects = () => {
@@ -101,54 +106,58 @@ function ProjectCarousel() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="relative w-full flex justify-center items-center max-h-[150px]">
-        <div className="flex gap-2 sm:gap-3 md:gap-4 w-full justify-center">
-          {getVisibleProjects().map((project, i) => (
-            <div
-              key={project.name}
-              className="flex flex-col items-center transition-all duration-500"
-              style={{ minWidth: 0, flex: 1, maxWidth: 150 }}
-            >
-              <div
-                className="w-20 h-20 sm:w-18 sm:h-18 md:w-22 md:h-22 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center mb-6"
-                style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url('${project.image}')` }}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  width={88}
-                  height={88}
-                  className="rounded-full object-cover w-full h-full"
-                  style={{ background: "transparent" }}
-                />
-              </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs sm:text-sm font-bold text-orange-500 hover:underline text-center truncate w-full "
-                title={project.name}
-                style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}
-              >
-                {project.name}
-              </a>
+      {mounted && (
+        <>
+          <div className="relative w-full flex justify-center items-center max-h-[120px] sm:max-h-[140px]">
+            <div className="flex gap-2 sm:gap-3 md:gap-4 w-full justify-center">
+              {getVisibleProjects().map((project, i) => (
+                <div
+                  key={project.name}
+                  className="flex flex-col items-center transition-all duration-500"
+                  style={{ minWidth: 0, flex: 1, maxWidth: 150 }}
+                >
+                  <div
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center mb-2"
+                    style={{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: `url('${project.image}')` }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      width={96}
+                      height={96}
+                      className="rounded-full object-cover w-full h-full"
+                      style={{ background: "transparent" }}
+                    />
+                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-bold text-orange-500 hover:underline text-center truncate w-full "
+                    title={project.name}
+                    style={{ maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}
+                  >
+                    {project.name}
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      {/* Dots */}
-      <div className="flex justify-center gap-1 mt-2 sm:mt-3 overflow-x-auto max-w-full">
-        {projects.map((_, i) => (
-          <button
-            key={i}
-            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 pt-4 rounded-full transition-all duration-300 ${
-              i === index ? "bg-orange-500" : "bg-gray-300"
-            }`}
-            onClick={() => setIndex(i)}
-            aria-label={`Go to project ${i + 1}`}
-          />
-        ))}
-      </div>
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1 mt-2 sm:mt-3 overflow-x-auto max-w-full">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  i === index ? "bg-orange-500" : "bg-gray-300"
+                }`}
+                onClick={() => setIndex(i)}
+                aria-label={`Go to project ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -171,14 +180,17 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-[100vh] flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-12 py-14 sm:py-14 relative"
+      className="min-h-screen flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-20 sm:pt-24 md:pt-20 pb-4 sm:pb-8 relative"
+      style={{
+        minHeight: 'calc(100vh - 2rem)', // Subtract some space for better mobile experience
+      }}
     >
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col md:flex-row gap-4 sm:gap-5">
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-5">
         {/* Main Content - 2 columns */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-5 auto-rows-fr">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-5 auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-8 sm:p-6 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 lg:p-6 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -195,15 +207,15 @@ export default function Hero() {
                 alt="FutureX Designs Logo"
                 width={44}
                 height={44}
-                className="mb-3 sm:mb-4 w-11 h-11 sm:w-14 sm:h-14"
+                className="mb-2 sm:mb-3 lg:mb-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14"
                 priority
               />
               
-              <h1 className="mb-3 sm:mb-4 leading-tight">
-                <span className="block text-3xl sm:text-4xl md:text-5xl font-bold">Hi there!<span className="block">im</span></span>
-                <span className="block text-orange-500 text-4xl sm:text-5xl md:text-7xl font-extrabold">Mathews</span>
+              <h1 className="mb-2 sm:mb-3 lg:mb-4 leading-tight">
+                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">Hi there!<span className="block">im</span></span>
+                <span className="block text-orange-500 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold">Mathews</span>
               </h1>
-              <p className="text-black mb-4 sm:mb-5 font-semibold text-sm sm:text-base max-w-xl">
+              <p className="text-black mb-3 sm:mb-4 lg:mb-5 font-semibold text-xs sm:text-sm lg:text-base max-w-xl">
                 Founder of FutureX Designs ~ Entrepreneur and ~ Developer.
               </p>
             </div>
@@ -220,13 +232,13 @@ export default function Hero() {
 
           {/* Skills Section */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm sm:text-base font-medium text-black mb-3 text-center">
+            <p className="text-xs sm:text-sm lg:text-base font-medium text-black mb-2 sm:mb-3 text-center">
               With a builder's mindset and a founder's spirit, I craft web apps and AI solutions that work — fast, functional, and future-ready.
             </p>
             {/* Carousel */}
@@ -235,14 +247,14 @@ export default function Hero() {
 
           {/* Experience Section */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 shadow-lg flex flex-col justify-center"
+            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg flex flex-col justify-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg sm:text-xl font-bold text-black mb-3 sm:mb-4">Experience</h3>
-            <div className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-sm">
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-black mb-2 sm:mb-3 lg:mb-4">Experience</h3>
+            <div className="space-y-1 sm:space-y-1.5 lg:space-y-2.5 text-xs sm:text-xs lg:text-sm">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-black">Full-stack</span>
                 <span className="ml-2 flex-1 border-t border-gray-200 mx-2"></span>
@@ -297,7 +309,7 @@ export default function Hero() {
 
         {/* Social Media Column - Narrow width, full height on desktop, horizontal at bottom on mobile */}
         <motion.div
-          className="flex md:flex-col bg-white border border-gray-200 rounded-xl p-3 sm:p-4 shadow-lg md:w-14 justify-center gap-3 sm:gap-5 overflow-x-auto md:overflow-visible"
+          className="flex md:flex-col bg-white border border-gray-200 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-14 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
           initial={{ opacity: 0, x: 0, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -309,10 +321,10 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
-              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Linkedin className="w-4 h-4 lg:w-5 lg:h-5" />
             </motion.div>
           </Link>
 
@@ -323,10 +335,10 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
-              <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Github className="w-4 h-4 lg:w-5 lg:h-5" />
             </motion.div>
           </Link>
 
@@ -337,10 +349,10 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
-              <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Twitter className="w-4 h-4 lg:w-5 lg:h-5" />
             </motion.div>
           </Link>
 

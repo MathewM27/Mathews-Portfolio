@@ -9,6 +9,7 @@ import Education from "./components/Education"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
+import ClientOnly from "./components/ClientOnly"
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0)
@@ -21,9 +22,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header scrollY={scrollY} />
+      <ClientOnly>
+        <Header scrollY={scrollY} />
+      </ClientOnly>
       <main>
-        <Hero />
+        <ClientOnly>
+          <Hero />
+        </ClientOnly>
         <ProjectShowcase />
         <Services />
         <Education />

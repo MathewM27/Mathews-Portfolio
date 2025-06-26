@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     description: "Building practical, scalable, and intelligent software solutions that create real impact.",
     type: "website",
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
