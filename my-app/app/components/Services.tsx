@@ -1,18 +1,29 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Brain, Smartphone, Database, Cloud, Zap } from "lucide-react"
+import { Code, Brain, Smartphone, Database, Cloud, Zap, PenTool, Figma, Paintbrush2, Shapes, LayoutDashboard, Server, Smartphone as MobileIcon, BookOpen, DatabaseZap, Users } from "lucide-react"
 
 export default function Services() {
   const services = [
+    {
+      category: "Design",
+      icon: PenTool,
+      description: "Creative design solutions for digital and print media",
+      expertise: [
+        "UI/UX Design",
+        "Cooperate business graphics",
+        "Social Media post designs",
+      ],
+      color: "orange",
+    },
     {
       category: "Fullstack Development",
       icon: Code,
       description: "End-to-end web application development with modern technologies",
       expertise: [
-        "React, Next.js, and Tailwind applications",
-        "Node.js and Python backend development",
-        "Database design and optimization (MongoDB, Supabase, & MySQL)",
+        "Custom webapp applications (PWA)",
+        "Custom CMS",
+        "Mobile application (React Native)",
       ],
       color: "orange",
     },
@@ -21,19 +32,30 @@ export default function Services() {
       icon: Brain,
       description: "Intelligent solutions that automate and enhance business processes",
       expertise: [
-        "Machine learning model development",
-        "Natural language processing solutions",
-        "AI automation tools",
+        "RAG integration",
+        "Agentic AI",
+        "AI consultancy",
       ],
       color: "black",
     },
   ]
 
   const additionalServices = [
-    { icon: Smartphone, title: "Mobile Development", description: "React Native & cross-platform mobile apps" },
-    { icon: Database, title: "UI/UX Design", description: "Focusing on responsive design" },
-    { icon: Cloud, title: "Cloud Deployment", description: "AWS, Vercel, and Docker" },
-    { icon: Zap, title: "Performance Optimization", description: "Speed and efficiency focus" },
+    {
+      icon: Figma,
+      title: "Design",
+      description: "Figma, Canva, Spline",
+    },
+    {
+      icon: LayoutDashboard,
+      title: "Fullstack",
+      description: "Next.js, Supabase, Strapi",
+    },
+    {
+      icon: BookOpen,
+      title: "AI Engineering",
+      description: "Langchain, Langbase, CrewAI",
+    },
   ]
 
   return (
@@ -53,7 +75,7 @@ export default function Services() {
         </motion.div>
 
         {/* Main Services */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <motion.div
               key={service.category}
@@ -95,7 +117,7 @@ export default function Services() {
         </div>
 
         {/* Additional Services Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {additionalServices.map((service, index) => (
             <motion.div
               key={service.title}

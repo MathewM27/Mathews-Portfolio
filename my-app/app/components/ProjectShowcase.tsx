@@ -4,6 +4,38 @@ import { ExternalLink, Github } from "lucide-react"
 
 export default function ProjectShowcase() {
   const projects = {
+    design: [
+      {
+        name: "Fintech-Conference Design",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        tools: ["Figma", "Photoshop"],
+        demo: "#",
+        github: "",
+        size: "medium",
+        status: "completed",
+        image: "/design1.jpg",
+      },
+      {
+        name: "UI/UX Design",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        tools: ["Figma", "Adobe XD"],
+        demo: "#",
+        github: "",
+        size: "medium",
+        status: "completed",
+        image: "/design2.jpg",
+      },
+      {
+        name: "Logo Design",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        tools: ["Illustrator", "Photoshop"],
+        demo: "#",
+        github: "",
+        size: "small",
+        status: "completed",
+        image: "/design3.jpg",
+      },
+    ],
     fullstack: [
       {
         name: "Lifestyle Aviation Jet Limited",
@@ -16,46 +48,36 @@ export default function ProjectShowcase() {
         image: "/fly.jpg",
       },
       {
-        name: "LakazHub",
-        description: "Fullstack rental platform connecting property owners with tenants",
+        name: "Resturant Strarrastu",
+        description: "Fullstack restaurant management and ordering platform.",
         tools: ["React", "Node.js", "MongoDB", "Express"],
         demo: "#",
         github: "#",
         size: "large",
         status: "completed",
-        image: "/hero.webp",
+        image: "/restaurant.jpg",
       },
       {
-        name: "BusTrack",
-        description: "AI-powered public transport tracking system for Mauritius",
-        tools: ["Python", "TensorFlow", "React", "FastAPI"],
+        name: "Travel Agency",
+        description: "Travel agency booking and management system.",
+        tools: ["React", "Node.js", "MongoDB", "Express"],
         demo: "#",
         github: "#",
         size: "large",
-        status: "in-development",
-        image: "/bg2.jpg",
+        status: "completed",
+        image: "/travel.jpg",
       },
     ],
     ai: [
       {
-        name: "Neura Learn",
-        description: "AI personalized tutor",
-        tools: ["Python", "Next.js", "OpenAI", "LangChain"],
-        demo: "#",
-        github: "#",
-        size: "large",
-        status: "in-development",
-        image: "/Learn.jpg",
-      },
-      {
-        name: "AgriBot",
-        description: "Whatsapp AI chatbot that helps farmers with information that helps with agriculture etc",
-        tools: ["Python", "Twilio", "OpenAI", "FastAPI"],
+        name: "Rezy Resume",
+        description: "AI-powered resume builder and analyzer.",
+        tools: ["Python", "Next.js", "OpenAI"],
         demo: "#",
         github: "#",
         size: "medium",
-        status: "completed",
-        image: "/farm.jpg",
+        status: "in-development",
+        image: "/resume.jpg",
       },
       {
         name: "OnboardAI",
@@ -66,6 +88,16 @@ export default function ProjectShowcase() {
         size: "medium",
         status: "completed",
         image: "/Typing.jpg",
+      },
+      {
+        name: "Neura Learn",
+        description: "AI personalized tutor",
+        tools: ["Python", "Next.js", "OpenAI", "LangChain"],
+        demo: "#",
+        github: "#",
+        size: "large",
+        status: "in-development",
+        image: "/Learn.jpg",
       },
     ],
   }
@@ -112,8 +144,18 @@ export default function ProjectShowcase() {
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-black mb-2">Featured Projects</h2>
           <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            A showcase of my work in fullstack development and AI engineering
+            A showcase of my work in design, fullstack development and AI engineering
           </p>
+        </div>
+
+        {/* Design */}
+        <div className="mb-12">
+          <h3 className="text-xl font-bold text-black mb-6">Design</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.design.map((project) => (
+              <ProjectCard key={project.name} project={project} />
+            ))}
+          </div>
         </div>
 
         {/* Fullstack Development */}
