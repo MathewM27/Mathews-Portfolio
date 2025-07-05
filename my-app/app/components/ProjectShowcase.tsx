@@ -48,14 +48,14 @@ export default function ProjectShowcase() {
         image: "/fly.jpg",
       },
       {
-        name: "Resturant Strarrastu",
-        description: "Fullstack restaurant management and ordering platform.",
+        name: "LakazHub",
+        description: "Fullstack rental platform",
         tools: ["React", "Node.js", "MongoDB", "Express"],
         demo: "#",
         github: "#",
         size: "large",
         status: "completed",
-        image: "/restaurant.jpg",
+        image: "/hero.webp",
       },
       {
         name: "Travel Agency",
@@ -65,7 +65,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "large",
         status: "completed",
-        image: "/travel.jpg",
+        image: "/Travel.png",
       },
     ],
     ai: [
