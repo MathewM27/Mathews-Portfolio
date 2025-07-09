@@ -7,28 +7,28 @@ export default function ProjectShowcase() {
     design: [
       {
         name: "Graphic Design",
-        description: "Professional graphic design services for branding, marketing materials, and corporate identity.",
-        tools: ["Figma", "Photoshop"],
+        description: "Neatly crafted graphics for corporate branding, marketing materials, social media, and publications.",
+        tools: ["Canvas", "Photoshop"],
         demo: "#",
         github: "",
         size: "medium",
         status: "completed",
-        image: "/graphics.png",
+        image: "/Company brochure.png",
       },
       {
         name: "UI/UX Design",
         description: "User-centered design solutions for web and mobile applications with focus on usability and aesthetics.",
-        tools: ["Figma", "Adobe XD"],
+        tools: ["Figma", "Draw.io"],
         demo: "#",
         github: "",
         size: "medium",
         status: "completed",
-        image: "/design2.jpg",
+        image: "/Coffee.png",
       },
       {
         name: "Web Design",
-        description: "Modern, responsive web designs that convert visitors into customers with compelling visual storytelling.",
-        tools: ["Illustrator", "Photoshop"],
+        description: "Modern, responsive web designs that convert visitors into customers with compelling user experience.",
+        tools: ["React.js", "Tailwind CSS"],
         demo: "#",
         github: "",
         size: "small",
@@ -124,12 +124,15 @@ export default function ProjectShowcase() {
             ))}
           </div>
           <div className="flex gap-3 mt-auto">
-            <a href={project.demo} className="flex items-center gap-1 text-orange-500 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-4 h-4" /> Demo
-            </a>
-            {project.github && (
-              <a href={project.github} className="flex items-center gap-1 text-gray-600 hover:text-black text-sm" target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4" /> Code
+            {project.category === 'design' ? (
+              project.github && (
+                <a href={project.github} className="flex items-center gap-1 text-gray-600 hover:text-black text-sm" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4" /> Code
+                </a>
+              )
+            ) : (
+              <a href={project.demo} className="flex items-center gap-1 text-orange-500 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" /> View Project
               </a>
             )}
           </div>
@@ -153,7 +156,7 @@ export default function ProjectShowcase() {
           <h3 className="text-xl font-bold text-black mb-6">Design</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.design.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.name} project={{...project, category: 'design'}} />
             ))}
           </div>
         </div>
@@ -163,7 +166,7 @@ export default function ProjectShowcase() {
           <h3 className="text-xl font-bold text-black mb-6">Fullstack Development</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.fullstack.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.name} project={{...project, category: 'fullstack'}} />
             ))}
           </div>
         </div>
@@ -173,7 +176,7 @@ export default function ProjectShowcase() {
           <h3 className="text-xl font-bold text-black mb-6">AI Engineering</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.ai.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.name} project={{...project, category: 'ai'}} />
             ))}
           </div>
         </div>
