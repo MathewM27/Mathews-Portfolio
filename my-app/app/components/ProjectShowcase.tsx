@@ -13,7 +13,7 @@ export default function ProjectShowcase() {
         github: "",
         size: "medium",
         status: "completed",
-        image: "/Company brochure.png",
+        image: "/cp.jpg",
       },
       {
         name: "UI/UX Design",
@@ -23,7 +23,7 @@ export default function ProjectShowcase() {
         github: "",
         size: "medium",
         status: "completed",
-        image: "/Coffee.png",
+        image: "/UIUX.png",
       },
       {
         name: "Web Design",
@@ -33,7 +33,7 @@ export default function ProjectShowcase() {
         github: "",
         size: "small",
         status: "completed",
-        image: "/Webdesign.png",
+        image: "/Coffee.png",
       },
     ],
     fullstack: [
