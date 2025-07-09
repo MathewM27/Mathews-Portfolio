@@ -77,7 +77,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "medium",
         status: "in-development",
-        image: "/psotforge.png",
+        image: "/postforge.png",
       },
       {
         name: "OnboardAI",
