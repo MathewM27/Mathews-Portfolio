@@ -6,18 +6,18 @@ export default function ProjectShowcase() {
   const projects = {
     design: [
       {
-        name: "Fintech-Conference Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        name: "Graphic Design",
+        description: "Professional graphic design services for branding, marketing materials, and corporate identity.",
         tools: ["Figma", "Photoshop"],
         demo: "#",
         github: "",
         size: "medium",
         status: "completed",
-        image: "/design1.jpg",
+        image: "/graphics.png",
       },
       {
         name: "UI/UX Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        description: "User-centered design solutions for web and mobile applications with focus on usability and aesthetics.",
         tools: ["Figma", "Adobe XD"],
         demo: "#",
         github: "",
@@ -26,14 +26,14 @@ export default function ProjectShowcase() {
         image: "/design2.jpg",
       },
       {
-        name: "Logo Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        name: "Web Design",
+        description: "Modern, responsive web designs that convert visitors into customers with compelling visual storytelling.",
         tools: ["Illustrator", "Photoshop"],
         demo: "#",
         github: "",
         size: "small",
         status: "completed",
-        image: "/design3.jpg",
+        image: "/Webdesign.png",
       },
     ],
     fullstack: [
