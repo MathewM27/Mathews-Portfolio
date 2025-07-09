@@ -13,7 +13,7 @@ export default function ProjectShowcase() {
         github: "",
         size: "medium",
         status: "completed",
-        image: "/cp.jpg",
+        image: "/graphics.png",
       },
       {
         name: "UI/UX Design",
@@ -70,14 +70,14 @@ export default function ProjectShowcase() {
     ],
     ai: [
       {
-        name: "Rezy Resume",
-        description: "AI-powered resume builder and analyzer.",
+        name: "PostForge",
+        description: "AI-powered content creator ideas to posts",
         tools: ["Python", "Next.js", "OpenAI"],
         demo: "#",
         github: "#",
         size: "medium",
         status: "in-development",
-        image: "/resume.jpg",
+        image: "/psotforge.png",
       },
       {
         name: "OnboardAI",
@@ -87,7 +87,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "medium",
         status: "completed",
-        image: "/Typing.jpg",
+        image: "/Onboard.png",
       },
       {
         name: "Neura Learn",
@@ -147,16 +147,16 @@ export default function ProjectShowcase() {
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-black mb-2">Featured Projects</h2>
           <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            A showcase of my work in design, fullstack development and AI engineering
+            A showcase of my work in AI engineering, fullstack development and design
           </p>
         </div>
 
-        {/* Design */}
+        {/* AI Engineering */}
         <div className="mb-12">
-          <h3 className="text-xl font-bold text-black mb-6">Design</h3>
+          <h3 className="text-xl font-bold text-black mb-6">AI Engineering</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.design.map((project) => (
-              <ProjectCard key={project.name} project={{...project, category: 'design'}} />
+            {projects.ai.map((project) => (
+              <ProjectCard key={project.name} project={{...project, category: 'ai'}} />
             ))}
           </div>
         </div>
@@ -171,12 +171,12 @@ export default function ProjectShowcase() {
           </div>
         </div>
 
-        {/* AI Engineering */}
+        {/* Design */}
         <div>
-          <h3 className="text-xl font-bold text-black mb-6">AI Engineering</h3>
+          <h3 className="text-xl font-bold text-black mb-6">Design</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.ai.map((project) => (
-              <ProjectCard key={project.name} project={{...project, category: 'ai'}} />
+            {projects.design.map((project) => (
+              <ProjectCard key={project.name} project={{...project, category: 'design'}} />
             ))}
           </div>
         </div>
