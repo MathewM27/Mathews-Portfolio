@@ -31,7 +31,7 @@ export default function Home() {
         </ClientOnly>
         <ProjectShowcase />
         <Services />
-        <Education />
+        {/* <Education /> */}
         <About />
         <Contact />
       </main>
