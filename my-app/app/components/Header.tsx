@@ -57,7 +57,7 @@ export default function Header({ scrollY }: HeaderProps) {
               <motion.div
                 key={item.name}
                 className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
-                  activeTab === item.name ? "font-bold text-black" : "font-light text-black"
+                  activeTab === item.name ? "bg-black rounded-full text-white" : "font-light text-black"
                 }`}
                 onClick={() => scrollToSection(item.href, item.name)}
                 whileHover={{ scale: 1.05 }}

@@ -50,18 +50,7 @@ export default function Footer() {
             ))}
           </motion.div>
 
-          {/* Built With */}
-          <motion.div
-            className="text-center md:text-right"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-gray-400 text-sm flex items-center gap-2 justify-center md:justify-end">
-              Built with <Heart className="w-4 h-4 text-orange-500" /> using Next.js
-            </p>
-          </motion.div>
+          
         </div>
 
         {/* Divider */}

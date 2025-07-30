@@ -90,14 +90,14 @@ export default function ProjectShowcase() {
         image: "/Onboard.png",
       },
       {
-        name: "Neura Learn",
-        description: "AI personalized tutor",
+        name: "Rezy AI",
+        description: "AI resume analyzer",
         tools: ["Python", "Next.js", "OpenAI", "LangChain"],
         demo: "#",
         github: "#",
         size: "large",
         status: "in-development",
-        image: "/Learn.jpg",
+        image: "/Rezy.png",
       },
     ],
   }
