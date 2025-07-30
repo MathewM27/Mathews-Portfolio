@@ -45,7 +45,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "large",
         status: "completed",
-        image: "/fly.jpg",
+        image: "/lifestyle.png",
       },
       {
         name: "LakazHub",
@@ -55,7 +55,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "large",
         status: "completed",
-        image: "/hero.webp",
+        image: "/Lakaz.png",
       },
       {
         name: "Travel Agency",

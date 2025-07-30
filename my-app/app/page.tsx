@@ -26,9 +26,7 @@ export default function Home() {
         <Header scrollY={scrollY} />
       </ClientOnly>
       <main>
-        <ClientOnly>
-          <Hero />
-        </ClientOnly>
+        <Hero />
         <ProjectShowcase />
         <Services />
         {/* <Education /> */}

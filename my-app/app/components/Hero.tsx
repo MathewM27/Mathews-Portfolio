@@ -170,38 +170,38 @@ function ProjectCarouselCard() {
   const featuredProjects = [
     {
       name: "Lifestyle Aviation",
-      description: "Luxury private jet booking platform",
-      image: "/fly.jpg",
+      description: "Private jet booking platform",
+      image: "/lifestyle.png",
       link: "https://lifestyleaviationjet.com/",
     },
     {
       name: "LakazHub",
       description: "Property rental marketplace",
-      image: "/hero.webp",
+      image: "/Lakaz.png",
       link: "https://lakazhub.com/",
     },
     {
-      name: "BusTrack",
+      name: "Travel-Tour",
       description: "AI-powered transport tracking",
-      image: "/bg2.jpg",
+      image: "/Travel.png",
       link: "https://example.com/bustrack",
     },
     {
-      name: "NeuraLearn",
-      description: "AI personalized learning tutor",
-      image: "/Learn.jpg",
+      name: "Onboard AI",
+      description: "AI powered HR onboarding",
+      image: "/Onboard.png",
       link: "https://example.com/neuralean",
     },
     {
-      name: "AgriBot",
-      description: "WhatsApp AI farming assistant",
-      image: "/farm.jpg",
+      name: "PostForge",
+      description: "AI content creator",
+      image: "/postforge.png",
       link: "https://example.com/agribot",
     },
     {
-      name: "OnboardAI",
-      description: "AI employee onboarding tool",
-      image: "/Typing.jpg",
+      name: "Rezy",
+      description: "AI resume job matcher",
+      image: "/Rezy.png",
       link: "https://example.com/langai",
     },
   ]
@@ -253,10 +253,10 @@ function ProjectCarouselCard() {
       {/* Project Info - 50% height */}
       <div className="h-1/2 p-3 sm:p-4 flex flex-col justify-between">
         <div>
-          <h4 className="text-sm sm:text-base font-bold text-black mb-1 truncate">
+          <h4 className="text-sm sm:text-base font-bold text-center text-black mb-1 truncate">
             {currentProject.name}
           </h4>
-          <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+          <p className="text-xs sm:text-sm text-gray-600 text-center line-clamp-2">
             {currentProject.description}
           </p>
         </div>
@@ -266,7 +266,7 @@ function ProjectCarouselCard() {
           href={currentProject.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-orange-500 hover:text-orange-600 font-semibold text-xs sm:text-sm mt-2 transition-colors"
+          className="inline-flex items-center justify-center gap-1 text-black  hover:text-orange-600 font-semibold text-xs sm:text-sm mt-2 transition-colors"
           whileHover={{ x: 2 }}
         >
           View Project
@@ -274,17 +274,7 @@ function ProjectCarouselCard() {
         </motion.a>
       </div>
 
-      {/* Slide indicator dots */}
-      <div className="absolute bottom-2 right-2 flex gap-1">
-        {featuredProjects.map((_, index) => (
-          <div
-            key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-orange-500" : "bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
+      
     </motion.div>
   )
 }
@@ -367,19 +357,10 @@ export default function Hero() {
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
               <h1 className="mb-2 sm:mb-3 lg:mb-4 xl:mb-6 leading-tight">
                 <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
-                  Hi there
-                  <span 
-                    className="inline-block ml-2"
-                    style={{
-                      animation: 'wave-hand 20s ease-in-out infinite',
-                      transformOrigin: '70% 70%'
-                    }}
-                  >
-                    ✋
-                  </span>
-                  <span className="block">im</span>
+                  Hi there!
+                  <span className="block">I'm</span>
                 </span>
-                <span className="block text-orange-500 text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black">Mathews</span>
+                <span className="block text-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black">Mathews</span>
               </h1>
               <p className="text-black mb-2 sm:mb-3 lg:mb-4 xl:mb-6 font-semibold text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl max-w-xl xl:max-w-2xl">
                 Designer - Developer - AI engineer
@@ -548,7 +529,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <Linkedin className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -562,64 +543,16 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <Github className="w-4 h-4 lg:w-5 lg:h-5" />
             </motion.div>
           </Link>
 
-          <Link 
-            href="https://twitter.com/yourusername" 
-            className="flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <Twitter className="w-4 h-4 lg:w-5 lg:h-5" />
-            </motion.div>
-          </Link>
+         
 
-          {/* Additional social icons with responsive adjustments */}
-          {/* Only show a few icons on mobile for better spacing */}
-          <Link 
-            href="https://kaggle.com/yourusername" 
-            className="hidden sm:flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M12 6.95c-2.79 0-5.05 2.26-5.05 5.05s2.26 5.05 5.05 5.05 5.05-2.26 5.05-5.05S14.79 6.95 12 6.95zm0 8.41c-1.85 0-3.36-1.85-3.36-3.36S10.15 8.64 12 8.64s3.36 1.85 3.36 3.36-1.51 3.36-3.36 3.36z" />
-                <path d="M15.33 17H8.67a2.88 2.88 0 0 1-2.07-.86l4.96-4.96a1.4 1.4 0 0 1 1.98 0l4.96 4.96c-.55.55-1.3.86-2.07.86zm1.3-3.31L12 9.07 7.37 13.7c0-.56.22-1.09.62-1.49l3.26-3.26a1.4 1.4 0 0 1 1.98 0l3.26 3.26c.4.4.62.93.62 1.49z" />
-              </svg>
-            </motion.div>
-          </Link>
-
-          <Link 
-            href="https://public.tableau.com/yourusername" 
-            className="hidden sm:flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M11.654 1.5H11.622C11.2 1.5 10.854 1.824 10.854 2.23V6.175H6.845C6.441 6.175 6.117 6.493 6.117 6.881V6.93C6.117 7.346 6.434 7.673 6.845 7.673H10.854V11.682C10.854 12.087 11.193 12.411 11.622 12.411H11.693C12.094 12.411 12.42 12.087 12.42 11.682V7.673H16.445C16.85 7.673 17.173 7.346 17.173 6.93V6.881C17.173 6.493 16.85 6.175 16.445 6.175H12.42V2.23C12.42 1.824 12.077 1.5 11.654 1.5z" />
-                <path d="M6.007 13.153H5.982C5.577 13.153 5.254 13.469 5.254 13.859V17.762H1.253C0.849 17.762 0.525 18.088 0.525 18.491V18.55C0.525 18.946 0.849 19.265 1.253 19.265H5.254V23.269C5.254 23.674 5.577 24 5.982 24H6.007C6.429 24 6.746 23.674 6.746 23.269V19.265H10.764C11.168 19.265 11.493 18.946 11.493 18.55V18.491C11.493 18.088 11.168 17.762 10.764 17.762H6.746V13.859C6.746 13.469 6.429 13.153 6.007 13.153z" />
-                <path d="M17.249 13.153H17.2C16.772 13.153 16.45 13.469 16.45 13.859V17.762H12.441C12.036 17.762 11.711 18.088 11.711 18.491V18.55C11.711 18.946 12.036 19.265 12.441 19.265H17.45V23.269C17.45 23.674 17.772 24 18.2 24H18.249C18.671 24 18.988 23.674 18.988 23.269V19.265H21.997C22.401 19.265 22.726 18.946 22.726 18.55V18.491C22.726 18.088 22.401 17.762 21.997 17.762H18.988V13.859C18.988 13.469 18.671 13.153 18.249 13.153z" />
-                <path d="M17.249 1.5H17.2C16.772 1.5 16.45 1.824 16.45 2.23V6.175H12.441C12.036 6.175 11.711 6.493 11.711 6.881V6.93C11.711 7.346 12.036 7.673 12.441 7.673H17.45V11.682C17.45 12.087 17.772 12.411 18.2 12.411H18.249C18.671 12.411 18.988 12.087 18.988 11.682V7.673H21.997C22.401 7.673 22.726 7.346 22.726 6.93V6.881C22.726 6.493 22.401 6.175 21.997 6.175H18.988V2.23C18.988 1.824 18.671 1.5 18.249 1.5z" />
-              </svg>
-            </motion.div>
-          </Link>
+         
 
           {/* Only show these icons on desktop */}
           <Link 
@@ -629,7 +562,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -645,7 +578,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -661,11 +594,47 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-gray-600 hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </motion.div>
+          </Link>
+
+           <Link 
+            href="https://kaggle.com/yourusername" 
+            className="hidden sm:flex justify-center flex-shrink-0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <motion.div 
+              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              whileHover={{ y: -3 }}
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
+                <path d="M12 6.95c-2.79 0-5.05 2.26-5.05 5.05s2.26 5.05 5.05 5.05 5.05-2.26 5.05-5.05S14.79 6.95 12 6.95zm0 8.41c-1.85 0-3.36-1.85-3.36-3.36S10.15 8.64 12 8.64s3.36 1.85 3.36 3.36-1.51 3.36-3.36 3.36z" />
+                <path d="M15.33 17H8.67a2.88 2.88 0 0 1-2.07-.86l4.96-4.96a1.4 1.4 0 0 1 1.98 0l4.96 4.96c-.55.55-1.3.86-2.07.86zm1.3-3.31L12 9.07 7.37 13.7c0-.56.22-1.09.62-1.49l3.26-3.26a1.4 1.4 0 0 1 1.98 0l3.26 3.26c.4.4.62.93.62 1.49z" />
+              </svg>
+            </motion.div>
+          </Link>
+
+           <Link 
+            href="https://public.tableau.com/yourusername" 
+            className="hidden sm:flex justify-center flex-shrink-0"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <motion.div 
+              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              whileHover={{ y: -3 }}
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
+                <path d="M11.654 1.5H11.622C11.2 1.5 10.854 1.824 10.854 2.23V6.175H6.845C6.441 6.175 6.117 6.493 6.117 6.881V6.93C6.117 7.346 6.434 7.673 6.845 7.673H10.854V11.682C10.854 12.087 11.193 12.411 11.622 12.411H11.693C12.094 12.411 12.42 12.087 12.42 11.682V7.673H16.445C16.85 7.673 17.173 7.346 17.173 6.93V6.881C17.173 6.493 16.85 6.175 16.445 6.175H12.42V2.23C12.42 1.824 12.077 1.5 11.654 1.5z" />
+                <path d="M6.007 13.153H5.982C5.577 13.153 5.254 13.469 5.254 13.859V17.762H1.253C0.849 17.762 0.525 18.088 0.525 18.491V18.55C0.525 18.946 0.849 19.265 1.253 19.265H5.254V23.269C5.254 23.674 5.577 24 5.982 24H6.007C6.429 24 6.746 23.674 6.746 23.269V19.265H10.764C11.168 19.265 11.493 18.946 11.493 18.55V18.491C11.493 18.088 11.168 17.762 10.764 17.762H6.746V13.859C6.746 13.469 6.429 13.153 6.007 13.153z" />
+                <path d="M17.249 13.153H17.2C16.772 13.153 16.45 13.469 16.45 13.859V17.762H12.441C12.036 17.762 11.711 18.088 11.711 18.491V18.55C11.711 18.946 12.036 19.265 12.441 19.265H17.45V23.269C17.45 23.674 17.772 24 18.2 24H18.249C18.671 24 18.988 23.674 18.988 23.269V19.265H21.997C22.401 19.265 22.726 18.946 22.726 18.55V18.491C22.726 18.088 22.401 17.762 21.997 17.762H18.988V13.859C18.988 13.469 18.671 13.153 18.249 13.153z" />
+                <path d="M17.249 1.5H17.2C16.772 1.5 16.45 1.824 16.45 2.23V6.175H12.441C12.036 6.175 11.711 6.493 11.711 6.881V6.93C11.711 7.346 12.036 7.673 12.441 7.673H17.45V11.682C17.45 12.087 17.772 12.411 18.2 12.411H18.249C18.671 12.411 18.988 12.087 18.988 11.682V7.673H21.997C22.401 7.673 22.726 7.346 22.726 6.93V6.881C22.726 6.493 22.401 6.175 21.997 6.175H18.988V2.23C18.988 1.824 18.671 1.5 18.249 1.5z" />
               </svg>
             </motion.div>
           </Link>

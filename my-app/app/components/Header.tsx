@@ -41,10 +41,14 @@ export default function Header({ scrollY }: HeaderProps) {
         <div className="flex justify-between items-center py-3 sm:py-4">
           {/* Logo */}
           <motion.div 
-            className="text-xl sm:text-2xl font-bold text-black" 
+            className="flex items-center" 
             whileHover={{ scale: 1.05 }}
           >
-            M.M
+            <img 
+              src="/FX.svg" 
+              alt="Logo" 
+              className="w-12 h-12 "
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -52,8 +56,8 @@ export default function Header({ scrollY }: HeaderProps) {
             {navItems.map((item) => (
               <motion.div
                 key={item.name}
-                className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 rounded-full transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
-                  activeTab === item.name ? "bg-black text-white" : "bg-white text-black hover:bg-orange-400"
+                className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
+                  activeTab === item.name ? "font-bold text-black" : "font-light text-black"
                 }`}
                 onClick={() => scrollToSection(item.href, item.name)}
                 whileHover={{ scale: 1.05 }}
