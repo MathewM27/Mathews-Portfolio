@@ -340,12 +340,12 @@ export default function Hero() {
           minHeight: 'calc(100vh - 2rem)', // Subtract some space for better mobile experience
         }}
       >
-      <div className="max-w-7xl xl:max-w-[1600px] 2xl:max-w-[1920px] mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-5 xl:gap-8 px-3 sm:px-4 lg:px-8 xl:px-16 2xl:px-32">
+      <div className="max-w-7xl lg:max-w-[1400px] mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-6 px-3 sm:px-4 lg:px-8">
         {/* Main Content - 2 columns */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-3 lg:gap-5 xl:gap-8 auto-rows-fr">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 lg:p-6 xl:p-8 2xl:p-10 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -355,19 +355,19 @@ export default function Hero() {
             <div className="absolute bottom-6 right-6 w-20 h-20 bg-gradient-to-r from-orange-200 to-orange-300 opacity-40 rounded-full blur-xl animate-pulse" style={{ animationDuration: '3s' }}></div>
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
-              <h1 className="mb-2 sm:mb-3 lg:mb-4 xl:mb-6 leading-tight">
-                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold">
+              <h1 className="mb-2 sm:mb-3 lg:mb-6 leading-tight">
+                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
-                <span className="block text-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black">Mathews</span>
+                <span className="block text-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black">Mathews</span>
               </h1>
-              <p className="text-black mb-2 sm:mb-3 lg:mb-4 xl:mb-6 font-semibold text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl max-w-xl xl:max-w-2xl">
+              <p className="text-black mb-2 sm:mb-3 lg:mb-6 font-semibold text-xs sm:text-sm lg:text-lg max-w-xl">
                 Designer - Developer - AI engineer
               </p>
               {/* Animated FREELANCER text */}
-              <div className="mb-3 sm:mb-4 lg:mb-5 xl:mb-8 w-full max-w-xl xl:max-w-2xl flex justify-center">
-                <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] xl:max-w-[480px] 2xl:max-w-[600px]">
+              <div className="mb-3 sm:mb-4 lg:mb-8 w-full max-w-xl flex justify-center">
+                <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px]">
                   {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
                     <span
                       key={index}
@@ -401,21 +401,21 @@ export default function Hero() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 xl:p-8 2xl:p-10 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-black mb-3 sm:mb-4 xl:mb-6 text-center">
+            <h3 className="text-base sm:text-lg lg:text-2xl font-bold text-black mb-3 sm:mb-4 lg:mb-6 text-center">
               Services I Deliver
             </h3>
             
             {/* Services Grid */}
-            <div className="flex gap-2 sm:gap-3 md:gap-4 xl:gap-6 2xl:gap-8 justify-center">
+            <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
               {/* Design Service */}
               <motion.div
-                className="flex flex-col items-center flex-1 max-w-[120px] xl:max-w-[160px] 2xl:max-w-[200px] cursor-pointer group"
+                className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
@@ -425,7 +425,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/designer2.jpg"
                     alt="Design Service"
@@ -434,14 +434,14 @@ export default function Hero() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm xl:text-base 2xl:text-lg font-bold text-black text-center group-hover:text-orange-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-orange-600 transition-colors">
                   Designing
                 </span>
               </motion.div>
 
               {/* Full-stack Development Service */}
               <motion.div
-                className="flex flex-col items-center flex-1 max-w-[120px] xl:max-w-[160px] 2xl:max-w-[200px] cursor-pointer group"
+                className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
@@ -451,7 +451,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/Developer.jpg"
                     alt="Full-stack Development Service"
@@ -460,14 +460,14 @@ export default function Hero() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm xl:text-base 2xl:text-lg font-bold text-black text-center group-hover:text-blue-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-blue-600 transition-colors">
                   Development
                 </span>
               </motion.div>
 
               {/* AI Engineering Service */}
               <motion.div
-                className="flex flex-col items-center flex-1 max-w-[120px] xl:max-w-[160px] 2xl:max-w-[200px] cursor-pointer group"
+                className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
@@ -477,7 +477,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/AI.png"
                     alt="AI Engineering Service"
@@ -486,7 +486,7 @@ export default function Hero() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm xl:text-base 2xl:text-lg font-bold text-black text-center group-hover:text-purple-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-purple-600 transition-colors">
                   AI Engineering
                 </span>
               </motion.div>
@@ -498,7 +498,7 @@ export default function Hero() {
 
           {/* Profile Image */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-0 xl:p-2 2xl:p-4 shadow-lg flex flex-col justify-between relative overflow-hidden h-full max-h-full"
+            className="bg-white border border-gray-200 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-full max-h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -517,7 +517,7 @@ export default function Hero() {
 
         {/* Social Media Column - Narrow width, full height on desktop, horizontal at bottom on mobile */}
         <motion.div
-            className="flex md:flex-col bg-white border border-gray-200 rounded-xl p-1.5 sm:p-2 lg:p-4 xl:p-6 2xl:p-8 shadow-lg md:w-12 lg:w-14 xl:w-20 2xl:w-28 justify-center gap-1.5 sm:gap-2 lg:gap-4 xl:gap-6 2xl:gap-8 overflow-x-auto md:overflow-visible"
+            className="flex md:flex-col bg-white border border-gray-200 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-16 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
           initial={{ opacity: 0, x: 0, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
