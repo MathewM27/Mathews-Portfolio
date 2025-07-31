@@ -108,7 +108,7 @@ function ProjectCarousel() {
     <div className="w-full flex flex-col items-center">
       {mounted && (
         <>
-          <div className="relative w-full flex justify-center items-center max-h-[120px] sm:max-h-[140px]">
+          <div className="relative w-full flex justify-center items-center max-h-[100px]">
             <div className="flex gap-2 sm:gap-3 md:gap-4 w-full justify-center">
               {getVisibleProjects().map((project, i) => (
                 <div
@@ -408,7 +408,7 @@ export default function Hero() {
             viewport={{ once: true }}
           >
             <h3 className="text-base sm:text-lg lg:text-2xl font-bold text-black mb-3 sm:mb-4 lg:mb-6 text-center">
-              Services I Deliver
+              Services I deliver
             </h3>
             
             {/* Services Grid */}
@@ -425,7 +425,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24  rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/designer2.jpg"
                     alt="Design Service"
@@ -451,7 +451,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/Developer.jpg"
                     alt="Full-stack Development Service"
@@ -477,7 +477,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/AI.png"
                     alt="AI Engineering Service"
