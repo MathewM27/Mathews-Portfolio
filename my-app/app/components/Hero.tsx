@@ -105,10 +105,10 @@ function ProjectCarousel() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center bg-black">
       {mounted && (
         <>
-          <div className="relative w-full flex justify-center items-center max-h-[100px]">
+          <div className="relative w-full flex justify-center items-center max-h-[100px] bg-black">
             <div className="flex gap-2 sm:gap-3 md:gap-4 w-full justify-center">
               {getVisibleProjects().map((project, i) => (
                 <div
@@ -228,7 +228,7 @@ function ProjectCarouselCard() {
 
   return (
     <motion.div
-      className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden relative h-full cursor-pointer group"
+      className="bg-black border border-gray-800 rounded-xl shadow-lg overflow-hidden relative h-full cursor-pointer group"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
@@ -253,10 +253,10 @@ function ProjectCarouselCard() {
       {/* Project Info - 50% height */}
       <div className="h-1/2 p-3 sm:p-4 flex flex-col justify-between">
         <div>
-          <h4 className="text-sm sm:text-base font-bold text-center text-black mb-1 truncate">
+          <h4 className="text-sm sm:text-base font-bold text-center text-white mb-1 truncate">
             {currentProject.name}
           </h4>
-          <p className="text-xs sm:text-sm text-gray-600 text-center line-clamp-2">
+          <p className="text-xs  text-white text-center line-clamp-2">
             {currentProject.description}
           </p>
         </div>
@@ -266,10 +266,10 @@ function ProjectCarouselCard() {
           href={currentProject.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-1 text-black  hover:text-orange-600 font-semibold text-xs sm:text-sm mt-2 transition-colors"
+          className="inline-flex items-center justify-center gap-1 text-white  hover:text-orange-600 font-semibold text-xs sm:text-sm mt-2 transition-colors"
           whileHover={{ x: 2 }}
         >
-          View Project
+          View
           <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
         </motion.a>
       </div>
@@ -345,25 +345,25 @@ export default function Hero() {
         <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-4 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
             {/* Subtle animated background */}
-            <div className="absolute bottom-6 right-6 w-20 h-20 bg-gradient-to-r from-orange-200 to-orange-300 opacity-40 rounded-full blur-xl animate-pulse" style={{ animationDuration: '3s' }}></div>
+            
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
               <h1 className="mb-2 sm:mb-3 lg:mb-6 leading-tight">
-                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+                <span className="block text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-medium">
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
-                <span className="block text-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black">Mathews</span>
+                <span className="block text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">Mathews</span>
               </h1>
-              <p className="text-black mb-2 sm:mb-3 lg:mb-6 font-semibold text-xs sm:text-sm lg:text-lg max-w-xl">
-                Designer - Developer - AI engineer
+              <p className="text-white mb-2 sm:mb-3 lg:mb-6 font-semibold text-xs sm:text-sm lg:text-lg max-w-xl">
+                Full-stack Developer & AI engineer
               </p>
               {/* Animated FREELANCER text */}
               <div className="mb-3 sm:mb-4 lg:mb-8 w-full max-w-xl flex justify-center">
@@ -371,7 +371,7 @@ export default function Hero() {
                   {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
                     <span
                       key={index}
-                      className="text-black lg:text-lg font-semibold relative overflow-hidden inline-block"
+                      className="text-white lg:text-lg font-semibold relative overflow-hidden inline-block"
                       style={{
                         animation: `wave-light 3s infinite ${index * 0.1}s`,
                       }}
@@ -390,7 +390,7 @@ export default function Hero() {
             </div>
             <motion.button
               onClick={scrollToProjects}
-              className="bg-black text-white px-5 sm:px-7 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-gray-800 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
+              className="bg-white text-black px-5 sm:px-7 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98, transition: { duration: 0.25 } }}
               transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.6 }}
@@ -401,43 +401,20 @@ export default function Hero() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-base sm:text-lg lg:text-2xl font-bold text-black mb-3 sm:mb-4 lg:mb-6 text-center">
+            <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-3 sm:mb-4 lg:mb-6 text-center">
               Services I deliver
             </h3>
             
             {/* Services Grid */}
             <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
               {/* Design Service */}
-              <motion.div
-                className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  const element = document.querySelector("#contact")
-                  if (element) {
-                    element.scrollIntoView({ behavior: "smooth" })
-                  }
-                }}
-              >
-                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24  rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
-                  <Image
-                    src="/designer2.jpg"
-                    alt="Design Service"
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-orange-600 transition-colors">
-                  Designing
-                </span>
-              </motion.div>
+            
 
               {/* Full-stack Development Service */}
               <motion.div
@@ -453,14 +430,14 @@ export default function Hero() {
               >
                 <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
-                    src="/Developer.jpg"
+                    src="/fullstack.png"
                     alt="Full-stack Development Service"
                     width={96}
                     height={96}
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-blue-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors">
                   Development
                 </span>
               </motion.div>
@@ -479,14 +456,14 @@ export default function Hero() {
               >
                 <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
                   <Image
-                    src="/AI.png"
+                    src="/ai-dev.png"
                     alt="AI Engineering Service"
                     width={96}
                     height={96}
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-black text-center group-hover:text-purple-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors">
                   AI Engineering
                 </span>
               </motion.div>
@@ -498,7 +475,7 @@ export default function Hero() {
 
           {/* Profile Image */}
           <motion.div
-            className="bg-white border border-gray-200 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-full max-h-full"
+            className="bg-black border border-gray-800 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-full max-h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -517,7 +494,7 @@ export default function Hero() {
 
         {/* Social Media Column - Narrow width, full height on desktop, horizontal at bottom on mobile */}
         <motion.div
-            className="flex md:flex-col bg-white border border-gray-200 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-16 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
+            className="flex md:flex-col bg-black border border-gray-800 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-16 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
           initial={{ opacity: 0, x: 0, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -529,7 +506,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-2 lg:p-2.5 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <Linkedin className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -543,7 +520,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-2 lg:p-2.5 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-2 lg:p-2.5 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <Github className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -562,7 +539,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -578,7 +555,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -594,7 +571,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -610,7 +587,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
@@ -627,7 +604,7 @@ export default function Hero() {
             rel="noopener noreferrer"
           >
             <motion.div 
-              className="bg-gray-100 p-1.5 sm:p-2 rounded-full text-black hover:bg-orange-500 hover:text-white transition-colors"
+              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">

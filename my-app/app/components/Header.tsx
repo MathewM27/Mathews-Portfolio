@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 interface HeaderProps {
   scrollY: number
@@ -31,7 +32,7 @@ export default function Header({ scrollY }: HeaderProps) {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrollY > 50 ? "bg-white backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrollY > 50 ? "bg-black backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -41,23 +42,26 @@ export default function Header({ scrollY }: HeaderProps) {
         <div className="flex justify-between items-center py-3 sm:py-4">
           {/* Logo */}
           <motion.div 
-            className="flex items-center" 
+            className="flex items-center absolute" 
             whileHover={{ scale: 1.05 }}
           >
-            <img 
-              src="/FX.svg" 
+            <Image 
+              src="/X-white.svg" 
               alt="Logo" 
-              className="w-12 h-12 "
+              width={100}
+              height={100}
+              className=""
+              style={{ zIndex: 10 }}
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center justify-center bg-white shadow-xl rounded-full px-1 sm:px-2 py-1 mx-auto">
+          <nav className="hidden md:flex items-center justify-center bg-black border border-gray-800 shadow-xl rounded-full px-1 sm:px-2 py-1 mx-auto">
             {navItems.map((item) => (
               <motion.div
                 key={item.name}
                 className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
-                  activeTab === item.name ? "bg-black rounded-full text-white" : "font-light text-black"
+                  activeTab === item.name ? "bg-white rounded-full text-black" : "font-light text-white"
                 }`}
                 onClick={() => scrollToSection(item.href, item.name)}
                 whileHover={{ scale: 1.05 }}
@@ -70,7 +74,7 @@ export default function Header({ scrollY }: HeaderProps) {
 
           {/* Contact Button - Right Side */}
           <motion.button 
-            className="hidden md:block bg-black hover:bg-orange-600 text-white px-3 lg:px-4 py-2 rounded-full transition-colors duration-200 text-sm lg:text-base"
+            className="hidden md:block bg-white hover:bg-orange-600 text-black px-3 lg:px-4 py-2 rounded-full transition-colors duration-200 text-sm lg:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => scrollToSection("#contact", "")}

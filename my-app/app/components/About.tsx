@@ -28,7 +28,7 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -37,8 +37,8 @@ export default function About() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">About Me</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">About Me</h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             A passionate builder with an entrepreneurial mindset
           </p>
         </motion.div>
@@ -54,32 +54,32 @@ export default function About() {
           {values.map((value, index) => (
             <motion.div
               key={value.title}
-              className="bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 group"
+              className="bg-black border border-gray-800 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
-              <div className="bg-orange-100 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
+              <div className="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/20 transition-colors">
                 <value.icon className="w-6 h-6 text-orange-500" />
               </div>
-              <h4 className="font-bold text-black mb-2">{value.title}</h4>
-              <p className="text-sm text-gray-600">{value.description}</p>
+              <h4 className="font-bold text-white mb-2">{value.title}</h4>
+              <p className="text-sm text-gray-400">{value.description}</p>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Mission Statement */}
         <motion.div
-          className="bg-white rounded-2xl p-8 text-center"
+          className="bg-black border border-gray-800 rounded-2xl p-8 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-black mb-4">My Mission</h3>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <h3 className="text-2xl font-bold text-white mb-4">My Mission</h3>
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
             To create solutions, focusing on the need and value of the customer and serving to the maximum excellence
           </p>
         </motion.div>
