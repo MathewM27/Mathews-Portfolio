@@ -171,7 +171,7 @@ function ProjectCarouselCard() {
     {
       name: "Lifestyle Aviation",
       description: "Private jet booking platform",
-      image: "/lifestyle.png",
+      image: "/aviation.png",
       link: "https://lifestyleaviationjet.com/",
     },
     {
