@@ -14,7 +14,7 @@ export default function ProjectShowcase() {
         github: "#",
         size: "large",
         status: "completed",
-        image: "/lifestyle.png",
+        image: "/aviation.png",
       },
       {
         name: "LakazHub",

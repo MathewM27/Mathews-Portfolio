@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react"
 const projects = [
   {
     name: "Lifestyle Aviation",
-    image: "/lifestyle.png",
+    image: "/aviation.png",
     link: "https://lifestyleaviationjet.com/",
   },
   {
