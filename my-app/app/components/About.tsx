@@ -61,8 +61,8 @@ export default function About() {
               whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
-              <div className="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/20 transition-colors">
-                <value.icon className="w-6 h-6 text-orange-500" />
+              <div className="bg-black border border-gray-800 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/20 transition-colors">
+                <value.icon className="w-6 h-6 text-white" />
               </div>
               <h4 className="font-bold text-white mb-2">{value.title}</h4>
               <p className="text-sm text-gray-400">{value.description}</p>

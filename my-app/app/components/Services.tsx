@@ -33,12 +33,12 @@ export default function Services() {
     {
       icon: LayoutDashboard,
       title: "Fullstack",
-      description: "Next.js, Supabase, Strapi",
+      description: "Next.js, TailwindCss, Supabase, ExpressJs, MongoDB, React Native with Expo, Firebase",
     },
     {
       icon: BookOpen,
       title: "AI Engineering",
-      description: "Langchain, Langbase, CrewAI",
+      description: "Langchain, Prisma, Pytorch, OPENAI, llama, CrewAI",
     },
   ]
 
@@ -71,15 +71,15 @@ export default function Services() {
               viewport={{ once: true }}
             >
               <div className="flex items-center mb-6">
-                <div className={`p-3 rounded-2xl ${service.color === "orange" ? "bg-orange-500/10 border border-orange-500/20" : "bg-gray-800 border border-gray-700"} mr-4`}>
+                <div className={`p-3 rounded-2xl ${service.color === "orange" ? "bg-black border border-gray-800" : "bg-black border border-gray-800"} mr-4`}>
                   <service.icon
-                    className={`w-6 h-6 ${service.color === "orange" ? "text-orange-500" : "text-white"}`}
+                    className={`w-6 h-6 ${service.color === "orange" ? "text-white" : "text-white"}`}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-white">{service.category}</h3>
               </div>
 
-              <p className="text-gray-400 mb-6">{service.description}</p>
+              <p className="text-gray-200 mb-6">{service.description}</p>
 
               <ul className="space-y-3">
                 {service.expertise.map((item, itemIndex) => (
@@ -112,11 +112,20 @@ export default function Services() {
               whileHover={{ y: -5 }}
               viewport={{ once: true }}
             >
-              <div className="bg-gray-800 border border-gray-700 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-colors">
+              <div className="bg-black border border-gray-800 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-colors">
                 <service.icon className="w-6 h-6 text-gray-400 group-hover:text-orange-500 transition-colors" />
               </div>
               <h4 className="font-semibold text-white mb-2">{service.title}</h4>
-              <p className="text-sm text-gray-400">{service.description}</p>
+              <div className="flex flex-wrap justify-center gap-2 mb-2">
+                {service.description.split(",").map((tool: string) => (
+                  <span
+                    key={tool.trim()}
+                    className="px-3 py-1 bg-black border border-gray-800 text-gray-200 rounded-full text-xs font-medium"
+                  >
+                    {tool.trim()}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

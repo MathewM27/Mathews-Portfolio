@@ -38,7 +38,7 @@ export default function Footer() {
               <motion.a
                 key={social.label}
                 href={social.href}
-                className="p-3 bg-gray-800 rounded-full hover:bg-orange-500 transition-colors duration-200"
+                className="p-3 bg-black border border-gray-800 rounded-full hover:bg-orange-500 transition-colors duration-200"
                 whileHover={{ scale: 1.1, y: -2 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

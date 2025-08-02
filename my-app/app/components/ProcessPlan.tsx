@@ -120,7 +120,7 @@ export default function ProcessPlan() {
 									>
 										{isLeft && (
 											<motion.div
-												className="bg-black border border-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
+												className="bg-black rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
 												whileHover={{ y: -2, borderColor: "#ea580c" }}
 											>
 												<div className="flex items-center justify-between mb-2 sm:mb-3">
@@ -133,7 +133,7 @@ export default function ProcessPlan() {
 														</p>
 													</div>
 													<button
-														className="ml-2 p-2 rounded-full bg-gray-800 hover:bg-orange-600 transition-colors"
+														className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
 														onClick={() => setActiveStep(index)}
 														aria-label="Show details"
 														type="button"
@@ -162,7 +162,7 @@ export default function ProcessPlan() {
 									>
 										{!isLeft && (
 											<motion.div
-												className="bg-black border border-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
+												className="bg-black rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
 												whileHover={{ y: -2, borderColor: "#ea580c" }}
 											>
 												<div className="flex items-center justify-between mb-2 sm:mb-3">
@@ -175,7 +175,7 @@ export default function ProcessPlan() {
 														</p>
 													</div>
 													<button
-														className="ml-2 p-2 rounded-full bg-gray-800 hover:bg-orange-600 transition-colors"
+														className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
 														onClick={() => setActiveStep(index)}
 														aria-label="Show details"
 														type="button"
@@ -202,7 +202,7 @@ export default function ProcessPlan() {
 								transition={{ duration: 0.2 }}
 							>
 								<button
-									className="absolute top-3 right-3 p-2 rounded-full bg-gray-800 hover:bg-orange-600 transition-colors"
+									className="absolute top-3 right-3 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
 									onClick={() => setActiveStep(null)}
 									aria-label="Close"
 									type="button"
