@@ -375,7 +375,7 @@ export default function Hero() {
                   {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
                     <span
                       key={index}
-                      className="text-white lg:text-lg font-semibold relative overflow-hidden inline-block"
+                      className="text-white text-sm lg:text-lg font-semibold relative overflow-hidden inline-block"
                       style={{
                         animation: `wave-light 3s infinite ${index * 0.1}s`,
                       }}
@@ -405,14 +405,14 @@ export default function Hero() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-2 pt-3 pb-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-black  sm:border-0 sm:border-b-1 border-gray-800 rounded-xl p-2 pt-3 pb-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
             <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-2 sm:mb-4 lg:mb-6 text-center">
-              Services I deliver
+              Services
             </h3>
             <div className="flex gap-1 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
               {/* Design Service */}
