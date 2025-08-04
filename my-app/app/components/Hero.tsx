@@ -342,10 +342,10 @@ export default function Hero() {
       >
       <div className="max-w-7xl lg:max-w-[1400px] mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-6 px-3 sm:px-4 lg:px-8">
         {/* Main Content - 2 columns */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-fr">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-min md:auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-4 sm:p-5  lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-4 pt-6 pb-6 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -355,18 +355,18 @@ export default function Hero() {
             
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
-              <h1 className="mb-2 sm:mb-3 lg:mb-6 leading-tight">
+              <h1 className="mb-3 sm:mb-4 lg:mb-6 leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">
                 <span className="block text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-medium">
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
-                <span className="block text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">Mathews</span>
+                <span className="block text-white">Mathews</span>
               </h1>
-              <p className="text-white mb-2 sm:mb-3 lg:mb-6 font-semibold text-xs sm:text-sm lg:text-lg max-w-xl">
+              <p className="text-white mb-3 sm:mb-4 lg:mb-6 font-semibold text-sm sm:text-base lg:text-lg max-w-xl">
                 Full-stack Developer & AI engineer
               </p>
               {/* Animated FREELANCER text */}
-              <div className="mb-3 sm:mb-4 lg:mb-8 w-full max-w-xl flex justify-center">
+              <div className="mb-5 sm:mb-6 lg:mb-8 w-full max-w-xl flex justify-center">
                 <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px]">
                   {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
                     <span
@@ -401,18 +401,16 @@ export default function Hero() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-2 pt-3 pb-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-3 sm:mb-4 lg:mb-6 text-center">
+            <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-2 sm:mb-4 lg:mb-6 text-center">
               Services I deliver
             </h3>
-            
-            {/* Services Grid */}
-            <div className="flex gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
+            <div className="flex gap-1 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
               {/* Design Service */}
             
 
@@ -428,7 +426,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/fullstack.png"
                     alt="Full-stack Development Service"
@@ -437,7 +435,7 @@ export default function Hero() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
                   Development
                 </span>
               </motion.div>
@@ -454,7 +452,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-2 group-hover:scale-105 overflow-hidden">
+                <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
                   <Image
                     src="/ai-dev.png"
                     alt="AI Engineering Service"
@@ -463,7 +461,7 @@ export default function Hero() {
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
-                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors">
+                <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
                   AI Engineering
                 </span>
               </motion.div>
@@ -474,17 +472,16 @@ export default function Hero() {
           <div className="hidden md:block">
             <ProjectCarouselCard />
           </div>
-
           {/* Profile Image */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-full max-h-full"
+            className="bg-black border border-gray-800 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[120px] sm:h-[360px] md:h-full max-h-full min-h-[100px]"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
             <Image
-              src="/bg.jpg"
+              src="/bg.svg"
               alt="Profile"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -574,7 +571,7 @@ export default function Hero() {
               whileHover={{ y: -3 }}
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
               </svg>
             </motion.div>
           </Link>
@@ -620,3 +617,4 @@ export default function Hero() {
     </>
   )
 }
+
