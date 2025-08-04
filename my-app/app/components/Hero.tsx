@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Twitter, Linkedin, ExternalLink } from "lucide-react"
+import { Github, Twitter, Linkedin, ExternalLink, MessageCircle, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
@@ -355,12 +355,14 @@ export default function Hero() {
             
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
-              <h1 className="mb-5 sm:mb-10 lg:mb-6 leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">
-                <span className="block text-white sm:text-5xl md:text-3xl lg:text-4xl font-medium mb-2">
+              <h1 className="mb-5 sm:mb-10 lg:mb-6 leading-tight font-bold font-serif">
+                <span className="block text-white text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-medium mb-2 font-serif ">
+                  {/* ↑ text-3xl on mobile, font-normal for lighter weight */}
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
-                <span className="block text-white text-4xl sm:text-4xl md:text-5xl lg:text-7xl">
+                <span className="block text-white text-5xl sm:text-7xl md:text-5xl lg:text-7xl font-extrabold font-serif">
+                  {/* ↑ text-7xl and font-extrabold for Mathews on all screens */}
                   Mathews
                 </span>
               </h1>
@@ -500,9 +502,9 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          {/* Always show all icons on mobile, restrict only on desktop */}
+          {/* LinkedIn - always visible */}
           <Link 
-            href="https://linkedin.com/in/yourusername" 
+            href="https://www.linkedin.com/in/mathews-mwangi-972839219/" 
             className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
@@ -515,8 +517,9 @@ export default function Hero() {
             </motion.div>
           </Link>
 
+          {/* GitHub - always visible */}
           <Link 
-            href="https://github.com/yourusername" 
+            href="https://github.com/MathewM27" 
             className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
@@ -529,10 +532,42 @@ export default function Hero() {
             </motion.div>
           </Link>
 
-          {/* Show these icons on all screens (remove hidden md:flex, just flex) */}
+          {/* WhatsApp - always visible */}
+          <Link 
+            href="https://wa.me/23055117201" 
+            className="flex justify-center flex-shrink-0"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <motion.div 
+              className="bg-black border border-gray-800 p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
+              whileHover={{ y: -3 }}
+            >
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.div>
+          </Link>
+
+          {/* Email - always visible */}
+          <Link 
+            href="mailto:futurexdesign.info@gmail.com"
+            className="flex justify-center flex-shrink-0"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Email"
+          >
+            <motion.div 
+              className="bg-black border border-gray-800 p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
+              whileHover={{ y: -3 }}
+            >
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+            </motion.div>
+          </Link>
+
+          {/* The rest: only show on desktop (md+) */}
           <Link 
             href="https://discord.com/users/yourusername" 
-            className="flex justify-center flex-shrink-0"
+            className="hidden md:flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -540,83 +575,18 @@ export default function Hero() {
               className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
               whileHover={{ y: -3 }}
             >
+              {/* ...existing SVG... */}
               <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
               </svg>
             </motion.div>
           </Link>
 
-          <Link 
-            href="https://facebook.com/yourusername" 
-            className="flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </motion.div>
-          </Link>
 
-          <Link 
-            href="https://instagram.com/yourusername" 
-            className="flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </motion.div>
-          </Link>
-
-          <Link 
-            href="https://kaggle.com/yourusername" 
-            className="flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M12 6.95c-2.79 0-5.05 2.26-5.05 5.05s2.26 5.05 5.05 5.05 5.05-2.26 5.05-5.05S14.79 6.95 12 6.95zm0 8.41c-1.85 0-3.36-1.85-3.36-3.36S10.15 8.64 12 8.64s3.36 1.85 3.36 3.36-1.51 3.36-3.36 3.36z" />
-                <path d="M15.33 17H8.67a2.88 2.88 0 0 1-2.07-.86l4.96-4.96a1.4 1.4 0 0 1 1.98 0l4.96 4.96c-.55.55-1.3.86-2.07.86zm1.3-3.31L12 9.07 7.37 13.7c0-.56.22-1.09.62-1.49l3.26-3.26a1.4 1.4 0 0 1 1.98 0l3.26 3.26c.4.4.62.93.62 1.49z" />
-              </svg>
-            </motion.div>
-          </Link>
-
-          <Link 
-            href="https://public.tableau.com/yourusername" 
-            className="flex justify-center flex-shrink-0"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <motion.div 
-              className="bg-black border border-gray-800 p-1.5 sm:p-2 rounded-full text-white hover:bg-orange-500 hover:text-white transition-colors"
-              whileHover={{ y: -3 }}
-            >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor">
-                <path d="M11.654 1.5H11.622C11.2 1.5 10.854 1.824 10.854 2.23V6.175H6.845C6.441 6.175 6.117 6.493 6.117 6.881V6.93C6.117 7.346 6.434 7.673 6.845 7.673H10.854V11.682C10.854 12.087 11.193 12.411 11.622 12.411H11.693C12.094 12.411 12.42 12.087 12.42 11.682V7.673H16.445C16.85 7.673 17.173 7.346 17.173 6.93V6.881C17.173 6.493 16.85 6.175 16.445 6.175H12.42V2.23C12.42 1.824 12.077 1.5 11.654 1.5z" />
-                <path d="M6.007 13.153H5.982C5.577 13.153 5.254 13.469 5.254 13.859V17.762H1.253C0.849 17.762 0.525 18.088 0.525 18.491V18.55C0.525 18.946 0.849 19.265 1.253 19.265H5.254V23.269C5.254 23.674 5.577 24 5.982 24H6.007C6.429 24 6.746 23.674 6.746 23.269V19.265H10.764C11.168 19.265 11.493 18.946 11.493 18.55V18.491C11.493 18.088 11.168 17.762 10.764 17.762H6.746V13.859C6.746 13.469 6.429 13.153 6.007 13.153z" />
-                <path d="M17.249 13.153H17.2C16.772 13.153 16.45 13.469 16.45 13.859V17.762H12.441C12.036 17.762 11.711 18.088 11.711 18.491V18.55C11.711 18.946 12.036 19.265 12.441 19.265H17.45V23.269C17.45 23.674 17.772 24 18.2 24H18.249C18.671 24 18.988 23.674 18.988 23.269V19.265H21.997C22.401 19.265 22.726 18.946 22.726 18.55V18.491C22.726 18.088 22.401 17.762 21.997 17.762H18.988V13.859C18.988 13.469 18.671 13.153 18.249 13.153z" />
-                <path d="M17.249 1.5H17.2C16.772 1.5 16.45 1.824 16.45 2.23V6.175H12.441C12.036 6.175 11.711 6.493 11.711 6.881V6.93C11.711 7.346 12.036 7.673 12.441 7.673H17.45V11.682C17.45 12.087 17.772 12.411 18.2 12.411H18.249C18.671 12.411 18.988 12.087 18.988 11.682V7.673H21.997C22.401 7.673 22.726 7.346 22.726 6.93V6.881C22.726 6.493 22.401 6.175 21.997 6.175H18.988V2.23C18.988 1.824 18.671 1.5 18.249 1.5z" />
-              </svg>
-            </motion.div>
-          </Link>
+          
         </motion.div>
       </div>
     </section>
     </>
   )
 }
-

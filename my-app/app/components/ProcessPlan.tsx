@@ -77,7 +77,7 @@ export default function ProcessPlan() {
 	if (inView) controls.start({ height: "100%" })
 
 	return (
-		<section id="process" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+		<section id="process" className="py-20 px-2 sm:px-6 lg:px-8 bg-black">
 			<div className="max-w-4xl mx-auto">
 				<motion.div
 					className="text-center mb-10 sm:mb-16"
@@ -100,14 +100,59 @@ export default function ProcessPlan() {
 					{/* Vertical center line */}
 					<motion.div
 						ref={timelineRef}
-						className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-800 -translate-x-1/2 z-0"
+						className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-800 -translate-x-1/2 z-0"
 						initial={{ height: 0 }}
 						animate={controls}
 						transition={{ duration: 1, ease: "easeInOut" }}
 						style={{ height: inView ? "100%" : 0 }}
 					/>
 
-					<div className="flex flex-col gap-12">
+					{/* Mobile timeline: single column */}
+					<div className="flex flex-col gap-8 sm:hidden">
+						{steps.map((step, index) => (
+							<div key={index} className="relative flex flex-col items-center">
+								<div className="flex flex-col items-center w-full">
+									<div className="flex items-center gap-3 w-full">
+										<div className="flex flex-col items-center">
+											<div className="w-4 h-4 bg-orange-500 rounded-full border-4 border-black shadow-lg" />
+											{index < steps.length - 1 && (
+												<div
+													className="w-1 bg-gray-800 min-h-[40px] mx-auto"
+													style={{ height: 32 }}
+												/>
+											)}
+										</div>
+										<motion.div
+											className="bg-black rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 group w-full"
+											whileHover={{ y: -2, borderColor: "#ea580c" }}
+										>
+											<div className="flex items-center justify-between mb-2">
+												<div>
+													<h3 className="text-base font-bold text-white group-hover:text-orange-600 transition-colors">
+														{step.title}
+													</h3>
+													<p className="text-xs text-gray-400">
+														{step.label}
+													</p>
+												</div>
+												<button
+													className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
+													onClick={() => setActiveStep(index)}
+													aria-label="Show details"
+													type="button"
+												>
+													<Info className="w-5 h-5 text-white" />
+												</button>
+											</div>
+										</motion.div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+
+					{/* Desktop timeline: two columns */}
+					<div className="hidden sm:flex flex-col gap-12">
 						{steps.map((step, index) => {
 							const isLeft = index % 2 === 0
 							return (
