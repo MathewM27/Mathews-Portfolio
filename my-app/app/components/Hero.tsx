@@ -342,10 +342,10 @@ export default function Hero() {
       >
       <div className="max-w-7xl lg:max-w-[1400px] mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-6 px-3 sm:px-4 lg:px-8">
         {/* Main Content - 2 columns */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-min md:auto-rows-fr">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-auto md:auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-4 pt-6 pb-6 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-4 pt-8 pb-8 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -355,18 +355,20 @@ export default function Hero() {
             
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
-              <h1 className="mb-3 sm:mb-4 lg:mb-6 leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">
-                <span className="block text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-medium">
+              <h1 className="mb-5 sm:mb-10 lg:mb-6 leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">
+                <span className="block text-white text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-medium mb-2">
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
-                <span className="block text-white">Mathews</span>
+                <span className="block text-white text-4xl sm:text-4xl md:text-5xl lg:text-7xl">
+                  Mathews
+                </span>
               </h1>
-              <p className="text-white mb-3 sm:mb-4 lg:mb-6 font-semibold text-sm sm:text-base lg:text-lg max-w-xl">
+              <p className="text-white mb-5 sm:mb-4 lg:mb-6 font-semibold text-base sm:text-lg lg:text-lg max-w-xl">
                 Full-stack Developer & AI engineer
               </p>
               {/* Animated FREELANCER text */}
-              <div className="mb-5 sm:mb-6 lg:mb-8 w-full max-w-xl flex justify-center">
+              <div className="mb-8 sm:mb-8 lg:mb-8 w-full max-w-xl flex justify-center">
                 <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px]">
                   {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
                     <span
@@ -390,7 +392,7 @@ export default function Hero() {
             </div>
             <motion.button
               onClick={scrollToProjects}
-              className="bg-white text-black px-5 sm:px-7  py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
+              className="bg-white text-black px-5 sm:px-7  py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto  relative z-10 lg:text-lg"
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98, transition: { duration: 0.25 } }}
               transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.6 }}
@@ -474,18 +476,18 @@ export default function Hero() {
           </div>
           {/* Profile Image */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[120px] sm:h-[360px] md:h-full max-h-full min-h-[100px]"
+            className="bg-black border border-gray-800  rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[380px] sm:h-[220px] md:h-full max-h-full min-h-[120px]"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
           >
             <Image
-              src="/bg.svg"
+              src="/bg.jpg"
               alt="Profile"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", objectPosition: "top" }}
               className="absolute inset-0 w-full h-full object-cover rounded-xl z-0"
             />
           </motion.div>
