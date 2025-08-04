@@ -394,7 +394,7 @@ export default function Hero() {
             </div>
             <motion.button
               onClick={scrollToProjects}
-              className="bg-white text-black px-5 sm:px-7  py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto  relative z-10 lg:text-lg"
+              className="bg-white text-black  text-base px-5 sm:px-7  py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto  relative z-10 lg:text-lg"
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98, transition: { duration: 0.25 } }}
               transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.6 }}
