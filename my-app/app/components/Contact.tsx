@@ -5,7 +5,7 @@ import { Mail, MessageCircle } from "lucide-react"
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -23,6 +23,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Get In Touch Section */}
           <motion.div
+            className="min-w-0"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -37,7 +38,7 @@ export default function Contact() {
 
           {/* Contact Info */}
           <motion.div
-            className="space-y-8"
+            className="space-y-8 min-w-0"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}

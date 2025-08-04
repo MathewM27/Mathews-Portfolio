@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 import ProjectShowcase from "./components/ProjectShowcase"
@@ -12,18 +11,10 @@ import Footer from "./components/Footer"
 import ClientOnly from "./components/ClientOnly"
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
   return (
     <div className="min-h-screen bg-black">
       <ClientOnly>
-        <Header scrollY={scrollY} />
+        <Header />
       </ClientOnly>
       <main>
         <Hero />
@@ -37,3 +28,4 @@ export default function Home() {
     </div>
   )
 }
+ 
