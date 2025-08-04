@@ -356,7 +356,7 @@ export default function Hero() {
             {/* Text Content */}
             <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
               <h1 className="mb-5 sm:mb-10 lg:mb-6 leading-tight text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif">
-                <span className="block text-white text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-medium mb-2">
+                <span className="block text-white sm:text-5xl md:text-3xl lg:text-4xl font-medium mb-2">
                   Hi there!
                   <span className="block">I'm</span>
                 </span>
@@ -476,7 +476,7 @@ export default function Hero() {
           </div>
           {/* Profile Image */}
           <motion.div
-            className="bg-black border border-gray-800  rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[380px] sm:h-[220px] md:h-full max-h-full min-h-[120px]"
+            className="bg-black border border-gray-800  rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[300px] sm:h-[220px] md:h-full max-h-full min-h-[120px]"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
