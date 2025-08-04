@@ -190,19 +190,19 @@ function ProjectCarouselCard() {
       name: "Onboard AI",
       description: "AI powered HR onboarding",
       image: "/Onboard.png",
-      link: "https://example.com/neuralean",
+      link: "https://onboard-zeta-red.vercel.app/",
     },
     {
       name: "PostForge",
       description: "AI content creator",
       image: "/postforge.png",
-      link: "https://example.com/agribot",
+      link: "https://v0-postforge-design.vercel.app/",
     },
     {
       name: "Rezy",
       description: "AI resume job matcher",
       image: "/Rezy.png",
-      link: "https://example.com/langai",
+      link: "https://rezy-nine.vercel.app/",
     },
   ]
 
