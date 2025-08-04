@@ -345,7 +345,7 @@ export default function Hero() {
         <div className="flex-1 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-6 auto-rows-fr">
           {/* Main Intro Section - spans full width on mobile, 2 cols x 2 rows on desktop */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-4 sm:p-5 lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-4 sm:p-5  lg:p-8 shadow-lg md:col-span-2 md:row-span-2 relative overflow-hidden flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -390,7 +390,7 @@ export default function Hero() {
             </div>
             <motion.button
               onClick={scrollToProjects}
-              className="bg-white text-black px-5 sm:px-7 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
+              className="bg-white text-black px-5 sm:px-7  py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full mt-auto relative z-10 text-xs sm:text-sm"
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98, transition: { duration: 0.25 } }}
               transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.6 }}
@@ -401,7 +401,7 @@ export default function Hero() {
 
           {/* Services Section */}
           <motion.div
-            className="bg-black border border-gray-800 rounded-xl p-3 sm:p-4 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+            className="bg-black border border-gray-800 rounded-xl p-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -471,7 +471,9 @@ export default function Hero() {
           </motion.div>
 
           {/* Project Carousel Section */}
-          <ProjectCarouselCard />
+          <div className="hidden md:block">
+            <ProjectCarouselCard />
+          </div>
 
           {/* Profile Image */}
           <motion.div
@@ -494,11 +496,12 @@ export default function Hero() {
 
         {/* Social Media Column - Narrow width, full height on desktop, horizontal at bottom on mobile */}
         <motion.div
-            className="flex md:flex-col bg-black border border-gray-800 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-16 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
+            className="flex flex-row md:flex-col bg-black border border-gray-800 rounded-xl p-1.5 sm:p-2 lg:p-4 shadow-lg md:w-12 lg:w-16 justify-center gap-1.5 sm:gap-2 lg:gap-4 overflow-x-auto md:overflow-visible"
           initial={{ opacity: 0, x: 0, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
+          {/* Always show all icons on mobile, restrict only on desktop */}
           <Link 
             href="https://linkedin.com/in/yourusername" 
             className="flex justify-center flex-shrink-0"
@@ -527,14 +530,10 @@ export default function Hero() {
             </motion.div>
           </Link>
 
-         
-
-         
-
-          {/* Only show these icons on desktop */}
+          {/* Show these icons on all screens (remove hidden md:flex, just flex) */}
           <Link 
             href="https://discord.com/users/yourusername" 
-            className="hidden md:flex justify-center flex-shrink-0"
+            className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -550,7 +549,7 @@ export default function Hero() {
 
           <Link 
             href="https://facebook.com/yourusername" 
-            className="hidden md:flex justify-center flex-shrink-0"
+            className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -566,7 +565,7 @@ export default function Hero() {
 
           <Link 
             href="https://instagram.com/yourusername" 
-            className="hidden md:flex justify-center flex-shrink-0"
+            className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -580,9 +579,9 @@ export default function Hero() {
             </motion.div>
           </Link>
 
-           <Link 
+          <Link 
             href="https://kaggle.com/yourusername" 
-            className="hidden sm:flex justify-center flex-shrink-0"
+            className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -597,9 +596,9 @@ export default function Hero() {
             </motion.div>
           </Link>
 
-           <Link 
+          <Link 
             href="https://public.tableau.com/yourusername" 
-            className="hidden sm:flex justify-center flex-shrink-0"
+            className="flex justify-center flex-shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
