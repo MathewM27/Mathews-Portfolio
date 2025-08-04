@@ -404,7 +404,7 @@ export default function Hero() {
                     />
                   </div>
                   <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
-                   Full-Stack Development
+                   Full-Stack
                   </span>
                 </motion.div>
 
