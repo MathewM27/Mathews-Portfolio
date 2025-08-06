@@ -329,10 +329,11 @@ export default function Hero() {
                     {/* ↑ text-7xl and font-extrabold for Mathews on all screens */}
                     Mathews
                   </span>
+                  <span className="inline-block mt-3 bg-black border border-white text-white font-semibold rounded-lg px-4 py-2 text-base sm:text-lg lg:text-xl shadow-md">
+                    Full-stack Developer
+                  </span>
                 </h1>
-                <p className="text-white mb-5 sm:mb-4 lg:mb-6 font-semibold text-base sm:text-lg lg:text-lg max-w-xl">
-                  Full-stack Developer & AI engineer
-                </p>
+                
                 {/* Animated FREELANCER text */}
                 <div className="mb-8 sm:mb-8 lg:mb-8 w-full max-w-xl flex justify-center">
                   <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px]">
@@ -369,70 +370,26 @@ export default function Hero() {
 
             {/* Services Section */}
             <motion.div
-              className="bg-black  sm:border-0 sm:border-b-1 border-gray-800 rounded-xl p-2 pt-3 pb-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
+              className="bg-black border border-gray-800 rounded-xl p-2 pt-3 pb-3 sm:p-1 lg:p-6 shadow-lg md:col-span-2 relative flex flex-col"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-2 sm:mb-4 lg:mb-6 text-center">
-                Services
-              </h3>
-              <div className="flex gap-1 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
-                {/* Design Service */}
-              
-
-                {/* Full-stack Development Service */}
-                <motion.div
-                  className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    const element = document.querySelector("#contact")
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                    }
-                  }}
-                >
-                  <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
-                    <Image
-                      src="/fullstack.png"
-                      alt="Full-stack Development Service"
-                      width={96}
-                      height={96}
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
-                  <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
-                   Full-Stack
-                  </span>
-                </motion.div>
-
-                {/* AI Engineering Service */}
-                <motion.div
-                  className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    const element = document.querySelector("#contact")
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" })
-                    }
-                  }}
-                >
-                  <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
-                    <Image
-                      src="/ai-dev.png"
-                      alt="AI Engineering Service"
-                      width={96}
-                      height={96}
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
-                  <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
-                    AI Engineering
-                  </span>
-                </motion.div>
+            
+              <div className="flex flex-col items-center justify-center w-full gap-3">
+                {/* Full-stack Development Service - horizontal "full" + icon + "stack" as heading */}
+                <div className="flex flex-row items-center gap-2 group mb-2">
+                  <h1 className="text-base sm:text-lg lg:text-xl font-bold text-white">Service Value</h1>
+                </div>
+                {/* Main Service Description - plain text, no border */}
+                <div className="text-gray-200 font-semibold text-center text-sm sm:text-base lg:text-lg">
+                  Custom | User Experience | Scalable
+                </div>
+                {/* Secondary Description */}
+                <p className=" text-gray-400 italic text-center max-w-md mx-auto">
+                  "helping startups, entrepreneurs, and growing businesses build high-performance websites and applications that deliver results"
+                </p>
               </div>
             </motion.div>
 
