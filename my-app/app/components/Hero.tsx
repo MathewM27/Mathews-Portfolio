@@ -376,20 +376,61 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-            
-              <div className="flex flex-col items-center justify-center w-full gap-3">
-                {/* Full-stack Development Service - horizontal "full" + icon + "stack" as heading */}
-                <div className="flex flex-row items-center gap-2 group mb-2">
-                  <h1 className="text-base sm:text-lg lg:text-xl font-bold text-white">Service Value</h1>
-                </div>
-                {/* Main Service Description - plain text, no border */}
-                <div className="text-gray-200 font-semibold text-center text-sm sm:text-base lg:text-lg">
-                  Custom | User Experience | Scalable
-                </div>
-                {/* Secondary Description */}
-                <p className=" text-gray-400 italic text-center max-w-md mx-auto">
-                  "helping startups, entrepreneurs, and growing businesses build high-performance websites and applications that deliver results"
-                </p>
+              <h3 className="text-base sm:text-lg lg:text-2xl font-medium text-white mb-2 sm:mb-4 lg:mb-6 text-center">
+                Services
+              </h3>
+              <div className="flex gap-1 sm:gap-3 md:gap-4 lg:gap-6 justify-center">
+                {/* Full-stack Development Service */}
+                <motion.div
+                  className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    const element = document.querySelector("#contact")
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" })
+                    }
+                  }}
+                >
+                  <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
+                    <Image
+                      src="/fullstack.png"
+                      alt="Full-stack Development Service"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
+                    Full-Stack
+                  </span>
+                </motion.div>
+
+                {/* AI Engineering Service */}
+                <motion.div
+                  className="flex flex-col items-center flex-1 max-w-[120px] lg:max-w-[160px] cursor-pointer group"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    const element = document.querySelector("#contact")
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" })
+                    }
+                  }}
+                >
+                  <div className="w-16 h-16 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-20 lg:h-20 2xl:w-24 2xl:h-24 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 mb-1 group-hover:scale-105 overflow-hidden">
+                    <Image
+                      src="/ai-dev.png"
+                      alt="AI Engineering Service"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <span className="text-xs sm:text-sm lg:text-base font-bold text-white text-center group-hover:text-orange-600 transition-colors mb-1">
+                    AI Engineering
+                  </span>
+                </motion.div>
               </div>
             </motion.div>
 
