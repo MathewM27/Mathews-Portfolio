@@ -315,47 +315,16 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              {/* Subtle animated background */}
-              
               {/* Text Content */}
               <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 w-full h-full">
                 <h1 className="mb-5 sm:mb-10 lg:mb-6 leading-tight font-bold font-serif">
-                  <span className="block text-white text-2xl sm:text-4xl md:text-3xl lg:text-4xl font-medium mb-2 font-serif ">
-                    {/* ↑ text-3xl on mobile, font-normal for lighter weight */}
-                    Hi there!
-                    <span className="block">I'm</span>
-                  </span>
-                  <span className="block text-white text-5xl sm:text-7xl md:text-5xl lg:text-7xl font-extrabold font-serif">
-                    {/* ↑ text-7xl and font-extrabold for Mathews on all screens */}
-                    Mathews
-                  </span>
-                  <span className="inline-block mt-3 bg-black border border-white text-white font-semibold rounded-lg px-4 py-2 text-base sm:text-lg lg:text-xl shadow-md">
-                    Full-stack Developer
+        
+                  <span className="inline-block bg-black border-b border-white text-white font-semibold px-2 py-2 text-base sm:text-lg lg:text-4xl shadow-md">
+                    Backend & <br />  Distributed Systems Engineer
                   </span>
                 </h1>
                 
-                {/* Animated FREELANCER text */}
-                <div className="mb-8 sm:mb-8 lg:mb-8 w-full max-w-xl flex justify-center">
-                  <div className="flex justify-between w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[480px]">
-                    {['F', 'R', 'E', 'E', 'L', 'A', 'N', 'C', 'E', 'R'].map((letter, index) => (
-                      <span
-                        key={index}
-                        className="text-white text-sm lg:text-lg font-semibold relative overflow-hidden inline-block"
-                        style={{
-                          animation: `wave-light 3s infinite ${index * 0.1}s`,
-                        }}
-                      >
-                        {letter}
-                        <span 
-                          className="absolute inset-0   opacity-0"
-                          style={{
-                            animation: `light-sweep 3s infinite ${index * 0.1}s`,
-                          }}
-                        />
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <p className="text-white">Building scalable real-time systems and data pipelines that process continuously at scale.</p>
               </div>
               <motion.button
                 onClick={scrollToProjects}
@@ -438,22 +407,61 @@ export default function Hero() {
             <div className="hidden md:block">
               <ProjectCarouselCard />
             </div>
-            {/* Profile Image */}
+            {/* Tech Stack */}
             <motion.div
-              className="bg-black border border-gray-800  rounded-xl p-0 lg:p-2 shadow-lg flex flex-col justify-between relative overflow-hidden h-[300px] sm:h-[220px] md:h-full max-h-full min-h-[120px]"
+              className="bg-black border border-gray-800 rounded-xl p-3 lg:p-4 shadow-lg flex flex-col justify-center relative overflow-hidden h-[300px] sm:h-[220px] md:h-full max-h-full min-h-[120px]"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <Image
-                src="/bg.jpg"
-                alt="Profile"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ objectFit: "cover", objectPosition: "top" }}
-                className="absolute inset-0 w-full h-full object-cover rounded-xl z-0"
-              />
+              
+              <style>{`
+                @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+                @keyframes marquee-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+                .marquee-ltr { animation: marquee-ltr 16s linear infinite; }
+                .marquee-rtl { animation: marquee-rtl 16s linear infinite; }
+              `}</style>
+              {(() => {
+                const row1 = [
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg", label: "Go" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg", label: "Rust" },
+                  { src: "https://cdn.simpleicons.org/apachekafka/000000", label: "Kafka" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg", label: "Redis" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", label: "Postgres" },
+                ]
+                const row2 = [
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", label: "Docker" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg", label: "K8s" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg", label: "Nginx" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg", label: "Prometheus" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg", label: "Grafana" },
+                ]
+                const Icon = ({ src, label, i }: { src: string; label: string; i: number }) => (
+                  <div key={i} className="flex flex-col items-center gap-1 group flex-shrink-0">
+                    <div className="w-8 h-8 lg:w-10 lg:h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 group-hover:border-orange-500 transition-colors p-0.5">
+                      <img src={src} alt={label} className="w-full h-full object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+                    </div>
+                    <span className="text-[9px] text-gray-500 group-hover:text-orange-400 transition-colors">{label}</span>
+                  </div>
+                )
+                return (
+                  <div className="flex flex-col gap-8">
+                    {/* Row 1 — left to right */}
+                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+                      <div className="marquee-ltr flex gap-4 w-max">
+                        {[...row1, ...row1].map((item, i) => <Icon key={i} {...item} i={i} />)}
+                      </div>
+                    </div>
+                    {/* Row 2 — right to left */}
+                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+                      <div className="marquee-rtl flex gap-4 w-max">
+                        {[...row2, ...row2].map((item, i) => <Icon key={i} {...item} i={i} />)}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })()}
             </motion.div>
           </div>
 

@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import Image from "next/image"
 
 interface HeaderProps {}
 
@@ -37,29 +36,22 @@ export default function Header({}: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 sm:py-4 relative">
           {/* Logo */}
-          <motion.div 
-            className="flex items-center left-0 top-0 md:static absolute z-20"
-            style={{ position: "absolute", left: 0, top: 0 }}
+          <motion.div
+            className="flex items-center"
             whileHover={{ scale: 1.05 }}
           >
-            <Image 
-              src="/X-white.svg" 
-              alt="Logo" 
-              width={40}
-              height={40}
-              className="w-20 h-20 md:w-20 md:h-20 object-contain"
-              // Responsive sizing for mobile/tablet/desktop
-              priority
-            />
+            <span className="text-white font-light text-base sm:text-lg tracking-normal">
+              Mathews Mwangi
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center justify-center bg-black border border-gray-800 shadow-xl rounded-full px-1 sm:px-2 py-1 mx-auto">
+          <nav className="hidden md:flex items-center justify-center bg-black border-b border-gray-800 shadow-xl rounded-full px-1 sm:px-2 py-1 mx-auto">
             {navItems.map((item) => (
               <motion.div
                 key={item.name}
                 className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
-                  activeTab === item.name ? "bg-white rounded-full text-black" : "font-light text-white"
+                  activeTab === item.name ? "text-white font-semibold" : "text-gray-500 font-light"
                 }`}
                 onClick={() => scrollToSection(item.href, item.name)}
                 whileHover={{ scale: 1.05 }}
