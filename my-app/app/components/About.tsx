@@ -59,7 +59,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             {/* Photo */}
-            <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-900">
+            <div className="relative w-full h-[420px] sm:h-[480px] md:aspect-square md:h-auto rounded-xl overflow-hidden bg-gray-900">
               <Image
                 src="/bg.jpg"
                 alt="Mathews Mwangi"
@@ -71,12 +71,12 @@ export default function About() {
 
             {/* Identity */}
             <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg sm:text-xl font-bold text-white">Mathews Mwangi</h2>
-                <p className="text-sm text-gray-400 font-mono">Backend Engineer</p>
+              <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+                <h2 className="text-base sm:text-lg md:text-xl font-bold text-white">Mathews Mwangi</h2>
+                <p className="text-xs sm:text-sm text-gray-400 font-mono">Backend Engineer</p>
               </div>
               <p className="text-xs text-gray-600 flex items-center gap-1 mt-0.5">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3 h-3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3 h-3 flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
@@ -88,7 +88,7 @@ export default function About() {
 
           {/* ── Right: Story card ── */}
           <motion.div
-            className="md:col-span-3 bg-black border border-gray-800 rounded-xl p-5 sm:p-6 lg:p-8 flex flex-col gap-6"
+            className="md:col-span-3 bg-black border border-gray-800 rounded-xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 sm:gap-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
