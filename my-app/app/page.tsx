@@ -29,7 +29,7 @@ import ProcessPlan from "./components/ProcessPlan"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
-import ClientTypesSection from "./components/myClient"
+
 
 import ClientOnly from "./components/ClientOnly"
 
@@ -41,11 +41,12 @@ export default function Home() {
       </ClientOnly>
       <main>
         <Hero />
-        <ClientTypesSection />
+        <About />
+        
         <ProjectShowcase />
         <Services />
         <ProcessPlan />
-        <About />
+        
         <Contact />
       </main>
       <Footer />
