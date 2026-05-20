@@ -296,7 +296,7 @@ function ProjectCarouselCard() {
       </div>
 
       {/* Project Info - 50% height */}
-      <div className="h-1/2 p-3 sm:p-4 flex flex-col justify-between">
+      <div className="h-1/2 p-2.5 sm:p-3 flex flex-col justify-between">
         <div>
           <h4 className="text-sm sm:text-base font-bold text-center text-white mb-1 truncate">
             {currentProject.name}
@@ -343,7 +343,7 @@ export default function Hero() {
     <>
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-16 sm:pt-20 pb-4 sm:pb-6 relative"
+        className="min-h-screen flex items-center justify-center px-3 sm:px-4 lg:px-8 pt-14 sm:pt-16 pb-3 sm:pb-4 relative"
       >
         <div className="max-w-7xl lg:max-w-[1400px] mx-auto w-full relative z-10 flex flex-col md:flex-row gap-2 sm:gap-3 lg:gap-4">
 
@@ -352,13 +352,13 @@ export default function Hero() {
 
             {/* ── Intro card: full width on mobile, 2-col × 2-row on desktop ── */}
             <motion.div
-              className="col-span-2 md:col-span-2 md:row-span-2 bg-black border border-gray-800 rounded-xl p-5 sm:p-6 lg:p-8 shadow-lg relative overflow-hidden flex flex-col min-h-[220px]"
+              className="col-span-2 md:col-span-2 md:row-span-2 bg-black border border-gray-800 rounded-xl p-4 sm:p-5 lg:p-6 shadow-lg relative overflow-hidden flex flex-col min-h-[180px]"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 gap-3 sm:gap-4">
+              <div className="flex flex-col flex-1 justify-center items-center text-center relative z-10 gap-2.5 sm:gap-3">
                 <motion.p
                   className="text-gray-400 text-xs sm:text-sm lg:text-base tracking-widest uppercase font-mono"
                   initial={{ opacity: 0, y: -8 }}
@@ -405,7 +405,7 @@ export default function Hero() {
 
               <motion.button
                 onClick={scrollToProjects}
-                className="mt-5 bg-white text-black text-sm sm:text-base px-5 py-2.5 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full relative z-10"
+                className="mt-4 bg-white text-black text-sm sm:text-base px-5 py-2 rounded-lg font-semibold shadow-lg hover:bg-white/80 transition-colors w-full relative z-10"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -416,17 +416,15 @@ export default function Hero() {
 
             {/* ── Services card: full width on mobile, 2-col on desktop ── */}
             <motion.div
-              className="col-span-2 md:col-span-2 bg-black border border-gray-800 rounded-xl p-3 sm:p-4 lg:p-5 shadow-lg relative flex flex-col gap-2 sm:gap-3"
+              className="col-span-2 md:col-span-2 bg-black border border-gray-800 rounded-xl p-3 sm:p-3.5 lg:p-4 shadow-lg relative flex flex-col gap-1.5 sm:gap-2"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <p className="text-gray-500 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-center leading-snug">
-                I build the infrastructure that keeps your product alive at scale
-              </p>
+              
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                 {[
                   {
                     icon: (
@@ -467,7 +465,7 @@ export default function Hero() {
                 ].map((service) => (
                   <motion.button
                     key={service.title}
-                    className="flex flex-col items-start gap-1 sm:gap-1.5 p-2 sm:p-2.5 rounded-lg border border-gray-800 bg-gray-950 hover:border-gray-600 transition-colors group text-left"
+                    className="flex flex-col items-start gap-1 p-2 rounded-lg border border-gray-800 bg-black hover:border-gray-600 transition-colors group text-left"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
@@ -493,7 +491,7 @@ export default function Hero() {
 
             {/* ── Tech stack marquee: 1-col on mobile, 1-col on desktop ── */}
             <motion.div
-              className="col-span-1 bg-black border border-gray-800 rounded-xl p-3 lg:p-4 shadow-lg flex flex-col justify-center relative overflow-hidden min-h-[140px] md:min-h-0"
+              className="col-span-1 bg-black border border-gray-800 rounded-xl p-2.5 lg:p-3 shadow-lg flex flex-col justify-center relative overflow-hidden min-h-[120px] md:min-h-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -529,7 +527,7 @@ export default function Hero() {
                   </div>
                 )
                 return (
-                  <div className="flex flex-col gap-6 sm:gap-8">
+                  <div className="flex flex-col gap-3 sm:gap-4">
                     <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
                       <div className="marquee-ltr flex gap-3 sm:gap-4 w-max">
                         {[...row1, ...row1].map((item, i) => <Icon key={i} {...item} i={i} />)}

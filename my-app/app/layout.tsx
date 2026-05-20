@@ -35,8 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/mat-favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/mat-favicon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/mat-favicon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -40,9 +40,11 @@ export default function Header({}: HeaderProps) {
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-white font-light text-base sm:text-lg tracking-normal">
-              Mathews Mwangi
-            </span>
+            <img
+              src="/Mathews-dark.svg"
+              alt="Mathews Mwangi"
+              className="h-12 w-auto"
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
