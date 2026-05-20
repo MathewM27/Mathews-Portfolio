@@ -72,7 +72,7 @@ export const projects: Project[] = [
       "GPS devices → EMQX → Go backend → Redis Pub/Sub → WebSocket → Commuter app + Operator dashboard",
     stack: [
       "Go",
-      "PostgreSQL + PostGIS",
+      "PostgreSQL",
       "Redis",
       "MQTT / EMQX",
       "WebSocket",

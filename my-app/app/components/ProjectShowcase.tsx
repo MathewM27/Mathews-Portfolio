@@ -176,8 +176,15 @@ function FlagshipCard({ project }: { project: Project }) {
               </div>
             )}
 
-            <div className="mt-6">
-              <StackPills stack={project.stack} />
+            <div className="mt-6 grid grid-cols-5 gap-x-2 gap-y-1.5">
+              {project.stack.map((tool) => (
+                <span
+                  key={tool}
+                  className="rounded-md border border-gray-800 bg-black px-2 py-0.5 text-center font-mono text-[10px] text-gray-400"
+                >
+                  {tool}
+                </span>
+              ))}
             </div>
 
             <span className="mt-7 inline-flex items-center gap-1.5 self-start rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition-colors group-hover:bg-orange-500 group-hover:text-white">
