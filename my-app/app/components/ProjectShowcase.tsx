@@ -10,6 +10,7 @@ import {
   projectsByTier,
   statusLabel,
   tierMeta,
+  type GalleryShot,
   type Project,
   type ProjectStatus,
 } from "../data/projects"
@@ -72,7 +73,70 @@ const fadeUp = {
 }
 
 /* ── Tier 1 — Flagship ───────────────────────────────────────────────────── */
+function ArchitectureNodes({
+  architecture,
+  centered,
+}: {
+  architecture: string
+  centered?: boolean
+}) {
+  return (
+    <div
+      className={`flex flex-wrap items-center gap-2 ${centered ? "justify-center" : ""}`}
+    >
+      {architecture.split("→").map((node, i, arr) => (
+        <Fragment key={node}>
+          <span className="rounded-lg border border-gray-800 bg-gray-950 px-2.5 py-1.5 text-xs text-gray-300">
+            {node.trim()}
+          </span>
+          {i < arr.length - 1 && <ArrowRight className="h-3 w-3 shrink-0 text-orange-500/60" />}
+        </Fragment>
+      ))}
+    </div>
+  )
+}
+
+/** Layered laptop + phone preview built from the project's screenshots. */
+function DeviceComposite({
+  desktop,
+  mobile,
+  name,
+}: {
+  desktop: GalleryShot
+  mobile: GalleryShot
+  name: string
+}) {
+  return (
+    <div className="relative flex items-center justify-center rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-black p-6 sm:p-8">
+      <div className="relative w-full max-w-[440px] transition-transform duration-500 group-hover:scale-[1.02]">
+        <Image
+          src={desktop.src}
+          alt={`${name} operator dashboard`}
+          width={desktop.w}
+          height={desktop.h}
+          sizes="(max-width: 1024px) 70vw, 380px"
+          className="h-auto w-[88%] [filter:drop-shadow(0_22px_30px_rgba(0,0,0,0.65))]"
+        />
+        <Image
+          src={mobile.src}
+          alt={`${name} commuter app`}
+          width={mobile.w}
+          height={mobile.h}
+          sizes="(max-width: 1024px) 24vw, 130px"
+          className="absolute bottom-0 right-0 h-auto w-[30%] [filter:drop-shadow(0_16px_22px_rgba(0,0,0,0.8))]"
+        />
+      </div>
+    </div>
+  )
+}
+
 function FlagshipCard({ project }: { project: Project }) {
+  const desktopShot = project.gallery?.find((g) => g.kind === "desktop")?.shots[0]
+  const mobileGroup = project.gallery?.find((g) => g.kind === "mobile")
+  const mobileShot =
+    mobileGroup?.shots.find((s) => s.src.includes("journey-tracking")) ?? mobileGroup?.shots[0]
+  const hasComposite = Boolean(desktopShot && mobileShot)
+
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
       <motion.div
@@ -122,25 +186,30 @@ function FlagshipCard({ project }: { project: Project }) {
             </span>
           </div>
 
-          {/* Architecture visual */}
-          <div className="flex flex-col justify-center rounded-xl border border-gray-800 bg-black p-5 sm:p-6">
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+          {/* Visual: device preview, else architecture diagram */}
+          {hasComposite ? (
+            <DeviceComposite desktop={desktopShot!} mobile={mobileShot!} name={project.name} />
+          ) : (
+            project.architecture && (
+              <div className="flex flex-col justify-center rounded-xl border border-gray-800 bg-black p-5 sm:p-6">
+                <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                  System architecture
+                </p>
+                <ArchitectureNodes architecture={project.architecture} />
+              </div>
+            )
+          )}
+        </div>
+
+        {/* Architecture strip — full width once screenshots take the visual slot */}
+        {project.architecture && hasComposite && (
+          <div className="mt-6 rounded-xl border border-gray-800 bg-black p-5">
+            <p className="mb-3 text-center font-mono text-[10px] uppercase tracking-widest text-gray-500">
               System architecture
             </p>
-            <div className="flex flex-wrap items-center gap-2">
-              {project.architecture?.split("→").map((node, i, arr) => (
-                <Fragment key={node}>
-                  <span className="rounded-lg border border-gray-800 bg-gray-950 px-2.5 py-1.5 text-xs text-gray-300">
-                    {node.trim()}
-                  </span>
-                  {i < arr.length - 1 && (
-                    <ArrowRight className="h-3 w-3 shrink-0 text-orange-500/60" />
-                  )}
-                </Fragment>
-              ))}
-            </div>
+            <ArchitectureNodes architecture={project.architecture} centered />
           </div>
-        </div>
+        )}
       </motion.div>
     </Link>
   )

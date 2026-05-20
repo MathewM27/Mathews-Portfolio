@@ -9,6 +9,22 @@ export interface ProjectStat {
   label: string
 }
 
+export interface GalleryShot {
+  src: string
+  caption: string
+  /** Intrinsic dimensions of the processed image, used for layout aspect ratio */
+  w: number
+  h: number
+  /** True when the screenshot already includes a device frame (phone / laptop mockup) */
+  framed: boolean
+}
+
+export interface ProjectGallery {
+  label: string
+  kind: "desktop" | "mobile"
+  shots: GalleryShot[]
+}
+
 export interface Project {
   slug: string
   tier: Tier
@@ -26,10 +42,14 @@ export interface Project {
   demonstrates?: string[]
   /** Data-flow description rendered as a styled diagram */
   architecture?: string
+  /** Path to a static architecture diagram image (SVG/PNG) shown in the case-study hero */
+  architectureImage?: string
   status: ProjectStatus
   github?: string
   live?: string
   images: string[]
+  /** Grouped product screenshots rendered on the case-study page */
+  gallery?: ProjectGallery[]
 }
 
 const GITHUB = "https://github.com/MathewM27"
@@ -75,9 +95,69 @@ export const projects: Project[] = [
       "7 independently runnable Go binaries",
       "Full observability stack (Prometheus + Grafana)",
     ],
+    architectureImage: "/alebus_system_architecture.svg",
     status: "in-development",
-    github: GITHUB,
+    github: "https://github.com/MathewM27/alebus-public",
     images: [],
+    gallery: [
+      {
+        label: "Operator dashboard",
+        kind: "desktop",
+        shots: [
+          {
+            src: "/alebus/dashboard-overview.png",
+            caption: "Live fleet map",
+            w: 1526,
+            h: 1018,
+            framed: true,
+          },
+          {
+            src: "/alebus/dashboard-fleet.png",
+            caption: "Route monitoring",
+            w: 1445,
+            h: 964,
+            framed: true,
+          },
+          {
+            src: "/alebus/dashboard-routes.png",
+            caption: "Route & stop registry",
+            w: 1869,
+            h: 835,
+            framed: false,
+          },
+          {
+            src: "/alebus/dashboard-drivers.png",
+            caption: "Operational events",
+            w: 1526,
+            h: 1018,
+            framed: true,
+          },
+        ],
+      },
+      {
+        label: "Commuter app",
+        kind: "mobile",
+        shots: [
+          { src: "/alebus/sign-in.png", caption: "Sign in", w: 925, h: 1825, framed: true },
+          { src: "/alebus/home.png", caption: "Home", w: 925, h: 1825, framed: true },
+          {
+            src: "/alebus/home-search.png",
+            caption: "Find your bus",
+            w: 925,
+            h: 1825,
+            framed: true,
+          },
+          {
+            src: "/alebus/journey-tracking.png",
+            caption: "Live journey tracking",
+            w: 925,
+            h: 1825,
+            framed: true,
+          },
+          { src: "/alebus/app-profile.png", caption: "Account", w: 925, h: 1825, framed: true },
+        ],
+      },
+    ],
   },
 
   // ── Tier 2 — Distributed Systems Engineering ──────────────────────────────

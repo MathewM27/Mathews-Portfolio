@@ -9,6 +9,8 @@ import {
   projects,
   statusLabel,
   tierMeta,
+  type GalleryShot,
+  type ProjectGallery,
   type ProjectStatus,
 } from "../../data/projects"
 
@@ -63,6 +65,101 @@ function ArchitectureFlow({ architecture }: { architecture: string }) {
   )
 }
 
+function MobileShot({ shot }: { shot: GalleryShot }) {
+  return (
+    <figure className="group">
+      <Image
+        src={shot.src}
+        alt={shot.caption}
+        width={shot.w}
+        height={shot.h}
+        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 180px"
+        className="h-auto w-full transition-transform duration-300 [filter:drop-shadow(0_12px_22px_rgba(0,0,0,0.55))] group-hover:-translate-y-1.5"
+      />
+      <figcaption className="mt-3 text-center font-mono text-[11px] text-gray-500">
+        {shot.caption}
+      </figcaption>
+    </figure>
+  )
+}
+
+function DesktopShot({ shot }: { shot: GalleryShot }) {
+  return (
+    <figure>
+      {shot.framed ? (
+        <Image
+          src={shot.src}
+          alt={shot.caption}
+          width={shot.w}
+          height={shot.h}
+          sizes="(max-width: 1024px) 90vw, 440px"
+          className="h-auto w-full [filter:drop-shadow(0_20px_32px_rgba(0,0,0,0.6))]"
+        />
+      ) : (
+        <div className="overflow-hidden rounded-xl border border-gray-800 shadow-2xl">
+          <div className="flex items-center gap-1.5 border-b border-gray-800 bg-gray-900 px-3.5 py-2.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-gray-700" />
+            <span className="h-2.5 w-2.5 rounded-full bg-gray-700" />
+            <span className="h-2.5 w-2.5 rounded-full bg-gray-700" />
+          </div>
+          <Image
+            src={shot.src}
+            alt={shot.caption}
+            width={shot.w}
+            height={shot.h}
+            sizes="(max-width: 1024px) 100vw, 900px"
+            className="h-auto w-full"
+          />
+        </div>
+      )}
+      <figcaption className="mt-3 text-center font-mono text-[11px] text-gray-500">
+        {shot.caption}
+      </figcaption>
+    </figure>
+  )
+}
+
+function ProductGallery({ gallery }: { gallery: ProjectGallery[] }) {
+  return (
+    <div className="mt-12">
+      <h2 className="font-mono text-xs uppercase tracking-widest text-gray-500">
+        Inside the product
+      </h2>
+      <div className="mt-6 space-y-12">
+        {gallery.map((group) => {
+          const framed = group.shots.filter((s) => s.framed)
+          const raw = group.shots.filter((s) => !s.framed)
+          return (
+            <div key={group.label}>
+              <h3 className="mb-5 text-sm font-semibold text-white">{group.label}</h3>
+              {group.kind === "mobile" ? (
+                <div className="grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
+                  {group.shots.map((s) => (
+                    <MobileShot key={s.src} shot={s} />
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-9">
+                  {framed.length > 0 && (
+                    <div className="grid gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+                      {framed.map((s) => (
+                        <DesktopShot key={s.src} shot={s} />
+                      ))}
+                    </div>
+                  )}
+                  {raw.map((s) => (
+                    <DesktopShot key={s.src} shot={s} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default async function ProjectPage({
   params,
 }: {
@@ -103,38 +200,40 @@ export default async function ProjectPage({
       </header>
 
       <article className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
-        {/* Title block */}
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-orange-400">
-            {tierMeta[project.tier].label}
-          </span>
-          <span
-            className={`rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-wide ${statusStyle[project.status]}`}
-          >
-            {statusLabel[project.status]}
-          </span>
-        </div>
-
-        <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">{project.name}</h1>
-        <p className="mt-2 text-lg text-gray-400">{project.tagline}</p>
-
-        {project.badges && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.badges.map((b) => (
-              <span
-                key={b}
-                className="rounded-md border border-gray-800 bg-gray-950 px-2 py-0.5 font-mono text-[11px] text-gray-400"
-              >
-                {b}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Hero: description + visual */}
-        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+        {/* Hero: title + content left, visual right — single unified grid so both columns start at the same top */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           <div className="flex flex-col">
-            <div className="space-y-4">
+            {/* Tier / status badges */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wide text-orange-400">
+                {tierMeta[project.tier].label}
+              </span>
+              <span
+                className={`rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-wide ${statusStyle[project.status]}`}
+              >
+                {statusLabel[project.status]}
+              </span>
+            </div>
+
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+              {project.name}
+            </h1>
+            <p className="mt-2 text-lg text-gray-400">{project.tagline}</p>
+
+            {project.badges && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.badges.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-md border border-gray-800 bg-gray-950 px-2 py-0.5 font-mono text-[11px] text-gray-400"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-8 space-y-4">
               {project.description.map((para, i) => (
                 <p key={i} className="text-sm leading-relaxed text-gray-300 sm:text-base">
                   {para}
@@ -168,7 +267,7 @@ export default async function ProjectPage({
             )}
           </div>
 
-          {/* Visual: screenshot, else architecture, else nothing */}
+          {/* Visual: cover screenshot → architecture diagram image → text nodes → nothing */}
           {cover ? (
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
               <Image
@@ -178,6 +277,15 @@ export default async function ProjectPage({
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
                 priority
+              />
+            </div>
+          ) : project.architectureImage ? (
+            <div className="flex items-start justify-center rounded-xl border border-gray-800 bg-gray-950 p-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.architectureImage}
+                alt={`${project.name} system architecture`}
+                className="h-auto w-full"
               />
             </div>
           ) : project.architecture ? (
@@ -221,6 +329,9 @@ export default async function ProjectPage({
             </ul>
           </div>
         )}
+
+        {/* Product screenshots */}
+        {project.gallery && <ProductGallery gallery={project.gallery} />}
 
         {/* Architecture (when a screenshot already took the hero slot) */}
         {project.architecture && cover && (
