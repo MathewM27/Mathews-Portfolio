@@ -8,7 +8,7 @@ const stackTiers = [
   {
     label: "Primary",
     sublabel: "what you're hired for",
-    tags: ["Go", "PostgreSQL + PostGIS", "Redis", "MQTT", "WebSockets", "Event-driven", "DDD"],
+    tags: ["Go", "PostgreSQL", "Redis", "MQTT", "WebSockets", "Event-driven", "DDD"],
     accent: "text-white border-gray-700 bg-gray-900",
   },
   {
