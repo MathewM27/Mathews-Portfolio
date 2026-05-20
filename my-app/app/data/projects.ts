@@ -3,6 +3,8 @@
 
 export type Tier = "flagship" | "distributed" | "fullstack"
 export type ProjectStatus = "completed" | "in-development" | "planned"
+/** Sub-categories within the Distributed Systems tier */
+export type DistributedGroup = "go" | "backend" | "cloud"
 
 export interface ProjectStat {
   value: string
@@ -28,6 +30,8 @@ export interface ProjectGallery {
 export interface Project {
   slug: string
   tier: Tier
+  /** Sub-category within the Distributed Systems tier */
+  group?: DistributedGroup
   name: string
   tagline: string
   /** Short label chips, e.g. ["Backend", "IoT", "Go"] */
@@ -164,6 +168,7 @@ export const projects: Project[] = [
   {
     slug: "go-concurrency-patterns",
     tier: "distributed",
+    group: "go",
     name: "Go Concurrency Patterns",
     tagline: "Reference implementations of core Go concurrency primitives",
     summary: "Reference implementations of core Go concurrency primitives.",
@@ -179,6 +184,7 @@ export const projects: Project[] = [
   {
     slug: "distributed-task-queue",
     tier: "distributed",
+    group: "backend",
     name: "Distributed Task Queue",
     tagline: "Postgres-backed job queue with retries, dead-letter handling and a worker pool",
     summary:
@@ -195,6 +201,7 @@ export const projects: Project[] = [
   {
     slug: "kafka-event-pipeline",
     tier: "distributed",
+    group: "backend",
     name: "Kafka Event Pipeline",
     tagline: "Multi-consumer event streaming system with schema registry and DLQ",
     summary: "Multi-consumer event streaming system with a schema registry and dead-letter queue.",
@@ -215,6 +222,7 @@ export const projects: Project[] = [
   {
     slug: "url-shortener",
     tier: "distributed",
+    group: "backend",
     name: "URL Shortener",
     tagline: "High-throughput redirect service with caching and an analytics pipeline",
     summary: "High-throughput redirect service with caching, an analytics pipeline and rate limiting.",
@@ -230,6 +238,7 @@ export const projects: Project[] = [
   {
     slug: "grpc-services",
     tier: "distributed",
+    group: "backend",
     name: "gRPC Services",
     tagline: "Synchronous inter-service communication with streaming RPC",
     summary: "Synchronous inter-service communication with streaming RPC.",
@@ -245,6 +254,7 @@ export const projects: Project[] = [
   {
     slug: "k8s-terraform-gcp",
     tier: "distributed",
+    group: "cloud",
     name: "K8s + Terraform on GCP",
     tagline: "Full system deployed with Helm, KEDA autoscaling and IaC on GKE",
     summary: "Full system deployed with Helm, KEDA autoscaling and infrastructure-as-code on GKE.",
@@ -374,6 +384,25 @@ export const tierMeta: Record<Tier, { label: string; heading: string; sub: strin
     sub: "End-to-end product development across client work, marketplaces, and AI-powered tools.",
   },
 }
+
+/** Ordered sub-categories rendered as carousels inside the Distributed Systems tier. */
+export const distributedGroups: { id: DistributedGroup; label: string; sub: string }[] = [
+  {
+    id: "go",
+    label: "Go Foundations",
+    sub: "Core Go language and concurrency expertise — runnable reference implementations.",
+  },
+  {
+    id: "backend",
+    label: "Backend Systems",
+    sub: "Distributed backend services built on Kafka, Postgres, Redis and gRPC.",
+  },
+  {
+    id: "cloud",
+    label: "Cloud & Deployment",
+    sub: "Systems packaged, deployed and operated on cloud-native infrastructure.",
+  },
+]
 
 export const statusLabel: Record<ProjectStatus, string> = {
   completed: "Live",

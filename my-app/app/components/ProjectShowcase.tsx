@@ -1,12 +1,13 @@
 "use client"
 
-import { Fragment } from "react"
+import { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, ArrowUpRight, Hammer } from "lucide-react"
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Hammer } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import {
   currentlyBuilding,
+  distributedGroups,
   projectsByTier,
   statusLabel,
   tierMeta,
@@ -224,41 +225,150 @@ function FlagshipCard({ project }: { project: Project }) {
 
 /* ── Tier 2 — Distributed Systems ────────────────────────────────────────── */
 function DistributedCard({ project }: { project: Project }) {
+  const image = project.images[0]
   return (
     <Link href={`/projects/${project.slug}`} className="group block h-full">
-      <motion.div
-        {...fadeUp}
-        transition={{ duration: 0.45 }}
-        className="flex h-full flex-col rounded-xl border border-gray-800 bg-gray-950 p-5 transition-colors group-hover:border-gray-600"
-      >
-        <div className="flex items-start justify-between gap-3">
-          <h4 className="text-base font-bold text-white">{project.name}</h4>
-          <StatusPill status={project.status} />
-        </div>
-        <p className="mt-1 text-xs text-gray-400">{project.tagline}</p>
-
-        {project.demonstrates && (
-          <div className="mt-4">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
-              Demonstrates
-            </p>
-            <ul className="mt-1.5 space-y-1">
-              {project.demonstrates.map((d) => (
-                <li key={d} className="flex items-center gap-2 text-xs text-gray-300">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-orange-500" />
-                  {d}
-                </li>
-              ))}
-            </ul>
+      <div className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-950 transition-colors group-hover:border-gray-600">
+        {image && (
+          <div className="relative aspect-[16/10] overflow-hidden bg-gray-900">
+            <Image
+              src={image}
+              alt={project.name}
+              fill
+              sizes="340px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
           </div>
         )}
+        <div className="flex flex-1 flex-col p-5">
+          <div className="flex items-start justify-between gap-3">
+            <h4 className="text-base font-bold text-white">{project.name}</h4>
+            <StatusPill status={project.status} />
+          </div>
+          <p className="mt-1 text-xs text-gray-400">{project.tagline}</p>
 
-        <div className="mt-4 flex items-end justify-between gap-3 pt-2">
-          <StackPills stack={project.stack} />
-          <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-600 transition-colors group-hover:text-orange-500" />
+          {project.demonstrates && (
+            <div className="mt-4">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                Demonstrates
+              </p>
+              <ul className="mt-1.5 space-y-1">
+                {project.demonstrates.map((d) => (
+                  <li key={d} className="flex items-center gap-2 text-xs text-gray-300">
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-orange-500" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="mt-auto flex items-end justify-between gap-3 pt-5">
+            <StackPills stack={project.stack} />
+            <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-600 transition-colors group-hover:text-orange-500" />
+          </div>
         </div>
-      </motion.div>
+      </div>
     </Link>
+  )
+}
+
+function CarouselButton({
+  dir,
+  disabled,
+  onClick,
+}: {
+  dir: "prev" | "next"
+  disabled: boolean
+  onClick: () => void
+}) {
+  const Icon = dir === "prev" ? ChevronLeft : ChevronRight
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={dir === "prev" ? "Previous" : "Next"}
+      className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-700 text-gray-400 transition-colors hover:border-gray-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-25"
+    >
+      <Icon className="h-4 w-4" />
+    </button>
+  )
+}
+
+/** A labelled, horizontally-scrollable row of project cards (CSS scroll-snap). */
+function CategoryCarousel({
+  label,
+  sub,
+  projects,
+}: {
+  label: string
+  sub: string
+  projects: Project[]
+}) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [canPrev, setCanPrev] = useState(false)
+  const [canNext, setCanNext] = useState(false)
+
+  const update = useCallback(() => {
+    const el = trackRef.current
+    if (!el) return
+    setCanPrev(el.scrollLeft > 4)
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+  }, [])
+
+  useEffect(() => {
+    update()
+    const el = trackRef.current
+    if (!el) return
+    el.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("resize", update)
+    return () => {
+      el.removeEventListener("scroll", update)
+      window.removeEventListener("resize", update)
+    }
+  }, [update])
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>("[data-card]")
+    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8
+    el.scrollBy({ left: dir * amount, behavior: "smooth" })
+  }
+
+  return (
+    <motion.div {...fadeUp} transition={{ duration: 0.45 }}>
+      <div className="mb-4 flex items-end justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2.5">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
+            <h4 className="text-sm font-bold uppercase tracking-wider text-white">{label}</h4>
+          </div>
+          <p className="mt-1 text-xs text-gray-500">{sub}</p>
+        </div>
+        {(canPrev || canNext) && (
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <CarouselButton dir="prev" disabled={!canPrev} onClick={() => scrollByCard(-1)} />
+            <CarouselButton dir="next" disabled={!canNext} onClick={() => scrollByCard(1)} />
+          </div>
+        )}
+      </div>
+      <div
+        ref={trackRef}
+        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {projects.map((p) => (
+          <div
+            key={p.slug}
+            data-card
+            className="snap-start flex-none basis-[290px] sm:basis-[330px]"
+          >
+            <DistributedCard project={p} />
+          </div>
+        ))}
+      </div>
+    </motion.div>
   )
 }
 
@@ -268,7 +378,7 @@ function CurrentlyBuildingCard() {
       href={currentlyBuilding.github}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block sm:col-span-2"
+      className="group block"
     >
       <div className="rounded-xl border border-dashed border-gray-700 bg-gray-950 p-5 transition-colors group-hover:border-orange-500/50">
         <div className="flex items-center gap-2 text-orange-500">
@@ -332,9 +442,7 @@ export default function ProjectShowcase() {
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
         <div className="mb-14 text-center">
-          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-orange-500 sm:text-sm">
-            … / Projects / …
-          </p>
+          
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Selected Work</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
             From a flagship distributed system to shipped client products — organised by engineering
@@ -358,10 +466,21 @@ export default function ProjectShowcase() {
               label={tierMeta.distributed.heading}
               sub={tierMeta.distributed.sub}
             />
-            <div className="grid gap-5 sm:grid-cols-2">
-              {distributed.map((p) => (
-                <DistributedCard key={p.slug} project={p} />
-              ))}
+            <div className="space-y-12">
+              {distributedGroups.map((g) => {
+                const groupProjects = distributed.filter((p) => p.group === g.id)
+                if (groupProjects.length === 0) return null
+                return (
+                  <CategoryCarousel
+                    key={g.id}
+                    label={g.label}
+                    sub={g.sub}
+                    projects={groupProjects}
+                  />
+                )
+              })}
+            </div>
+            <div className="mt-12">
               <CurrentlyBuildingCard />
             </div>
           </div>
