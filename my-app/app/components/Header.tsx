@@ -1,119 +1,201 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { Mail } from "lucide-react"
 
-interface HeaderProps {}
+const navItems = [
+  { name: "Home",       href: "#home" },
+  { name: "About",      href: "#about" },
+  { name: "Projects",   href: "#projects" },
+  { name: "Services",   href: "#services" },
+  { name: "Blog",       href: "#blog" },
+  { name: "References", href: "#references" },
+  { name: "Contact",    href: "#contact" },
+]
 
-export default function Header({}: HeaderProps) {
+function GithubIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
+  )
+}
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  )
+}
+
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/MathewM27",
+    Icon: GithubIcon,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/mathews-mwangi-972839219/",
+    Icon: LinkedinIcon,
+  },
+  {
+    label: "Email",
+    href: "mailto:futurexdesign.info@gmail.com",
+    Icon: Mail,
+  },
+]
+
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("Home")
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Services", href: "#services" },
-    { name: "Blog", href: "#blog" },
-  ]
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.slice(1))
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            const match = navItems.find((item) => item.href === `#${id}`)
+            if (match) setActiveTab(match.name)
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
 
   const scrollToSection = (href: string, name: string) => {
     const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" })
     setActiveTab(name)
     setIsMenuOpen(false)
   }
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-md shadow-sm transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-3 sm:py-4 relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between py-3">
+
           {/* Logo */}
-          <motion.div
-            className="flex items-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <img
-              src="/Mathews-dark.svg"
-              alt="Mathews Mwangi"
-              className="h-12 w-auto"
-            />
+          <motion.div className="flex shrink-0 items-center" whileHover={{ scale: 1.05 }}>
+            <img src="/Mathews-dark.svg" alt="Mathews Mwangi" className="h-10 w-auto" />
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center justify-center bg-black border-b border-gray-800 shadow-xl rounded-full px-1 sm:px-2 py-1 mx-auto">
+          {/* Desktop nav pill */}
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center rounded-full border border-gray-800 bg-black px-1 py-1 md:flex">
             {navItems.map((item) => (
-              <motion.div
+              <motion.button
                 key={item.name}
-                className={`relative px-3 lg:px-4 py-2 mx-0.5 sm:mx-1 transition-colors duration-200 cursor-pointer text-sm lg:text-base ${
-                  activeTab === item.name ? "text-white font-semibold" : "text-gray-500 font-light"
-                }`}
+                type="button"
                 onClick={() => scrollToSection(item.href, item.name)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className={`rounded-full px-3 py-1.5 text-sm transition-colors duration-200 ${
+                  activeTab === item.name
+                    ? "bg-white font-semibold text-black"
+                    : "font-medium text-gray-400 hover:text-white"
+                }`}
               >
-                <span className="font-medium">{item.name}</span>
-              </motion.div>
+                {item.name}
+              </motion.button>
             ))}
           </nav>
 
-          {/* Contact Button - Right Side */}
-          <motion.button 
-            className="hidden md:block bg-white hover:bg-orange-600 text-black px-3 lg:px-4 py-2 rounded-full transition-colors duration-200 text-sm lg:text-base"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection("#contact", "")}
-          >
-            Contact
-          </motion.button>
+          {/* Desktop social icons */}
+          <div className="hidden shrink-0 items-center gap-1 md:flex">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <motion.a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-colors hover:border-gray-600 hover:text-white"
+              >
+                <Icon className="h-4 w-4" />
+              </motion.a>
+            ))}
+          </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden text-white p-2 z-30 ml-auto"
+            type="button"
+            className="ml-auto text-white md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Open menu"
+            aria-label="Toggle menu"
           >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <motion.nav
-            className="md:hidden py-4 border-t border-gray-200 bg-black rounded-lg shadow-lg absolute left-0 right-0 top-full z-40"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-          >
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <motion.div
+          className="border-t border-gray-800 bg-black md:hidden"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+        >
+          <nav className="flex flex-col gap-1 px-4 py-3">
             {navItems.map((item) => (
-              <div 
+              <button
                 key={item.name}
-                className={`mx-2 my-1 py-3 px-4 rounded-lg text-center cursor-pointer transition-colors ${
-                  activeTab === item.name ? "bg-white text-black" : "bg-black text-white hover:bg-orange-500 hover:text-white"
-                }`}
+                type="button"
                 onClick={() => scrollToSection(item.href, item.name)}
+                className={`rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors ${
+                  activeTab === item.name
+                    ? "bg-white text-black"
+                    : "text-gray-300 hover:bg-gray-900 hover:text-white"
+                }`}
               >
                 {item.name}
-              </div>
+              </button>
             ))}
-            <div 
-              className="mx-2 my-1 py-3 px-4 bg-orange-600 text-white rounded-lg text-center cursor-pointer hover:bg-orange-600 transition-colors"
-              onClick={() => scrollToSection("#contact", "")}
-            >
-              Contact
-            </div>
-          </motion.nav>
-        )}
-      </div>
+          </nav>
+
+          {/* Mobile social row */}
+          <div className="flex items-center gap-3 border-t border-gray-800 px-4 py-3">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg border border-gray-800 px-3 py-2 text-sm text-gray-400 transition-colors hover:border-gray-600 hover:text-white"
+              >
+                <Icon className="h-4 w-4" />
+                {label}
+              </a>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </motion.header>
   )
 }
