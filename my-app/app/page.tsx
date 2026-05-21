@@ -27,6 +27,7 @@ import ProjectShowcase from "./components/ProjectShowcase"
 import Services from "./components/Services"
 import ProcessPlan from "./components/ProcessPlan"
 import Blog from "./components/Blog"
+import References from "./components/References"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
@@ -48,6 +49,7 @@ export default function Home() {
         <Services />
         <ProcessPlan />
         <Blog />
+        <References />
 
         <Contact />
       </main>

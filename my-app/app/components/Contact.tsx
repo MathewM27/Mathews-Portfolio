@@ -16,7 +16,7 @@ export default function Contact() {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Let's Work Together</h2>
           <p className="text-lg text-gray-200 max-w-2xl mx-auto">
-            Open to freelance projects, collaborations, or just a coffee chat about technology!
+            Whether you need a backend engineer, a full-stack developer, or just want to connect and chat — feel free to reach out.
           </p>
         </motion.div>
 
@@ -31,8 +31,7 @@ export default function Contact() {
           >
             <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
             <p className="text-gray-200 text-lg leading-relaxed">
-              I'm always excited to discuss new opportunities and interesting projects. Whether you need a fullstack
-              developer, AI engineer, or just want to chat about technology, feel free to reach out!
+              I'm always open to discussing new opportunities and interesting projects. Whether you need a backend engineer, a full-stack developer, or you're building something AI-powered — or just want to link and talk tech — don't hesitate to get in touch.
             </p>
           </motion.div>
 
@@ -50,7 +49,7 @@ export default function Contact() {
                   icon: MessageCircle,
                   title: "WhatsApp",
                   value: "Let's link quicker",
-                  href: "https://wa.me/23055117201",
+                  href: "https://wa.me/23059300798",
                 },
                 {
                   icon: Mail,
