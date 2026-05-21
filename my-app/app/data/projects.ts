@@ -5,6 +5,8 @@ export type Tier = "flagship" | "distributed" | "fullstack"
 export type ProjectStatus = "completed" | "in-development" | "planned"
 /** Sub-categories within the Distributed Systems tier */
 export type DistributedGroup = "go" | "backend" | "cloud"
+/** Sub-categories within the Full-stack & Product tier */
+export type FullstackGroup = "client" | "ai" | "fullstack"
 
 export interface ProjectStat {
   value: string
@@ -32,6 +34,8 @@ export interface Project {
   tier: Tier
   /** Sub-category within the Distributed Systems tier */
   group?: DistributedGroup
+  /** Sub-category within the Full-stack & Product tier */
+  fullstackGroup?: FullstackGroup
   name: string
   tagline: string
   /** Short label chips, e.g. ["Backend", "IoT", "Go"] */
@@ -663,14 +667,17 @@ export const projects: Project[] = [
   },
 
   // ── Tier 3 — Full-stack & Product Work ────────────────────────────────────
+  // Freelance & Contract Work
   {
     slug: "lifestyle-aviation",
     tier: "fullstack",
+    fullstackGroup: "client",
     name: "Lifestyle Aviation Jet Limited",
     tagline: "Private jet charter booking platform",
-    summary: "Fullstack private jet booking platform for luxury charter travel.",
+    summary: "Fullstack private jet booking platform built for a luxury charter company.",
     description: [
       "A fullstack booking platform for a private jet charter company — visitors browse aircraft and request charters, with an admin side for managing listings and enquiries.",
+      "Delivered as a freelance engagement, the site is live and in active use by the client.",
     ],
     stack: ["React", "Node.js", "Express", "MongoDB"],
     status: "completed",
@@ -680,6 +687,7 @@ export const projects: Project[] = [
   {
     slug: "lakazhub",
     tier: "fullstack",
+    fullstackGroup: "fullstack",
     name: "LakazHub",
     tagline: "Two-sided property rental marketplace",
     summary: "Fullstack rental marketplace connecting property owners and tenants.",
@@ -694,9 +702,10 @@ export const projects: Project[] = [
   {
     slug: "onboardai",
     tier: "fullstack",
+    fullstackGroup: "ai",
     name: "OnboardAI",
     tagline: "AI-powered employee onboarding assistant",
-    summary: "AI tool that helps with employee onboarding, leveraging a RAG model.",
+    summary: "AI assistant that streamlines employee onboarding via a RAG pipeline.",
     description: [
       "An AI assistant that streamlines employee onboarding — answering questions over company policies and documents using a retrieval-augmented generation (RAG) pipeline.",
     ],
@@ -708,9 +717,10 @@ export const projects: Project[] = [
   {
     slug: "postforge",
     tier: "fullstack",
+    fullstackGroup: "ai",
     name: "PostForge",
     tagline: "AI-powered content generator",
-    summary: "AI-powered content creator that turns ideas into posts.",
+    summary: "AI-powered content creator that turns rough ideas into ready-to-publish posts.",
     description: [
       "An AI content tool that takes a rough idea and generates ready-to-publish posts, helping creators move from concept to content quickly.",
     ],
@@ -722,9 +732,10 @@ export const projects: Project[] = [
   {
     slug: "rezy-ai",
     tier: "fullstack",
+    fullstackGroup: "ai",
     name: "Rezy AI",
     tagline: "AI resume analyzer",
-    summary: "AI resume analyzer that scores and matches resumes.",
+    summary: "AI resume analyzer that surfaces strengths, gaps, and job-fit signals.",
     description: [
       "An AI tool that analyzes resumes — surfacing strengths, gaps, and job-fit signals to help candidates sharpen their applications.",
     ],
@@ -736,9 +747,10 @@ export const projects: Project[] = [
   {
     slug: "travel-agency",
     tier: "fullstack",
+    fullstackGroup: "fullstack",
     name: "Travel Agency",
     tagline: "Travel booking and management system",
-    summary: "Travel agency booking and management system.",
+    summary: "Travel agency platform covering trip booking and back-office management.",
     description: [
       "A travel agency platform handling trip booking and back-office management — from browsing packages to managing reservations.",
     ],
@@ -790,6 +802,25 @@ export const distributedGroups: { id: DistributedGroup; label: string; sub: stri
     id: "cloud",
     label: "Cloud & Deployment",
     sub: "Systems packaged, deployed and operated on cloud-native infrastructure.",
+  },
+]
+
+/** Ordered sub-categories rendered as carousels inside the Full-stack & Product tier. */
+export const fullstackGroups: { id: FullstackGroup; label: string; sub: string }[] = [
+  {
+    id: "client",
+    label: "Freelance & Contract Work",
+    sub: "Real products built for real clients — live, shipped, and in active use.",
+  },
+  {
+    id: "ai",
+    label: "AI-Integrated Applications",
+    sub: "Full-stack tools powered by LLMs, RAG pipelines, and generative AI.",
+  },
+  {
+    id: "fullstack",
+    label: "Full-stack Projects",
+    sub: "End-to-end web platforms covering frontend, backend, and data layers.",
   },
 ]
 

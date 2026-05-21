@@ -14,7 +14,7 @@ export default function Header({}: HeaderProps) {
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Services", href: "#services" },
-    { name: "Learning", href: "#education" },
+    { name: "Blog", href: "#blog" },
   ]
 
   const scrollToSection = (href: string, name: string) => {

@@ -1,130 +1,101 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Brain, LayoutDashboard, BookOpen } from "lucide-react"
+import { Server, Layers } from "lucide-react"
+
+const services = [
+  {
+    icon: Server,
+    category: "Backend & Distributed Engineering",
+    description:
+      "Designing and building production-grade distributed systems — from real-time data pipelines to cloud-native microservice infrastructure.",
+    expertise: [
+      "Real-time streaming systems (WebSocket, MQTT, Kafka)",
+      "Distributed backends in Go — queues, caches, rate limiters",
+      "Cloud infrastructure on GCP/AWS with Kubernetes & Terraform",
+      "Full observability stacks — Prometheus, Grafana, OpenTelemetry",
+      "Domain-Driven Design across bounded service contexts",
+    ],
+    stack: ["Go", "Kafka", "Redis", "PostgreSQL", "Kubernetes", "Docker", "Terraform", "GCP"],
+  },
+  {
+    icon: Layers,
+    category: "Freelance — Full-stack & AI Integration",
+    description:
+      "End-to-end product delivery for clients and personal builds — web platforms, mobile apps, and AI-powered tools shipped from idea to production.",
+    expertise: [
+      "Full-stack web applications (Next.js, React, Node.js)",
+      "Mobile apps with React Native",
+      "AI integration — RAG pipelines, LLM-powered features",
+      "Agentic AI workflows and chatbot assistants",
+      "Client CMS, booking, and marketplace platforms",
+    ],
+    stack: ["Next.js", "React Native", "Node.js", "Python", "LangChain", "OpenAI", "PostgreSQL", "Supabase"],
+  },
+]
+
+const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true } }
 
 export default function Services() {
-  const services = [
-    {
-      category: "Fullstack Development",
-      icon: Code,
-      description: "End-to-end web application development with modern technologies",
-      expertise: [
-        "Custom webapp applications (PWA)",
-        "Custom CMS",
-        "Mobile application (React Native)",
-      ],
-      color: "orange",
-    },
-    {
-      category: "AI Engineering",
-      icon: Brain,
-      description: "Intelligent solutions that automate and enhance business processes",
-      expertise: [
-        "RAG integration",
-        "Agentic AI",
-        "AI consultancy",
-      ],
-      color: "black",
-    },
-  ]
-
-  const additionalServices = [
-    {
-      icon: LayoutDashboard,
-      title: "Fullstack",
-      description: "Next.js, TailwindCss, Supabase, ExpressJs, MongoDB, React Native with Expo, Firebase",
-    },
-    {
-      icon: BookOpen,
-      title: "AI Engineering",
-      description: "Langchain, Prisma, Pytorch, OPENAI, llama, CrewAI",
-    },
-  ]
-
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          className="mb-14 text-center"
+          {...fadeUp}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">What I Offer</h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Comprehensive solutions that bridge technology and business value
+          <h2 className="text-4xl font-bold text-white sm:text-5xl">What I Offer</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-gray-400">
+            Distributed systems engineering and full-stack product delivery — from architecture to deployment.
           </p>
         </motion.div>
 
-        {/* Main Services */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {services.map((service, index) => (
+        {/* Service cards */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {services.map((svc, i) => (
             <motion.div
-              key={service.category}
-              className="bg-black border border-gray-800 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ y: -5 }}
-              viewport={{ once: true }}
+              key={svc.category}
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="flex flex-col rounded-2xl border border-gray-800 bg-gray-950 p-8"
             >
-              <div className="flex items-center mb-6">
-                <div className={`p-3 rounded-2xl ${service.color === "orange" ? "bg-black border border-gray-800" : "bg-black border border-gray-800"} mr-4`}>
-                  <service.icon
-                    className={`w-6 h-6 ${service.color === "orange" ? "text-white" : "text-white"}`}
-                  />
+              {/* Icon + title */}
+              <div className="mb-6 flex items-center gap-4">
+                <div className="rounded-xl border border-gray-800 bg-black p-3">
+                  <svc.icon className="h-6 w-6 text-orange-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">{service.category}</h3>
+                <h3 className="text-xl font-bold text-white">{svc.category}</h3>
               </div>
 
-              <p className="text-gray-200 mb-6">{service.description}</p>
+              <p className="mb-6 text-sm leading-relaxed text-gray-400">{svc.description}</p>
 
-              <ul className="space-y-3">
-                {service.expertise.map((item, itemIndex) => (
-                  <motion.li
-                    key={itemIndex}
-                    className="flex items-start gap-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.2 + itemIndex * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                    <span className="text-gray-300">{item}</span>
-                  </motion.li>
+              {/* Bullet points */}
+              <ul className="mb-8 space-y-2.5">
+                {svc.expertise.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-gray-300">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
+                    {item}
+                  </li>
                 ))}
               </ul>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Additional Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {additionalServices.map((service, index) => (
-            <motion.div
-              key={service.title}
-              className="bg-black border border-gray-800 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 group"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-black border border-gray-800 rounded-2xl p-4 w-fit mx-auto mb-4 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-colors">
-                <service.icon className="w-6 h-6 text-gray-400 group-hover:text-orange-500 transition-colors" />
-              </div>
-              <h4 className="font-semibold text-white mb-2">{service.title}</h4>
-              <div className="flex flex-wrap justify-center gap-2 mb-2">
-                {service.description.split(",").map((tool: string) => (
-                  <span
-                    key={tool.trim()}
-                    className="px-3 py-1 bg-black border border-gray-800 text-gray-200 rounded-full text-xs font-medium"
-                  >
-                    {tool.trim()}
-                  </span>
-                ))}
+              {/* Stack pills */}
+              <div className="mt-auto">
+                <p className="mb-2.5 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                  Stack
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {svc.stack.map((tool) => (
+                    <span
+                      key={tool}
+                      className="rounded-lg border border-gray-800 bg-black px-2.5 py-1 font-mono text-[11px] text-gray-400"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

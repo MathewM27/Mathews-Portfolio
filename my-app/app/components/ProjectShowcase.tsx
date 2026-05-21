@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useCallback, useEffect, useRef, useState } from "react"
+import React, { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Hammer } from "lucide-react"
 import Image from "next/image"
@@ -8,6 +8,7 @@ import Link from "next/link"
 import {
   currentlyBuilding,
   distributedGroups,
+  fullstackGroups,
   projectsByTier,
   statusLabel,
   tierMeta,
@@ -226,49 +227,64 @@ function FlagshipCard({ project }: { project: Project }) {
 /* ── Tier 2 — Distributed Systems ────────────────────────────────────────── */
 function DistributedCard({ project }: { project: Project }) {
   const image = project.images[0]
-  return (
-    <Link href={`/projects/${project.slug}`} className="group block h-full">
-      <div className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-950 transition-colors group-hover:border-gray-600">
-        {image && (
-          <div className="relative aspect-[16/10] overflow-hidden bg-gray-900">
-            <Image
-              src={image}
-              alt={project.name}
-              fill
-              sizes="340px"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+  const isPlanned = project.status === "planned"
+
+  const inner = (
+    <div
+      className={`flex h-full flex-col overflow-hidden rounded-xl border bg-gray-950 transition-colors ${
+        isPlanned
+          ? "border-gray-800/60 opacity-50"
+          : "border-gray-800 group-hover:border-gray-600"
+      }`}
+    >
+      {image && (
+        <div className="relative aspect-[16/10] overflow-hidden bg-gray-900">
+          <Image
+            src={image}
+            alt={project.name}
+            fill
+            sizes="340px"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-start justify-between gap-3">
+          <h4 className="text-base font-bold text-white">{project.name}</h4>
+          <StatusPill status={project.status} />
+        </div>
+        <p className="mt-1 text-xs text-gray-400">{project.tagline}</p>
+
+        {project.demonstrates && (
+          <div className="mt-4">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
+              Demonstrates
+            </p>
+            <ul className="mt-1.5 space-y-1">
+              {project.demonstrates.map((d) => (
+                <li key={d} className="flex items-center gap-2 text-xs text-gray-300">
+                  <span className="h-1 w-1 shrink-0 rounded-full bg-orange-500" />
+                  {d}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
-        <div className="flex flex-1 flex-col p-5">
-          <div className="flex items-start justify-between gap-3">
-            <h4 className="text-base font-bold text-white">{project.name}</h4>
-            <StatusPill status={project.status} />
-          </div>
-          <p className="mt-1 text-xs text-gray-400">{project.tagline}</p>
 
-          {project.demonstrates && (
-            <div className="mt-4">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500">
-                Demonstrates
-              </p>
-              <ul className="mt-1.5 space-y-1">
-                {project.demonstrates.map((d) => (
-                  <li key={d} className="flex items-center gap-2 text-xs text-gray-300">
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-orange-500" />
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          <div className="mt-auto flex items-end justify-between gap-3 pt-5">
-            <StackPills stack={project.stack} />
+        <div className="mt-auto flex items-end justify-between gap-3 pt-5">
+          <StackPills stack={project.stack} />
+          {!isPlanned && (
             <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-600 transition-colors group-hover:text-orange-500" />
-          </div>
+          )}
         </div>
       </div>
+    </div>
+  )
+
+  if (isPlanned) return <div className="h-full">{inner}</div>
+  return (
+    <Link href={`/projects/${project.slug}`} className="group block h-full">
+      {inner}
     </Link>
   )
 }
@@ -301,10 +317,12 @@ function CategoryCarousel({
   label,
   sub,
   projects,
+  CardComponent = DistributedCard,
 }: {
   label: string
   sub: string
   projects: Project[]
+  CardComponent?: ({ project }: { project: Project }) => React.ReactElement
 }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [canPrev, setCanPrev] = useState(false)
@@ -364,7 +382,7 @@ function CategoryCarousel({
             data-card
             className="snap-start flex-none basis-[290px] sm:basis-[330px]"
           >
-            <DistributedCard project={p} />
+            <CardComponent project={p} />
           </div>
         ))}
       </div>
@@ -400,18 +418,14 @@ function CurrentlyBuildingCard() {
 function FullstackCard({ project }: { project: Project }) {
   return (
     <Link href={`/projects/${project.slug}`} className="group block h-full">
-      <motion.div
-        {...fadeUp}
-        transition={{ duration: 0.45 }}
-        className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-800 bg-black transition-colors group-hover:border-gray-600"
-      >
+      <div className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-800 bg-black transition-colors group-hover:border-gray-600">
         <div className="relative aspect-[16/10] overflow-hidden bg-gray-900">
           {project.images[0] && (
             <Image
               src={project.images[0]}
               alt={project.name}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="340px"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           )}
@@ -422,12 +436,12 @@ function FullstackCard({ project }: { project: Project }) {
             <StatusPill status={project.status} />
           </div>
           <p className="mt-1 text-xs text-gray-400">{project.summary}</p>
-          <div className="mt-3 flex items-end justify-between gap-2 pt-1">
+          <div className="mt-auto flex items-end justify-between gap-2 pt-4">
             <StackPills stack={project.stack} max={3} />
             <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-600 transition-colors group-hover:text-orange-500" />
           </div>
         </div>
-      </motion.div>
+      </div>
     </Link>
   )
 }
@@ -490,10 +504,20 @@ export default function ProjectShowcase() {
         {fullstack.length > 0 && (
           <div>
             <TierHeader index={3} label={tierMeta.fullstack.heading} sub={tierMeta.fullstack.sub} />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {fullstack.map((p) => (
-                <FullstackCard key={p.slug} project={p} />
-              ))}
+            <div className="space-y-12">
+              {fullstackGroups.map((g) => {
+                const groupProjects = fullstack.filter((p) => p.fullstackGroup === g.id)
+                if (groupProjects.length === 0) return null
+                return (
+                  <CategoryCarousel
+                    key={g.id}
+                    label={g.label}
+                    sub={g.sub}
+                    projects={groupProjects}
+                    CardComponent={FullstackCard}
+                  />
+                )
+              })}
             </div>
           </div>
         )}

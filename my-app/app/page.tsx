@@ -26,6 +26,7 @@ import Hero from "./components/Hero"
 import ProjectShowcase from "./components/ProjectShowcase"
 import Services from "./components/Services"
 import ProcessPlan from "./components/ProcessPlan"
+import Blog from "./components/Blog"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
@@ -46,7 +47,8 @@ export default function Home() {
         <ProjectShowcase />
         <Services />
         <ProcessPlan />
-        
+        <Blog />
+
         <Contact />
       </main>
       <Footer />

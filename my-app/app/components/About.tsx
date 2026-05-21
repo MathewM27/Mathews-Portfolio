@@ -18,7 +18,7 @@ const stackTiers = [
     accent: "text-gray-300 border-gray-800 bg-gray-950",
   },
   {
-    label: "Frontend",
+    label: "Frontend - If needed",
     sublabel: "when the role needs it",
     tags: ["TypeScript", "React", "Next.js", "React Native", "Tailwind CSS"],
     accent: "text-gray-300 border-gray-800 bg-gray-950",

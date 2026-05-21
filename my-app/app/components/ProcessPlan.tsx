@@ -1,273 +1,325 @@
 "use client"
 
-import { motion, useAnimation, useInView } from "framer-motion"
-import { Info } from "lucide-react"
-import { useRef, useState } from "react"
+import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import {
+  ClipboardList,
+  Code2,
+  Compass,
+  LifeBuoy,
+  Layers,
+  Network,
+  Receipt,
+  RefreshCw,
+  Rocket,
+  Server,
+  Sparkles,
+  Video,
+  X,
+} from "lucide-react"
 
-const steps = [
-	{
-		title: "Client Reach Out",
-		label: "Initial contact from client",
-		description:
-			"This is the first message or connection you send to me. Use the connection page to briefly explain your project and interest.",
-	},
-	{
-		title: "Client Response",
-		label: "My response & booking",
-		description:
-			"I respond to your initial request, gather a sense of your project, and send a booking confirmation for an online call (Google Meet) to discuss further.",
-	},
-	{
-		title: "Client Discovery Call",
-		label: "Free discovery call",
-		description:
-			"Once you confirm the booking, we proceed with a free discovery call to understand your problem, needs, and project overview. I will ask questions and request any relevant documents or information.",
-	},
-	{
-		title: "Project Brainstorming Phase 1",
-		label: "Research & strategy",
-		description:
-			"I research, organize your needs and expectations, and develop a strategy and plan of execution, sharing constraints, features, or needs.",
-	},
-	{
-		title: "Project Scope Communication",
-		label: "Clarify & align",
-		description:
-			"I clarify your needs and ensure the solution aligns with your vision. This process is still free of charge.",
-	},
-	{
-		title: "Finalization of Project Strategy",
-		label: "Final plan shared",
-		description:
-			"I share a brief 1-page strategy plan for execution and implementation. Detailed analysis is billable if you wish to implement yourself. This part is still free.",
-	},
-	{
-		title: "Invoice & Agreement",
-		label: "Quotation & contract",
-		description:
-			"I send an invoice quotation with timeline, milestones, and contract. We agree on deliverables and pricing. Work is done in milestones, with payment per milestone. Each milestone allows two changes; extra changes are billable.",
-	},
-	{
-		title: "Project Completion",
-		label: "Delivery & final payment",
-		description:
-			"After all milestones are complete, I deliver the final work and documentation. Final payment is made at this stage.",
-	},
-	{
-		title: "Review & Recommendation",
-		label: "Feedback & testimonial",
-		description:
-			"I request a review (form or video testimonial). Your feedback is highly appreciated and helps my business. You are welcome to recommend my services.",
-	},
-	{
-		title: "Project Maintenance",
-		label: "30 days free support",
-		description:
-			"For 30 days after launch, I provide free maintenance for bugs or issues. After 30 days, maintenance is billable. Integration with larger projects is billable; only the delivered scope is covered for free.",
-	},
+type TabId = "workflow" | "services" | "scope"
+
+const tabs: { id: TabId; label: string }[] = [
+  { id: "workflow", label: "Workflow" },
+  { id: "services", label: "Service Areas" },
+  { id: "scope", label: "Scope & Focus" },
 ]
 
+const principles = [
+  {
+    icon: ClipboardList,
+    title: "Discovery & project outline",
+    body: "Every engagement starts with a discovery call to understand your problem, goals, and constraints. From it I produce a clear project outline and scope before any work begins.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Agile delivery",
+    body: "I build in Agile cycles with deliverables reviewed iteratively. You give feedback at each stage, so the project stays aligned with your vision throughout.",
+  },
+  {
+    icon: Video,
+    title: "Fully remote",
+    body: "All collaboration happens remotely. Discovery and progress calls run over Microsoft Teams or Google Meet, keeping communication clear, scheduled, and documented.",
+  },
+  {
+    icon: Compass,
+    title: "End-to-end ownership",
+    body: "I run each project independently as the product manager — owning planning, design decisions, and implementation from the first call to final delivery.",
+  },
+]
+
+const terms = [
+  {
+    icon: Receipt,
+    title: "Milestone billing",
+    body: "An invoice with timeline and milestones is agreed before work begins. Payment is milestone-based, with the final invoice settled on project completion.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "30-day maintenance",
+    body: "Every project includes 30 days of free maintenance after launch for bugs and issues. Beyond that window, support and new scope are billable.",
+  },
+]
+
+const services = [
+  {
+    icon: Network,
+    step: "01",
+    title: "Architecture & System Design",
+    body: "If you don't already have a system design, I architect it — selecting the right design patterns, data models, and infrastructure topology for your problem.",
+  },
+  {
+    icon: Code2,
+    step: "02",
+    title: "Implementation",
+    body: "Building the system to spec — including a proper testing setup and CI/CD pipelines, so the codebase ships production-ready and stays maintainable.",
+  },
+  {
+    icon: Rocket,
+    step: "03",
+    title: "Deployment",
+    body: "Shipping to production — provisioning infrastructure, configuring environments, and deploying the final build so the system runs live.",
+  },
+]
+
+const specialty = [
+  {
+    icon: Server,
+    title: "Backend Engineering",
+    level: "Primary focus",
+    body: "The core of what I do — APIs, distributed systems, databases, and server-side infrastructure.",
+    accent: true,
+  },
+  {
+    icon: Layers,
+    title: "Full-stack Development",
+    level: "Offered",
+    body: "End-to-end web platforms when a project needs both frontend and backend delivered together.",
+    accent: false,
+  },
+  {
+    icon: Sparkles,
+    title: "AI Integration",
+    level: "Special circumstance",
+    body: "Taken on selectively — only for projects that are specifically built around AI features.",
+    accent: false,
+  },
+]
+
+const outOfScope = [
+  {
+    title: "Content & data",
+    body: "Clients provide their own datasets, copy, and content — content creation is not part of the service.",
+  },
+  {
+    title: "UI/UX & branding",
+    body: "A clean, functional default UI is included. Extensive UI/UX design, brand colours, and logos are not provided.",
+  },
+  {
+    title: "SEO setup",
+    body: "Search engine optimisation and ranking configuration are not included.",
+  },
+  {
+    title: "Marketing & graphic design",
+    body: "The focus is engineering and infrastructure — marketing assets and graphic design are out of scope.",
+  },
+]
+
+function IconBadge({ icon: Icon }: { icon: typeof Server }) {
+  return (
+    <div className="rounded-lg border border-gray-800 bg-black p-2">
+      <Icon className="h-5 w-5 text-orange-500" />
+    </div>
+  )
+}
+
+function WorkflowPanel() {
+  return (
+    <div className="space-y-8">
+      <div className="grid gap-4 sm:grid-cols-2">
+        {principles.map((p) => (
+          <div key={p.title} className="rounded-xl border border-gray-800 bg-gray-950 p-5">
+            <div className="flex items-center gap-3">
+              <IconBadge icon={p.icon} />
+              <h3 className="text-base font-bold text-white">{p.title}</h3>
+            </div>
+            <p className="mt-3 text-sm leading-relaxed text-gray-400">{p.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+          Commercial terms
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {terms.map((t) => (
+            <div key={t.title} className="rounded-xl border border-gray-800 bg-gray-950 p-5">
+              <div className="flex items-center gap-3">
+                <IconBadge icon={t.icon} />
+                <h3 className="text-base font-bold text-white">{t.title}</h3>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-gray-400">{t.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ServicesPanel() {
+  return (
+    <div>
+      <p className="mb-4 text-sm leading-relaxed text-gray-400">
+        I provide service across three areas — engage me for the full path from architecture to
+        production, or for a single stage.
+      </p>
+      <div className="grid gap-4 md:grid-cols-3">
+        {services.map((s) => (
+          <div
+            key={s.title}
+            className="flex flex-col rounded-xl border border-gray-800 bg-gray-950 p-6"
+          >
+            <div className="flex items-center justify-between">
+              <IconBadge icon={s.icon} />
+              <span className="font-mono text-2xl font-bold text-gray-800">{s.step}</span>
+            </div>
+            <h3 className="mt-4 text-base font-bold text-white">{s.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function ScopePanel() {
+  return (
+    <div className="space-y-10">
+      <div>
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+          Where I focus
+        </p>
+        <div className="grid gap-4 md:grid-cols-3">
+          {specialty.map((s) => (
+            <div
+              key={s.title}
+              className={`rounded-xl border bg-gray-950 p-5 ${
+                s.accent ? "border-orange-500/40" : "border-gray-800"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className={`rounded-lg border p-2 ${
+                    s.accent
+                      ? "border-orange-500/30 bg-orange-500/10"
+                      : "border-gray-800 bg-black"
+                  }`}
+                >
+                  <s.icon
+                    className={`h-5 w-5 ${s.accent ? "text-orange-500" : "text-gray-400"}`}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white">{s.title}</h3>
+                  <p
+                    className={`font-mono text-[10px] uppercase tracking-wide ${
+                      s.accent ? "text-orange-400" : "text-gray-500"
+                    }`}
+                  >
+                    {s.level}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-gray-400">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+          Not included
+        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {outOfScope.map((o) => (
+            <div
+              key={o.title}
+              className="flex gap-3 rounded-xl border border-gray-800 bg-gray-950 p-4"
+            >
+              <div className="mt-0.5 shrink-0 rounded-full border border-gray-800 bg-black p-1">
+                <X className="h-3.5 w-3.5 text-gray-500" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-gray-300">{o.title}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-gray-500">{o.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ProcessPlan() {
-	const [activeStep, setActiveStep] = useState<number | null>(null)
-	const timelineRef = useRef<HTMLDivElement>(null)
-	const inView = useInView(timelineRef, { once: false, margin: "-100px 0px" })
-	const controls = useAnimation()
+  const [active, setActive] = useState<TabId>("workflow")
 
-	// Animate the vertical line as it comes into view
-	if (inView) controls.start({ height: "100%" })
+  return (
+    <section id="process" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        {/* Header */}
+        <motion.div
+          className="mb-10 text-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">How I Work</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-base text-gray-400">
+            An independent, end-to-end engineering service — here is how I run a project, what I
+            deliver, and where my focus lies.
+          </p>
+        </motion.div>
 
-	return (
-		<section id="process" className="py-20 px-2 sm:px-6 lg:px-8 bg-black">
-			<div className="max-w-4xl mx-auto">
-				<motion.div
-					className="text-center mb-10 sm:mb-16"
-					initial={{ opacity: 0, y: 30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8 }}
-					viewport={{ once: true }}
-				>
-					<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
-						My Process Plan
-					</h2>
-					<p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
-						A transparent, step-by-step approach to delivering your project with
-						clarity and value.
-					</p>
-				</motion.div>
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {tabs.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setActive(t.id)}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                active === t.id
+                  ? "border-orange-500 bg-orange-500/10 text-orange-400"
+                  : "border-gray-800 text-gray-400 hover:border-gray-600 hover:text-white"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
 
-				{/* Timeline */}
-				<div className="relative">
-					{/* Vertical center line */}
-					<motion.div
-						ref={timelineRef}
-						className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-800 -translate-x-1/2 z-0"
-						initial={{ height: 0 }}
-						animate={controls}
-						transition={{ duration: 1, ease: "easeInOut" }}
-						style={{ height: inView ? "100%" : 0 }}
-					/>
-
-					{/* Mobile timeline: single column */}
-					<div className="flex flex-col gap-8 sm:hidden">
-						{steps.map((step, index) => (
-							<div key={index} className="relative flex flex-col items-center">
-								<div className="flex flex-col items-center w-full">
-									<div className="flex items-center gap-3 w-full">
-										<div className="flex flex-col items-center">
-											<div className="w-4 h-4 bg-orange-500 rounded-full border-4 border-black shadow-lg" />
-											{index < steps.length - 1 && (
-												<div
-													className="w-1 bg-gray-800 min-h-[40px] mx-auto"
-													style={{ height: 32 }}
-												/>
-											)}
-										</div>
-										<motion.div
-											className="bg-black rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 group w-full"
-											whileHover={{ y: -2, borderColor: "#ea580c" }}
-										>
-											<div className="flex items-center justify-between mb-2">
-												<div>
-													<h3 className="text-base font-bold text-white group-hover:text-orange-600 transition-colors">
-														{step.title}
-													</h3>
-													<p className="text-xs text-gray-400">
-														{step.label}
-													</p>
-												</div>
-												<button
-													className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
-													onClick={() => setActiveStep(index)}
-													aria-label="Show details"
-													type="button"
-												>
-													<Info className="w-5 h-5 text-white" />
-												</button>
-											</div>
-										</motion.div>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-
-					{/* Desktop timeline: two columns */}
-					<div className="hidden sm:flex flex-col gap-12">
-						{steps.map((step, index) => {
-							const isLeft = index % 2 === 0
-							return (
-								<div key={index} className="relative flex min-h-[120px]">
-									{/* Left side */}
-									<div
-										className={`flex-1 flex justify-end pr-8 ${
-											isLeft ? "" : "invisible"
-										}`}
-									>
-										{isLeft && (
-											<motion.div
-												className="bg-black rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
-												whileHover={{ y: -2, borderColor: "#ea580c" }}
-											>
-												<div className="flex items-center justify-between mb-2 sm:mb-3">
-													<div>
-														<h3 className="text-base sm:text-lg font-bold text-white group-hover:text-orange-600 transition-colors">
-															{step.title}
-														</h3>
-														<p className="text-xs sm:text-sm text-gray-400">
-															{step.label}
-														</p>
-													</div>
-													<button
-														className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
-														onClick={() => setActiveStep(index)}
-														aria-label="Show details"
-														type="button"
-													>
-														<Info className="w-5 h-5 text-white" />
-													</button>
-												</div>
-											</motion.div>
-										)}
-									</div>
-
-									{/* Timeline node */}
-									<div className="relative flex flex-col items-center z-10">
-										<div className="w-4 h-4 sm:w-5 sm:h-5 bg-orange-500 rounded-full border-4 border-black shadow-lg" />
-										{/* Vertical line segment */}
-										{index < steps.length - 1 && (
-											<div className="flex-1 w-1 bg-gray-800 min-h-[60px]" />
-										)}
-									</div>
-
-									{/* Right side */}
-									<div
-										className={`flex-1 flex justify-start pl-8 ${
-											!isLeft ? "" : "invisible"
-										}`}
-									>
-										{!isLeft && (
-											<motion.div
-												className="bg-black rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300 group w-full max-w-md"
-												whileHover={{ y: -2, borderColor: "#ea580c" }}
-											>
-												<div className="flex items-center justify-between mb-2 sm:mb-3">
-													<div>
-														<h3 className="text-base sm:text-lg font-bold text-white group-hover:text-orange-600 transition-colors">
-															{step.title}
-														</h3>
-														<p className="text-xs sm:text-sm text-gray-400">
-															{step.label}
-														</p>
-													</div>
-													<button
-														className="ml-2 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
-														onClick={() => setActiveStep(index)}
-														aria-label="Show details"
-														type="button"
-													>
-														<Info className="w-5 h-5 text-white" />
-													</button>
-												</div>
-											</motion.div>
-										)}
-									</div>
-								</div>
-							)
-						})}
-					</div>
-
-					{/* Step Detail Modal/Popover */}
-					{activeStep !== null && (
-						<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-							<motion.div
-								className="bg-black border border-gray-800 rounded-xl p-6 max-w-lg w-full mx-4 text-white relative"
-								initial={{ opacity: 0, scale: 0.95 }}
-								animate={{ opacity: 1, scale: 1 }}
-								exit={{ opacity: 0, scale: 0.95 }}
-								transition={{ duration: 0.2 }}
-							>
-								<button
-									className="absolute top-3 right-3 p-2 rounded-full bg-black border border-gray-800 hover:bg-orange-600 transition-colors"
-									onClick={() => setActiveStep(null)}
-									aria-label="Close"
-									type="button"
-								>
-									<span className="text-white text-lg font-bold">&times;</span>
-								</button>
-								<h3 className="text-xl font-bold mb-2 text-orange-500">
-									{steps[activeStep].title}
-								</h3>
-								<p className="text-gray-200 mb-2">
-									{steps[activeStep].label}
-								</p>
-								<p className="text-gray-300">
-									{steps[activeStep].description}
-								</p>
-							</motion.div>
-						</div>
-					)}
-				</div>
-			</div>
-		</section>
-	)
+        {/* Panel */}
+        <div className="mt-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+            >
+              {active === "workflow" && <WorkflowPanel />}
+              {active === "services" && <ServicesPanel />}
+              {active === "scope" && <ScopePanel />}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  )
 }
