@@ -109,7 +109,7 @@ function DeviceComposite({
   name: string
 }) {
   return (
-    <div className="relative flex items-center justify-center rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-black p-6 sm:p-8">
+    <div className="relative flex items-center justify-center rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-black p-4 sm:p-8">
       <div className="relative w-full max-w-[440px] transition-transform duration-500 group-hover:scale-[1.02]">
         <Image
           src={desktop.src}
@@ -144,9 +144,9 @@ function FlagshipCard({ project }: { project: Project }) {
       <motion.div
         {...fadeUp}
         transition={{ duration: 0.5 }}
-        className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-950 to-black p-6 transition-colors group-hover:border-gray-600 sm:p-8 lg:p-10"
+        className="overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-950 to-black p-4 transition-colors group-hover:border-gray-600 sm:p-8 lg:p-10"
       >
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Content */}
           <div className="flex flex-col">
             <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -160,7 +160,7 @@ function FlagshipCard({ project }: { project: Project }) {
               ))}
             </div>
 
-            <h4 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h4 className="text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
               {project.name}
             </h4>
             <p className="mt-1 text-sm text-gray-400 sm:text-base">{project.tagline}</p>
@@ -178,11 +178,11 @@ function FlagshipCard({ project }: { project: Project }) {
               </div>
             )}
 
-            <div className="mt-6 grid grid-cols-5 gap-x-2 gap-y-1.5">
+            <div className="mt-5 flex flex-wrap gap-1.5 sm:mt-6">
               {project.stack.map((tool) => (
                 <span
                   key={tool}
-                  className="rounded-md border border-gray-800 bg-black px-2 py-0.5 text-center font-mono text-[10px] text-gray-400"
+                  className="rounded-md border border-gray-800 bg-black px-2 py-0.5 font-mono text-[10px] text-gray-400"
                 >
                   {tool}
                 </span>
@@ -380,7 +380,7 @@ function CategoryCarousel({
           <div
             key={p.slug}
             data-card
-            className="snap-start flex-none basis-[290px] sm:basis-[330px]"
+            className="snap-start flex-none basis-[280px] xs:basis-[300px] sm:basis-[330px]"
           >
             <CardComponent project={p} />
           </div>
@@ -452,10 +452,10 @@ export default function ProjectShowcase() {
   const fullstack = projectsByTier("fullstack")
 
   return (
-    <section id="projects" className="bg-black px-4 py-16 sm:px-6 lg:px-8">
+    <section id="projects" className="bg-black px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
-        <div className="mb-14 text-center">
+        <div className="mb-10 text-center sm:mb-14">
           
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Selected Work</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">

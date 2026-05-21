@@ -484,24 +484,24 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* ── Project carousel: 1-col on mobile, 1-col on desktop ── */}
-            <div className="col-span-1 min-h-[140px] md:min-h-0">
+            {/* ── Project carousel: desktop only ── */}
+            <div className="hidden md:block md:col-span-1 md:min-h-0">
               <ProjectCarouselCard />
             </div>
 
-            {/* ── Tech stack marquee: 1-col on mobile, 1-col on desktop ── */}
+            {/* ── Tech stack marquee: full-width on mobile, 1-col on desktop ── */}
             <motion.div
-              className="col-span-1 bg-black border border-gray-800 rounded-xl p-2.5 lg:p-3 shadow-lg flex flex-col justify-center relative overflow-hidden min-h-[120px] md:min-h-0"
+              className="col-span-2 md:col-span-1 bg-black border border-gray-800 rounded-xl p-2.5 lg:p-3 shadow-lg flex flex-col justify-center relative overflow-hidden min-h-[120px] md:min-h-0"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <style>{`
-                @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-                @keyframes marquee-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-                .marquee-ltr { animation: marquee-ltr 16s linear infinite; }
-                .marquee-rtl { animation: marquee-rtl 16s linear infinite; }
+                @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
+                @keyframes marquee-rtl { 0% { transform: translateX(-33.333%); } 100% { transform: translateX(0); } }
+                .marquee-ltr { animation: marquee-ltr 22s linear infinite; }
+                .marquee-rtl { animation: marquee-rtl 22s linear infinite; }
               `}</style>
               {(() => {
                 const row1 = [
@@ -519,23 +519,23 @@ export default function Hero() {
                   { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg", label: "Grafana" },
                 ]
                 const Icon = ({ src, label, i }: { src: string; label: string; i: number }) => (
-                  <div key={i} className="flex flex-col items-center gap-1 group flex-shrink-0">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center rounded-lg bg-gray-900 border border-gray-800 group-hover:border-gray-600 transition-colors p-0.5">
+                  <div key={i} className="flex flex-col items-center gap-1.5 group flex-shrink-0">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 lg:w-10 lg:h-10 flex items-center justify-center rounded-xl bg-gray-900 border border-gray-800 group-hover:border-gray-600 transition-colors p-1.5">
                       <img src={src} alt={label} className="w-full h-full object-contain" style={{ filter: "brightness(0) invert(1)" }} />
                     </div>
-                    <span className="text-[8px] sm:text-[9px] text-gray-500 group-hover:text-gray-400 transition-colors">{label}</span>
+                    <span className="text-[9px] sm:text-[10px] text-gray-500 group-hover:text-gray-400 transition-colors">{label}</span>
                   </div>
                 )
                 return (
-                  <div className="flex flex-col gap-3 sm:gap-4">
-                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
-                      <div className="marquee-ltr flex gap-3 sm:gap-4 w-max">
-                        {[...row1, ...row1].map((item, i) => <Icon key={i} {...item} i={i} />)}
+                  <div className="flex flex-col gap-4 sm:gap-5">
+                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                      <div className="marquee-ltr flex gap-6 sm:gap-8 md:gap-5 w-max">
+                        {[...row1, ...row1, ...row1].map((item, i) => <Icon key={i} {...item} i={i} />)}
                       </div>
                     </div>
-                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
-                      <div className="marquee-rtl flex gap-3 sm:gap-4 w-max">
-                        {[...row2, ...row2].map((item, i) => <Icon key={i} {...item} i={i} />)}
+                    <div className="overflow-hidden w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                      <div className="marquee-rtl flex gap-6 sm:gap-8 md:gap-5 w-max">
+                        {[...row2, ...row2, ...row2].map((item, i) => <Icon key={i} {...item} i={i} />)}
                       </div>
                     </div>
                   </div>

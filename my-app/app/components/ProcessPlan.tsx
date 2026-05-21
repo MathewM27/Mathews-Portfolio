@@ -180,7 +180,7 @@ function ServicesPanel() {
         {services.map((s) => (
           <div
             key={s.title}
-            className="flex flex-col rounded-xl border border-gray-800 bg-gray-950 p-6"
+            className="flex flex-col rounded-xl border border-gray-800 bg-gray-950 p-4 sm:p-6"
           >
             <div className="flex items-center justify-between">
               <IconBadge icon={s.icon} />
@@ -268,18 +268,18 @@ export default function ProcessPlan() {
   const [active, setActive] = useState<TabId>("workflow")
 
   return (
-    <section id="process" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section id="process" className="bg-black px-4 py-12 sm:py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         {/* Header */}
         <motion.div
-          className="mb-10 text-center"
+          className="mb-8 sm:mb-10 text-center"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">How I Work</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-gray-400">
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
             An independent, end-to-end engineering service — here is how I run a project, what I
             deliver, and where my focus lies.
           </p>

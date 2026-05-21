@@ -144,10 +144,10 @@ export default function Blog() {
   if (blogPosts.length === 0) return null
 
   return (
-    <section id="blog" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section id="blog" className="bg-black px-4 py-12 sm:py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <motion.div className="mb-10 text-center" {...fadeUp} transition={{ duration: 0.6 }}>
+        <motion.div className="mb-8 sm:mb-10 text-center" {...fadeUp} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Blog</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
             Notes on backend engineering, distributed systems, and the projects I&apos;m building.
@@ -172,7 +172,7 @@ export default function Blog() {
               <div
                 key={post.slug}
                 data-card
-                className="snap-start flex-none basis-[300px] sm:basis-[360px]"
+                className="snap-start flex-none basis-[85vw] sm:basis-[360px]"
               >
                 <BlogCard post={post} />
               </div>

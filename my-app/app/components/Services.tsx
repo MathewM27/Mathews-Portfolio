@@ -38,16 +38,16 @@ const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0
 
 export default function Services() {
   return (
-    <section id="services" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section id="services" className="bg-black px-4 py-12 sm:py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
-          className="mb-14 text-center"
+          className="mb-10 sm:mb-14 text-center"
           {...fadeUp}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-white sm:text-5xl">What I Offer</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base text-gray-400">
+          <h2 className="text-3xl font-bold text-white sm:text-5xl">What I Offer</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
             Distributed systems engineering and full-stack product delivery — from architecture to deployment.
           </p>
         </motion.div>
@@ -59,14 +59,14 @@ export default function Services() {
               key={svc.category}
               {...fadeUp}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="flex flex-col rounded-2xl border border-gray-800 bg-gray-950 p-8"
+              className="flex flex-col rounded-2xl border border-gray-800 bg-gray-950 p-5 sm:p-8"
             >
               {/* Icon + title */}
               <div className="mb-6 flex items-center gap-4">
                 <div className="rounded-xl border border-gray-800 bg-black p-3">
                   <svc.icon className="h-6 w-6 text-orange-500" />
                 </div>
-                <h3 className="text-xl font-bold text-white">{svc.category}</h3>
+                <h3 className="text-base font-bold text-white sm:text-xl">{svc.category}</h3>
               </div>
 
               <p className="mb-6 text-sm leading-relaxed text-gray-400">{svc.description}</p>

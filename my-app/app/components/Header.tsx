@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Mail } from "lucide-react"
 
 const navItems = [
@@ -155,12 +155,14 @@ export default function Header() {
       </div>
 
       {/* Mobile menu */}
+      <AnimatePresence>
       {isMenuOpen && (
         <motion.div
           className="border-t border-gray-800 bg-black md:hidden"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.2 }}
         >
           <nav className="flex flex-col gap-1 px-4 py-3">
             {navItems.map((item) => (
@@ -180,7 +182,7 @@ export default function Header() {
           </nav>
 
           {/* Mobile social row */}
-          <div className="flex items-center gap-3 border-t border-gray-800 px-4 py-3">
+          <div className="flex flex-wrap items-center gap-2 border-t border-gray-800 px-4 py-3">
             {socialLinks.map(({ label, href, Icon }) => (
               <a
                 key={label}
@@ -196,6 +198,7 @@ export default function Header() {
           </div>
         </motion.div>
       )}
+      </AnimatePresence>
     </motion.header>
   )
 }

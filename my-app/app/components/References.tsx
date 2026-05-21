@@ -40,7 +40,7 @@ const quoteAccent: Record<ReferenceGroup, string> = {
 
 function ReferenceCard({ r }: { r: Reference }) {
   return (
-    <div className="flex h-full flex-col rounded-xl border border-gray-800 bg-gray-950 p-6">
+    <div className="flex h-full flex-col rounded-xl border border-gray-800 bg-gray-950 p-4 sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <Quote className={`h-6 w-6 shrink-0 ${quoteAccent[r.group]}`} />
         <span
@@ -160,7 +160,7 @@ function ReferenceCarousel({
           <div
             key={r.name}
             data-card
-            className="snap-start flex-none basis-[290px] sm:basis-[340px]"
+            className="snap-start flex-none basis-[85vw] sm:basis-[340px]"
           >
             <ReferenceCard r={r} />
           </div>
@@ -174,10 +174,10 @@ export default function References() {
   if (references.length === 0) return null
 
   return (
-    <section id="references" className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section id="references" className="bg-black px-4 py-12 sm:py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <motion.div className="mb-12 text-center" {...fadeUp} transition={{ duration: 0.6 }}>
+        <motion.div className="mb-8 sm:mb-12 text-center" {...fadeUp} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl font-bold text-white sm:text-4xl">References</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
             From clients who hired me, to mentors who shaped me, to friends who know me — in their
@@ -186,7 +186,7 @@ export default function References() {
         </motion.div>
 
         {/* Three carousels */}
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {referenceGroups.map((g) => {
             const items = references.filter((r) => r.group === g.id)
             if (items.length === 0) return null

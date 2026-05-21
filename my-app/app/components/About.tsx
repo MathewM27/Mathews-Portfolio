@@ -34,7 +34,7 @@ const stackTiers = [
 
 export default function About() {
   return (
-    <section id="about" className="py-12 sm:py-16 px-3 sm:px-4 lg:px-8 bg-black">
+    <section id="about" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-8 bg-black">
       <div className="max-w-7xl lg:max-w-[1400px] mx-auto">
 
         {/* Section heading */}
@@ -59,22 +59,20 @@ export default function About() {
             viewport={{ once: true }}
           >
             {/* Photo */}
-            <div className="relative w-full h-[420px] sm:h-[480px] md:aspect-square md:h-auto rounded-xl overflow-hidden bg-gray-900">
+            <div className="relative w-full h-[260px] sm:h-[360px] md:aspect-square md:h-auto rounded-xl overflow-hidden bg-gray-900">
               <Image
                 src="/bg.jpg"
                 alt="Mathews Mwangi"
                 fill
-                className="object-cover object-top"
+                className="object-cover object-[center_20%]"
                 sizes="(max-width: 768px) 100vw, 40vw"
               />
             </div>
 
             {/* Identity */}
-            <div className="flex flex-col gap-1">
-              <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
-                <h2 className="text-base sm:text-lg md:text-xl font-bold text-white">Mathews Mwangi</h2>
-                <p className="text-xs sm:text-sm text-gray-400 font-mono">Backend Engineer</p>
-              </div>
+            <div className="flex flex-col gap-1 items-center text-center md:items-start md:text-left">
+              <h2 className="text-lg font-bold text-white">Mathews Mwangi</h2>
+              <p className="text-xs text-gray-400 font-mono">Backend Engineer</p>
               <p className="text-xs text-gray-600 flex items-center gap-1 mt-0.5">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3 h-3 flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -88,7 +86,7 @@ export default function About() {
 
           {/* ── Right: Story card ── */}
           <motion.div
-            className="md:col-span-3 bg-black border border-gray-800 rounded-xl p-4 sm:p-5 lg:p-8 flex flex-col gap-4 sm:gap-6"
+            className="md:col-span-3 bg-black border border-gray-800 rounded-xl p-5 sm:p-6 lg:p-8 flex flex-col gap-5 sm:gap-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}

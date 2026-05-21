@@ -5,22 +5,22 @@ import { Mail, MessageCircle } from "lucide-react"
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <section id="contact" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Let's Work Together</h2>
-          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">Let's Work Together</h2>
+          <p className="text-sm sm:text-lg text-gray-200 max-w-2xl mx-auto">
             Whether you need a backend engineer, a full-stack developer, or just want to connect and chat — feel free to reach out.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Get In Touch Section */}
           <motion.div
             className="min-w-0"
@@ -29,8 +29,8 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
-            <p className="text-gray-200 text-lg leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Get In Touch</h3>
+            <p className="text-gray-200 text-sm sm:text-lg leading-relaxed">
               I'm always open to discussing new opportunities and interesting projects. Whether you need a backend engineer, a full-stack developer, or you're building something AI-powered — or just want to link and talk tech — don't hesitate to get in touch.
             </p>
           </motion.div>
