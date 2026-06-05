@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Mail } from "lucide-react"
+import Link from "next/link"
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -69,15 +70,25 @@ export default function Footer() {
         </div>
 
         {/* Bottom line */}
-        <motion.p
-          className="mt-8 border-t border-gray-800 pt-6 text-center text-xs text-gray-600"
+        <motion.div
+          className="mt-8 border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Full-stack engineer · Go backends · Distributed systems
-        </motion.p>
+          <p className="text-center text-xs text-gray-600">
+            Full-stack engineer · Go backends · Distributed systems
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
+              Terms &amp; Conditions
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </footer>
   )
