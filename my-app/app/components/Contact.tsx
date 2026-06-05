@@ -55,7 +55,7 @@ export default function Contact() {
                   icon: Mail,
                   title: "Email",
                   value: "Send me a mail",
-                  href: "mailto:futurexdesign.info@gmail.com",
+                  href: "mailto:mathewsmwangi6927@gmail.com",
                 },
                 {
                   icon: MessageCircle,

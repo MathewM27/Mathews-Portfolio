@@ -22,7 +22,7 @@ function LinkedinIcon({ className }: { className?: string }) {
 const socialLinks = [
   { Icon: GithubIcon,  href: "https://github.com/MathewM27",                          label: "GitHub" },
   { Icon: LinkedinIcon, href: "https://www.linkedin.com/in/mathews-mwangi-972839219/", label: "LinkedIn" },
-  { Icon: Mail,        href: "mailto:futurexdesign.info@gmail.com",                    label: "Email" },
+  { Icon: Mail,        href: "mailto:mathewsmwangi6927@gmail.com",                    label: "Email" },
 ]
 
 export default function Footer() {
@@ -40,7 +40,7 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <img src="/Mathews-dark.svg" alt="Mathews Mwangi" className="h-8 w-auto mx-auto md:mx-0 mb-2" />
-            <p className="text-gray-500 text-xs">© 2025 Mathews Mwangi. All rights reserved.</p>
+            <p className="text-gray-500 text-xs">© 2026 Mathews Mwangi. All rights reserved.</p>
           </motion.div>
 
           {/* Social icons */}

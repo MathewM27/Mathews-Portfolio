@@ -35,14 +35,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const project = getProject(slug)
-  if (!project) return { title: "Project not found | Mathews Mwangi" }
+  if (!project) return { title: "Project not found" }
   return {
-    title: `${project.name} | Mathews Mwangi`,
+    title: project.name,
     description: project.summary,
+    alternates: { canonical: `/projects/${slug}` },
     openGraph: {
       title: `${project.name} | Mathews Mwangi`,
       description: project.summary,
-      images: project.images.length ? project.images : undefined,
+      images: project.images.length ? project.images : [{ url: "/OG.png", width: 1200, height: 630 }],
     },
   }
 }

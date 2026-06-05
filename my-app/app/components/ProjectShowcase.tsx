@@ -7,7 +7,6 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   currentlyBuilding,
-  distributedGroups,
   fullstackGroups,
   projectsByTier,
   statusLabel,
@@ -448,7 +447,6 @@ function FullstackCard({ project }: { project: Project }) {
 
 export default function ProjectShowcase() {
   const flagship = projectsByTier("flagship")[0]
-  const distributed = projectsByTier("distributed")
   const fullstack = projectsByTier("fullstack")
 
   return (
@@ -472,33 +470,7 @@ export default function ProjectShowcase() {
           </div>
         )}
 
-        {/* Tier 2 — Distributed Systems */}
-        {distributed.length > 0 && (
-          <div className="mb-16">
-            <TierHeader
-              index={2}
-              label={tierMeta.distributed.heading}
-              sub={tierMeta.distributed.sub}
-            />
-            <div className="space-y-12">
-              {distributedGroups.map((g) => {
-                const groupProjects = distributed.filter((p) => p.group === g.id)
-                if (groupProjects.length === 0) return null
-                return (
-                  <CategoryCarousel
-                    key={g.id}
-                    label={g.label}
-                    sub={g.sub}
-                    projects={groupProjects}
-                  />
-                )
-              })}
-            </div>
-            <div className="mt-12">
-              <CurrentlyBuildingCard />
-            </div>
-          </div>
-        )}
+        {/* Tier 2 — Distributed Systems (hidden until projects are live) */}
 
         {/* Tier 3 — Full-stack & Product */}
         {fullstack.length > 0 && (
