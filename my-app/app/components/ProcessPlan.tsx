@@ -85,17 +85,17 @@ const services = [
 
 const specialty = [
   {
-    icon: Server,
-    title: "Backend Engineering",
+    icon: Layers,
+    title: "Full-Stack Development",
     level: "Primary focus",
-    body: "The core of what I do — APIs, distributed systems, databases, and server-side infrastructure.",
+    body: "End-to-end product delivery — Go backend through to React/Next.js front end, shipped as a complete system.",
     accent: true,
   },
   {
-    icon: Layers,
-    title: "Full-stack Development",
-    level: "Offered",
-    body: "End-to-end web platforms when a project needs both frontend and backend delivered together.",
+    icon: Server,
+    title: "Backend & Distributed Systems",
+    level: "Core strength",
+    body: "APIs, distributed systems, databases, and server-side infrastructure — the depth behind the full-stack work.",
     accent: false,
   },
   {

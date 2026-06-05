@@ -76,7 +76,7 @@ export default function Footer() {
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Building systems designed to stay alive under continuous load.
+          Full-stack engineer · Go backends · Distributed systems
         </motion.p>
       </div>
     </footer>

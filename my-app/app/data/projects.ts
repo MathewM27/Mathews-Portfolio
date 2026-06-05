@@ -69,11 +69,11 @@ export const projects: Project[] = [
     tier: "flagship",
     name: "Alebus",
     tagline: "Real-time public transport intelligence platform",
-    badges: ["Backend", "IoT", "Go"],
+    badges: ["Full-Stack", "Go", "IoT"],
     summary:
-      "Real-time public transport intelligence platform — GPS telemetry streamed, processed, and fanned out to commuters and operators in under a second.",
+      "Full-stack real-time public transport platform — Go event-driven backend, React Native commuter app, and Next.js operator dashboard, with GPS telemetry fanned out to users in under a second.",
     description: [
-      "Alebus turns raw GPS telemetry from transit vehicles into live, actionable intelligence. Location data streams from on-vehicle GPS devices into an EMQX MQTT broker, is processed by a Go backend, and is fanned out through Redis Pub/Sub and WebSocket to a commuter mobile app and an operator dashboard.",
+      "Alebus turns raw GPS telemetry from transit vehicles into live, actionable intelligence. Location data streams from on-vehicle GPS devices into an EMQX MQTT broker, is processed by a Go backend, and is fanned out through Redis Pub/Sub and WebSocket to a React Native commuter app and a Next.js operator dashboard.",
       "The system is built with Domain-Driven Design across five bounded contexts and ships as seven independently runnable Go binaries, with a full observability stack wired in from day one.",
     ],
     architecture:

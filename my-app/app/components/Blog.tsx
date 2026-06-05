@@ -150,7 +150,7 @@ export default function Blog() {
         <motion.div className="mb-8 sm:mb-10 text-center" {...fadeUp} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl font-bold text-white sm:text-4xl">Blog</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-400 sm:text-base">
-            Notes on backend engineering, distributed systems, and the projects I&apos;m building.
+            Notes on Go, distributed systems, and full-stack engineering — from the projects I&apos;m building.
           </p>
         </motion.div>
 

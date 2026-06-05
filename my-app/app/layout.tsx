@@ -6,12 +6,12 @@ import { Metadata } from "next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mathews Mwangi | System Engineer & Entrepreneur",
-  description: "Personal portfolio of Mathews Mwangi, showcasing projects in system engineering, entrepreneurship, and tech innovation.",
+  title: "Mathews Mwangi | Full-Stack Software Engineer",
+  description: "Personal portfolio of Mathews Mwangi — full-stack software engineer. Go backends, distributed systems, and end-to-end products with React and Next.js.",
   metadataBase: new URL('https://mathewsmwangi.com'),
   openGraph: {
-    title: "Mathews Mwangi | Freelance Web Developer & AI engineer",
-    description: "Personal portfolio of Mathews Mwangi, showcasing projects in web development, AI engineering, and freelance projects.",
+    title: "Mathews Mwangi | Full-Stack Software Engineer",
+    description: "Full-stack software engineer — Go backends, distributed systems, and end-to-end products with React and Next.js.",
     url: "https://mathewsmwangi.com/",
     siteName: "Mathews Mwangi Portfolio",
     images: [

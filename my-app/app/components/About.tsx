@@ -18,8 +18,8 @@ const stackTiers = [
     accent: "text-gray-300 border-gray-800 bg-gray-950",
   },
   {
-    label: "Frontend - If needed",
-    sublabel: "when the role needs it",
+    label: "Full-stack & Frontend",
+    sublabel: "shipped end-to-end",
     tags: ["TypeScript", "React", "Next.js", "React Native", "Tailwind CSS"],
     accent: "text-gray-300 border-gray-800 bg-gray-950",
   },
@@ -72,7 +72,7 @@ export default function About() {
             {/* Identity */}
             <div className="flex flex-col gap-1 items-center text-center md:items-start md:text-left">
               <h2 className="text-lg font-bold text-white">Mathews Mwangi</h2>
-              <p className="text-xs text-gray-400 font-mono">Backend Engineer</p>
+              <p className="text-xs text-gray-400 font-mono">Full-Stack Software Engineer</p>
               <p className="text-xs text-gray-600 flex items-center gap-1 mt-0.5">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3 h-3 flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -97,15 +97,15 @@ export default function About() {
               <p className="text-gray-500 text-[10px] font-mono uppercase tracking-widest">The story</p>
 
               <p className="text-white text-sm sm:text-base leading-relaxed">
-                I build systems designed to stay alive under continuous load — GPS telemetry pipelines, event-driven backends, real-time data fan-out at scale.
+                I&apos;m a full-stack software engineer with a backend core. I build distributed systems in Go and take them all the way to the screen — from event-driven pipelines and real-time infrastructure to the React and Next.js front ends on top.
               </p>
 
               <p className="text-gray-400 text-sm leading-relaxed">
-                Most of my work started with a problem I felt directly. <span className="text-white">Alebus</span> came from standing at a bus stop in Mauritius for 45 minutes with no idea when the next bus was coming. <span className="text-white">Lakazhub</span> came from watching people navigate long-term rentals entirely through WhatsApp groups. I find a problem, understand the domain, and build from architecture through to production.
+                Most of my work started with a problem I felt directly. <span className="text-white">Alebus</span> came from standing at a bus stop for 45 minutes with no idea when the next bus was coming — so I built the whole thing: a Go event-driven backend, a React Native commuter app, and a Next.js operator dashboard. <span className="text-white">Lakazhub</span> came from watching people navigate long-term rentals entirely through WhatsApp groups. I find a problem, understand the domain, and build from architecture through to the screen.
               </p>
 
               <p className="text-gray-400 text-sm leading-relaxed">
-                I work primarily in <span className="text-white font-mono">Go</span> for backend systems and have been going deep on distributed systems — Kafka, Kubernetes, gRPC — as the natural next layer of what I build.
+                My core is backend — I work primarily in <span className="text-white font-mono">Go</span> and have been going deep on distributed systems — Kafka, Kubernetes, gRPC — as the natural next layer of what I build. But I ship end-to-end: the React/Next.js front end is part of the product, not an afterthought.
               </p>
             </div>
 

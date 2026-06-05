@@ -16,7 +16,7 @@ export default function Contact() {
         >
           <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">Let's Work Together</h2>
           <p className="text-sm sm:text-lg text-gray-200 max-w-2xl mx-auto">
-            Whether you need a backend engineer, a full-stack developer, or just want to connect and chat — feel free to reach out.
+            Whether you need a Go backend, an end-to-end product, or just want to talk tech — feel free to reach out.
           </p>
         </motion.div>
 
@@ -31,7 +31,7 @@ export default function Contact() {
           >
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Get In Touch</h3>
             <p className="text-gray-200 text-sm sm:text-lg leading-relaxed">
-              I'm always open to discussing new opportunities and interesting projects. Whether you need a backend engineer, a full-stack developer, or you're building something AI-powered — or just want to link and talk tech — don't hesitate to get in touch.
+              I'm always open to discussing new opportunities and interesting projects. Whether you need a Go backend, an end-to-end web product, or you're building something AI-powered — or just want to link and talk tech — don't hesitate to get in touch.
             </p>
           </motion.div>
 

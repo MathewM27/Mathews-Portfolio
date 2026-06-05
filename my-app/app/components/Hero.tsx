@@ -7,9 +7,9 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 const roles = [
-  "Backend Engineer",
+  "Full-Stack Engineer",
+  "Go Backend Engineer",
   "Distributed Systems Engineer",
-  "Systems Architect",
   "API & Platform Builder",
 ]
 
@@ -399,7 +399,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
                 >
-                  Building scalable real-time systems and data pipelines that process continuously at scale.
+                  I build Go backends and distributed systems, and ship them end-to-end with React and Next.js.
                 </motion.p>
               </div>
 
